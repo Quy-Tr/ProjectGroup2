@@ -6,14 +6,16 @@
 @font-face {
   font-family: 'Josefin Sans';
   src: url('fonts/JosefinSans-Regular.ttf') format('truetype');
-  font-weight: 400; /* Độ đậm thường */
+  font-weight: 400;
+  /* Độ đậm thường */
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Josefin Sans';
   src: url('fonts/JosefinSans-Bold.ttf') format('truetype');
-  font-weight: 700; /* Độ đậm: Đậm */
+  font-weight: 700;
+  /* Độ đậm: Đậm */
   font-style: normal;
 }
 
@@ -21,7 +23,7 @@
 /* Lưu ý: Bạn hãy kiểm tra tên file trong thư mục fonts có đúng là 'SVN-Gilroy-Regular.ttf' không nhé */
 @font-face {
   font-family: 'SVN-Gilroy';
-  src: url('fonts/SVN-Gilroy\ Regular.otf') format('truetype'); 
+  src: url('fonts/SVN-Gilroy\ Regular.otf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
@@ -32,6 +34,7 @@
   font-weight: 700;
   font-style: normal;
 }
+
 /* =========================================
    1. VARIABLES & GLOBAL STYLES
    ========================================= */
@@ -54,28 +57,40 @@ body {
 }
 
 /* Tiêu đề dùng SVN-Gilroy cho sự đẳng cấp, mạnh mẽ */
-h1, h2, h3, h4, h5, h6, .brand-font, .navbar-brand {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand-font,
+.navbar-brand {
   font-family: 'SVN-Gilroy', sans-serif;
-  font-weight: 400; /* Gilroy in đậm nhìn rất đẹp */
+  font-weight: 400;
+  /* Gilroy in đậm nhìn rất đẹp */
   /* letter-spacing: -0.5px; Thu hẹp khoảng cách chữ xíu cho chặt chẽ */
 }
 
 /* Các thành phần cần nhấn mạnh khác */
 /* Tìm đoạn này trong file style.css của bạn */
 .nav-link {
-  font-size: 0.85rem; /* Kích thước chữ (có thể giữ nguyên) */
-  
+  font-size: 0.85rem;
+  /* Kích thước chữ (có thể giữ nguyên) */
+
   /* --- SỬA DÒNG NÀY --- */
-  font-weight: 500;  /* Giảm từ 600/700 xuống 500 (Vừa) hoặc 400 (Mỏng) */
+  font-weight: 500;
+  /* Giảm từ 600/700 xuống 500 (Vừa) hoặc 400 (Mỏng) */
   /* ------------------- */
 
   color: var(--primary-color) !important;
   margin: 0 8px;
-  text-transform: uppercase; /* Giữ nguyên chữ in hoa nhìn sẽ sang hơn khi để nét mỏng */
+  text-transform: uppercase;
+  /* Giữ nguyên chữ in hoa nhìn sẽ sang hơn khi để nét mỏng */
 }
 
 .price {
-    font-family: 'SVN-Gilroy', sans-serif; /* Giá tiền dùng Gilroy số sẽ đẹp hơn */
+  font-family: 'SVN-Gilroy', sans-serif;
+  /* Giá tiền dùng Gilroy số sẽ đẹp hơn */
 }
 
 /* --- SECTION STYLES --- */
@@ -234,11 +249,12 @@ h1, h2, h3, h4, h5, h6, .brand-font, .navbar-brand {
 
 /* Slide Style */
 .perfume-slider .swiper-slide {
-  width: 380px; /* Kích thước chuẩn mới nhất */
+  width: 380px;
+  /* Kích thước chuẩn mới nhất */
   height: 500px;
   position: relative;
   border-radius: 12px;
-  
+
   /* Mặc định ẩn các tấm thừa */
   opacity: 0 !important;
   visibility: hidden;
@@ -287,13 +303,16 @@ h1, h2, h3, h4, h5, h6, .brand-font, .navbar-brand {
   transform: translateX(-50%);
   color: #fff;
   font-family: "Playfair Display", serif;
-  font-size: 1.2rem;       /* Sửa: Giảm kích thước xuống một chút (từ 1.5rem) */
+  font-size: 1.2rem;
+  /* Sửa: Giảm kích thước xuống một chút (từ 1.5rem) */
   font-weight: 700;
   z-index: 20;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
-  letter-spacing: 3px;     /* Thêm: Khoảng cách giữa các chữ cái cho sang trọng */
-  text-decoration: none;   /* Thêm: Xóa bỏ dấu gạch chân */
+  letter-spacing: 3px;
+  /* Thêm: Khoảng cách giữa các chữ cái cho sang trọng */
+  text-decoration: none;
+  /* Thêm: Xóa bỏ dấu gạch chân */
   pointer-events: none;
   width: 100%;
   text-align: center;
@@ -304,13 +323,16 @@ h1, h2, h3, h4, h5, h6, .brand-font, .navbar-brand {
 .swiper-button-next,
 .swiper-button-prev {
   color: #000 !important;
-  width: 40px;               /* Sửa: Làm nút nhỏ lại (từ 45px) */
+  width: 40px;
+  /* Sửa: Làm nút nhỏ lại (từ 45px) */
   height: 40px;
-  background: rgba(255, 255, 255, 0.8) !important; /* Sửa: Thêm độ trong suốt nhẹ */
+  background: rgba(255, 255, 255, 0.8) !important;
+  /* Sửa: Thêm độ trong suốt nhẹ */
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 50;
-  transition: all 0.3s ease; /* Thêm: Hiệu ứng mượt mà khi hover */
+  transition: all 0.3s ease;
+  /* Thêm: Hiệu ứng mượt mà khi hover */
 }
 
 /* Thêm mới: Hiệu ứng khi di chuột vào nút */
@@ -327,8 +349,16 @@ h1, h2, h3, h4, h5, h6, .brand-font, .navbar-brand {
   font-weight: bold;
 }
 
-.swiper-button-prev { left: 5%; }  /* Sửa: Từ 10% xuống 5% */
-.swiper-button-next { right: 5%; } /* Sửa: Từ 10% xuống 5% */
+.swiper-button-prev {
+  left: 5%;
+}
+
+/* Sửa: Từ 10% xuống 5% */
+.swiper-button-next {
+  right: 5%;
+}
+
+/* Sửa: Từ 10% xuống 5% */
 
 /* =========================================
    5. PRODUCT SLIDER & CARDS (Sản phẩm mới)
@@ -356,7 +386,8 @@ h1, h2, h3, h4, h5, h6, .brand-font, .navbar-brand {
 .product-card {
   border: 1px solid #eee;
   transition: 0.3s;
-  margin-bottom: 30px; /* Dùng cho dạng lưới */
+  margin-bottom: 30px;
+  /* Dùng cho dạng lưới */
   text-decoration: none;
   color: inherit;
   display: block;
@@ -366,7 +397,8 @@ h1, h2, h3, h4, h5, h6, .brand-font, .navbar-brand {
 }
 
 .product-slider .product-card {
-  margin-bottom: 0; /* Trong slider thì bỏ margin bottom */
+  margin-bottom: 0;
+  /* Trong slider thì bỏ margin bottom */
 }
 
 .product-card:hover {
@@ -379,7 +411,8 @@ h1, h2, h3, h4, h5, h6, .brand-font, .navbar-brand {
   position: relative;
   overflow: hidden;
   padding: 0;
-  height: 350px; /* Chiều cao cố định khung ảnh */
+  height: 350px;
+  /* Chiều cao cố định khung ảnh */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -556,25 +589,28 @@ footer .small {
 }
 
 @media (max-width: 768px) {
+
   /* Hero */
   .carousel-caption {
     left: 5% !important;
     max-width: 90%;
   }
+
   .carousel-caption h1 {
     font-size: 2rem;
   }
-  
+
   /* Product */
   .product-img-box {
     height: 250px;
   }
-  
+
   /* Collection Slider */
   .perfume-slider .swiper-slide {
     width: 260px;
     height: 350px;
   }
+
   .swiper-button-next,
   .swiper-button-prev {
     display: none;
@@ -621,7 +657,8 @@ footer .small {
 /* Authentication (Login/Register) - Đã cập nhật giao diện mới */
 .auth-card {
   border: none;
-  box-shadow: 0 0 25px rgba(0,0,0,0.05); /* Bóng mờ nhẹ tinh tế */
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+  /* Bóng mờ nhẹ tinh tế */
   border-radius: 12px;
   overflow: hidden;
   background: #fff;
@@ -632,12 +669,14 @@ footer .small {
   font-weight: 700;
   margin-top: 15px;
   text-align: center;
-  color: #000; /* Chữ đen trên nền trắng */
+  color: #000;
+  /* Chữ đen trên nền trắng */
 }
 
 /* Cập nhật ô nhập liệu (Input) toàn trang cho đồng bộ */
 .form-control {
-  border-radius: 8px; /* Bo góc mềm mại hơn thay vì vuông */
+  border-radius: 8px;
+  /* Bo góc mềm mại hơn thay vì vuông */
   padding: 12px 15px;
   border: 1px solid #e0e0e0;
   font-size: 0.95rem;
@@ -646,7 +685,8 @@ footer .small {
 
 .form-control:focus {
   box-shadow: none;
-  border-color: #000; /* Focus hiện viền đen sang trọng */
+  border-color: #000;
+  /* Focus hiện viền đen sang trọng */
 }
 
 /* Class riêng cho input trang login (nếu cần chỉnh riêng) */
@@ -659,7 +699,8 @@ footer .small {
 .btn-black {
   background: #000;
   color: #fff;
-  border-radius: 50px; /* Bo tròn hình viên thuốc */
+  border-radius: 50px;
+  /* Bo tròn hình viên thuốc */
   height: 50px;
   width: 100%;
   font-weight: 600;
@@ -690,7 +731,8 @@ footer .small {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Khoảng cách giữa logo G và chữ */
+  gap: 10px;
+  /* Khoảng cách giữa logo G và chữ */
   transition: 0.3s;
   margin-top: 15px;
 }
@@ -725,8 +767,9 @@ footer .small {
   position: absolute;
   right: 15px;
   /* Thay vì top: 50%, ta dùng bottom để căn từ dưới lên */
-  top: auto; 
-  bottom: 13px; /* Canh chỉnh cho nằm giữa ô input cao 48px */
+  top: auto;
+  bottom: 13px;
+  /* Canh chỉnh cho nằm giữa ô input cao 48px */
   cursor: pointer;
   color: #999;
   z-index: 10;
@@ -747,6 +790,7 @@ footer .small {
   background-color: #000;
   border-color: #000;
 }
+
 /* Contact Page */
 .contact-info-item {
   display: flex;
@@ -773,83 +817,184 @@ footer .small {
 
 /* 1. Phần ảnh nghệ thuật */
 .about-image-box {
-    position: relative;
-    padding: 15px;
-    border: 1px solid #eee; /* Viền mỏng tạo cảm giác khung tranh */
+  position: relative;
+  padding: 15px;
+  border: 1px solid #eee;
+  /* Viền mỏng tạo cảm giác khung tranh */
 }
 
 .about-image-box img {
-    width: 100%;
-    display: block;
-    transition: transform 0.6s ease;
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease;
 }
 
 /* Hiệu ứng zoom nhẹ khi di chuột vào ảnh */
 .about-image-box:hover img {
-    transform: scale(1.02); 
+  transform: scale(1.02);
 }
 
 /* 2. Badge "Thành lập 2024" */
 .since-badge {
-    position: absolute;
-    bottom: 40px;
-    left: -20px; /* Đẩy nhẹ ra ngoài khung ảnh để tạo phá cách */
-    background: #fff;
-    padding: 20px 30px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border-left: 4px solid var(--accent-color);
+  position: absolute;
+  bottom: 40px;
+  left: -20px;
+  /* Đẩy nhẹ ra ngoài khung ảnh để tạo phá cách */
+  background: #fff;
+  padding: 20px 30px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--accent-color);
 }
 
 .since-badge .year {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--accent-color);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent-color);
 }
 
 /* 3. Card giá trị cốt lõi */
 .value-card {
-    transition: all 0.3s ease;
-    border: 1px solid transparent; /* Mặc định ẩn viền */
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  /* Mặc định ẩn viền */
 }
 
 .value-card:hover {
-    transform: translateY(-10px); /* Bay lên nhẹ */
-    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-    border-color: #eee;
+  transform: translateY(-10px);
+  /* Bay lên nhẹ */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+  border-color: #eee;
 }
 
 .icon-circle {
-    width: 70px;
-    height: 70px;
-    background: #fcfcfc;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    color: var(--accent-color);
-    margin: 0 auto;
-    transition: 0.3s;
-    border: 1px solid #eee;
+  width: 70px;
+  height: 70px;
+  background: #fcfcfc;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin: 0 auto;
+  transition: 0.3s;
+  border: 1px solid #eee;
 }
 
 .value-card:hover .icon-circle {
-    background: var(--accent-color);
-    color: #fff;
-    border-color: var(--accent-color);
+  background: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
 }
 
 /* Mobile Responsive cho trang About */
 @media (max-width: 768px) {
-    .since-badge {
-        left: 10px;
-        bottom: 10px;
-        padding: 15px;
-    }
-    
-    .about-image-box {
-        margin-bottom: 20px;
-    }
+  .since-badge {
+    left: 10px;
+    bottom: 10px;
+    padding: 15px;
+  }
+
+  .about-image-box {
+    margin-bottom: 20px;
+  }
+}
+
+/* =========================================
+   PAGE: PRODUCTS (DANH SÁCH SẢN PHẨM)
+   ========================================= */
+/* 1. Khung ảnh sản phẩm */
+.product-img-box {
+  position: relative;
+  overflow: hidden;
+  /* Giữ nguyên chiều cao bạn đang có */
+  height: 350px;
+  background: #f4f4f4;
+}
+
+/* Ảnh bên trong */
+.product-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Thêm transition cho filter để mờ dần đều */
+  transition: transform 0.6s ease, filter 0.4s ease;
+  will-change: transform, filter;
+}
+
+/* --- HIỆU ỨNG HOVER --- */
+/* Khi di chuột vào card:
+   1. Ảnh phóng to nhẹ (scale)
+   2. Ảnh mờ đi (blur)
+   3. Tối đi một chút để nút trắng nổi bật hơn (brightness)
+*/
+.product-card:hover .product-img-box img {
+  transform: scale(1.08);
+  filter: blur(4px) brightness(0.85);
+}
+
+/* --- KHỐI CHỨA 2 NÚT (CĂN GIỮA TUYỆT ĐỐI) --- */
+.product-actions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Phủ kín toàn bộ khung ảnh */
+  height: 100%;
+  /* Phủ kín toàn bộ khung ảnh */
+
+  /* Dùng Flexbox để căn nội dung vào chính giữa khung */
+  display: flex;
+  align-items: center;
+  /* Căn giữa dọc */
+  justify-content: center;
+  /* Căn giữa ngang */
+  gap: 15px;
+  /* Khoảng cách giữa 2 nút */
+
+  z-index: 5;
+  opacity: 0;
+  /* Mặc định ẩn */
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Khi hover thì hiện khối chứa nút lên */
+.product-card:hover .product-actions {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- NÚT TRÒN (BTN ACTION) --- */
+.btn-action {
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  border-radius: 50%;
+  color: #000;
+
+  /* Căn icon nằm chính xác giữa nút tròn */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(20px);
+  /* Đẩy xuống nhẹ để tạo hiệu ứng trượt lên */
+  transition: all 0.3s ease;
+}
+
+/* Hiệu ứng trượt nút lên khi hover */
+.product-card:hover .btn-action {
+  transform: translateY(0);
+}
+
+.btn-action:hover {
+  background: var(--accent-color);
+  /* Màu vàng của bạn */
+  color: #fff;
+  box-shadow: 0 5px 20px rgba(197, 160, 89, 0.4);
 }
