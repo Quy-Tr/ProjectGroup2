@@ -588,6 +588,7 @@ footer .small {
 }
 
 @media (max-width: 768px) {
+
   /* Hero */
   .carousel-caption {
     left: 5% !important;
@@ -908,7 +909,8 @@ footer .small {
   position: relative;
   overflow: hidden;
   height: 350px;
-  background: #fcfcfc; /* Đã sửa thành màu sáng hơn giống ảnh mẫu */
+  background: #fcfcfc;
+  /* Đã sửa thành màu sáng hơn giống ảnh mẫu */
 }
 
 /* Ảnh bên trong */
@@ -916,7 +918,8 @@ footer .small {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease; /* Bỏ transition cho filter vì đã xóa filter */
+  transition: transform 0.6s ease;
+  /* Bỏ transition cho filter vì đã xóa filter */
   will-change: transform;
 }
 
@@ -959,7 +962,8 @@ footer .small {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Giảm độ đậm của bóng đổ */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* Giảm độ đậm của bóng đổ */
   transform: translateY(20px);
   transition: all 0.3s ease;
 }
@@ -969,31 +973,127 @@ footer .small {
 }
 
 .btn-action:hover {
-  background: #000; /* Đổi thành màu đen cho đúng chất Minimalist của ảnh mẫu */
+  background: #000;
+  /* Đổi thành màu đen cho đúng chất Minimalist của ảnh mẫu */
   color: #fff;
 }
 
 /* Thêm mới để giống Sidebar trong ảnh mẫu */
 .form-check-input {
-  border-radius: 50% !important; /* Biến ô checkbox vuông thành tròn */
+  border-radius: 50% !important;
+  /* Biến ô checkbox vuông thành tròn */
   border: 1px solid #ccc !important;
 }
 
 .form-check-input:checked {
-  background-color: #000 !important; /* Khi tích vào hiện màu đen */
+  background-color: #000 !important;
+  /* Khi tích vào hiện màu đen */
   border-color: #000 !important;
 }
 
 /* Thêm mới đoạn này vào cuối style.css */
 .filter-sidebar {
-    position: relative;    /* Sidebar sẽ trôi theo trang, không bị đứng yên */
-    padding-right: 20px;   /* Tạo khoảng cách với cột sản phẩm bên phải */
-    background: #fff;      /* Đảm bảo nền trắng sạch sẽ như ảnh mẫu */
+  position: relative;
+  /* Sidebar sẽ trôi theo trang, không bị đứng yên */
+  padding-right: 20px;
+  /* Tạo khoảng cách với cột sản phẩm bên phải */
+  background: #fff;
+  /* Đảm bảo nền trắng sạch sẽ như ảnh mẫu */
 }
 
 .filter-group {
-    border-bottom: 1px solid #eee; /* Gạch chân nhẹ dưới mỗi nhóm lọc như ảnh mẫu */
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  /* Gạch chân nhẹ dưới mỗi nhóm lọc như ảnh mẫu */
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
+/* =========================================
+   STYLE TRANG PRODUCT DETAIL (NO JS)
+   ========================================= */
+
+/* 1. Gallery ảnh (Tĩnh) */
+.thumb-box {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #eee;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Đánh dấu ảnh đang chọn (giả lập) */
+.thumb-box.active {
+  border-color: #000;
+}
+
+.thumb-box:hover {
+  border-color: #ccc;
+}
+
+/* 2. Ô chọn dung tích (Capacity Option) */
+.capacity-option {
+  border: 1px solid #e0e0e0;
+  padding: 10px 15px;
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+  min-width: 110px;
+  transition: all 0.2s;
+}
+
+/* Hiệu ứng hover */
+.capacity-option:hover {
+  border-color: #999;
+}
+
+/* Trạng thái đang chọn (Active) - Giả lập bằng class */
+.capacity-option.active {
+  border-color: #000;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 0 0 1px #000;
+  /* Viền đôi đậm hơn */
+}
+
+/* Trạng thái hết hàng */
+.capacity-option.disabled {
+  opacity: 0.5;
+  background-color: #eee;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+/* 3. Nút Tabs (Mô tả/Tầng hương) */
+.nav-tabs .nav-link {
+  background: transparent;
+  border-radius: 0;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
+  color: #000 !important;
+}
+
+.thumb-box {
+  cursor: pointer;
+  border: 1px solid #eee;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.thumb-box:hover,
+.thumb-box.active {
+  border-color: #000;
+}
+
+.thumb-box img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
