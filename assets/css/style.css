@@ -1,8 +1,10 @@
-/* =========================================
-   0. KHAI BÁO FONT & BIẾN (VARIABLES)
-   ========================================= */
+/* ==========================================================================
+   1. CORE & GLOBAL SETTINGS (CÀI ĐẶT CỐT LÕI)
+   Bao gồm: Fonts, Biến màu, Reset mặc định, Typography
+   ========================================================================== */
 
-/* 1. Font Josefin Sans (Nội dung thường) */
+/* --- 1.1. KHAI BÁO FONT LOCAL --- */
+/* Nhúng Josefin Sans (Dùng cho chữ nhỏ, mô tả) */
 @font-face {
   font-family: "Josefin Sans";
   src: url("fonts/JosefinSans-Regular.ttf") format("truetype");
@@ -16,7 +18,7 @@
   font-style: normal;
 }
 
-/* 2. Font SVN-Gilroy (Tiêu đề sang trọng) */
+/* Nhúng SVN-Gilroy (Dùng cho Tiêu đề sang trọng) */
 @font-face {
   font-family: "SVN-Gilroy";
   src: url("fonts/SVN-Gilroy\ Regular.otf") format("truetype");
@@ -30,7 +32,7 @@
   font-style: normal;
 }
 
-/* 3. Biến màu sắc dùng chung */
+/* --- 1.2. VARIABLES (BIẾN MÀU SẮC) --- */
 :root {
   --primary-color: #000000;
   --accent-color: #c5a059; /* Màu vàng đồng */
@@ -39,9 +41,7 @@
   --border-color: #eee;
 }
 
-/* =========================================
-   1. CẤU TRÚC CHUNG (GLOBAL STYLES)
-   ========================================= */
+/* --- 1.3. GLOBAL STYLES (STYLE CHUNG TOÀN TRANG) --- */
 body {
   font-family: "Josefin Sans", sans-serif;
   color: #333;
@@ -49,7 +49,7 @@ body {
   overflow-x: hidden; /* Tránh thanh cuộn ngang không mong muốn */
 }
 
-/* Các thẻ tiêu đề dùng font Gilroy */
+/* Tiêu đề dùng SVN-Gilroy cho sự đẳng cấp */
 h1,
 h2,
 h3,
@@ -61,22 +61,50 @@ h6,
 .price,
 .current-price {
   font-family: "SVN-Gilroy", sans-serif;
+  font-weight: 400;
 }
 
-a {
+/* Class định dạng giá tiền */
+.price {
+  font-family: "SVN-Gilroy", sans-serif;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+/* Class tiêu đề trang con (Breadcrumb) */
+.page-header {
+  background-color: #f5f5f5;
+  padding: 60px 0;
+  margin-bottom: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.breadcrumb {
+  justify-content: center;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.breadcrumb a {
+  color: #333;
   text-decoration: none;
-  color: inherit;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
-/* Utility Classes */
-.ls-1 {
-  letter-spacing: 1px;
-}
-.text-accent {
-  color: var(--accent-color) !important;
+.breadcrumb a:hover {
+  color: var(--accent-color);
 }
 
+/* --- 1.4. UTILITY CLASSES (CLASS TIỆN ÍCH) --- */
 .section-padding {
   padding: 80px 0;
 }
@@ -104,9 +132,146 @@ a {
   background: var(--accent-color);
 }
 
-/* =========================================
-   2. NAVBAR (MENU ĐẦU TRANG)
-   ========================================= */
+.text-accent {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tiny-text {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   2. UI COMPONENTS (CÁC THÀNH PHẦN GIAO DIỆN CHUNG)
+   Bao gồm: Nút bấm, Form Input, Checkbox
+   ========================================================================== */
+
+/* --- 2.1. BUTTONS --- */
+/* Nút đen bo tròn (Login/Register) */
+.btn-black {
+  background: #000;
+  color: #fff;
+  border-radius: 50px;
+  height: 50px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid #000;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline-dark {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+
+  /* Bo tròn vừa phải (8px là mức trung bình đẹp) */
+  /* !important để đè lên class rounded-0 nếu lỡ có trong HTML */
+
+  transition: all 0.3s ease;
+  font-weight: 600;
+  /* Chữ đậm vừa phải cho đẹp */
+}
+
+/* Hiệu ứng khi lia chuột: Đảo ngược màu */
+.btn-outline-dark:hover,
+.btn-outline-dark:focus,
+.btn-outline-dark:active {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  /* Thêm bóng đổ nhẹ cho nổi */
+  transform: translateY(-2px);
+  /* Bay lên nhẹ */
+}
+
+.btn-black:hover {
+  background: #333;
+  border-color: #333;
+  color: #fff;
+}
+
+/* Nút Google */
+.btn-google {
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  height: 45px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.3s;
+  margin-top: 15px;
+}
+
+.btn-google:hover {
+  background: #f9f9f9;
+  border-color: #ccc;
+}
+
+/* Nút Accent (Dùng cho Contact) */
+.btn-accent {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  padding: 12px 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  width: 100%;
+  border-radius: 0;
+}
+
+.btn-accent:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+
+/* --- 2.2. FORMS & INPUTS --- */
+.form-control {
+  border-radius: 8px;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #000;
+}
+
+/* Checkbox tròn */
+.form-check-input {
+  border-radius: 50% !important;
+  border: 1px solid #ccc !important;
+}
+
+.form-check-input:checked {
+  background-color: #000 !important;
+  border-color: #000 !important;
+}
+
+
+/* ==========================================================================
+   3. LAYOUT: HEADER & FOOTER (DÙNG CHO TẤT CẢ CÁC TRANG)
+   ========================================================================== */
+
+/* --- 3.1. NAVBAR --- */
 .navbar {
   padding: 20px 0;
   border-bottom: 1px solid var(--border-color);
@@ -122,7 +287,7 @@ a {
 
 .nav-link {
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--primary-color) !important;
   margin: 0 8px;
   text-transform: uppercase;
@@ -175,11 +340,43 @@ a {
   z-index: 10;
 }
 
-/* =========================================
-   3. TRANG CHỦ (HERO & SLIDERS)
-   ========================================= */
+/* --- 3.2. FOOTER --- */
+footer {
+  background: #111;
+  color: #fff;
+  padding-top: 80px;
+}
 
-/* Hero Carousel (Banner lớn) */
+footer a,
+footer p,
+footer .text-muted {
+  color: #bbbbbb !important;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+footer a:hover {
+  color: #c5a059 !important;
+}
+
+footer h6 {
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+footer .small {
+  color: #999999 !important;
+}
+
+
+/* ==========================================================================
+   4. HOME PAGE (TRANG CHỦ)
+   Bao gồm: Hero Banner, 3D Slider, Info Box, Knowledge
+   ========================================================================== */
+
+/* --- 4.1. HERO BANNER (CAROUSEL) --- */
 .carousel-item {
   height: 75vh;
   background-size: cover;
@@ -210,7 +407,14 @@ a {
   font-weight: 700;
 }
 
-/* --- PERFUME 3D SLIDER (BỘ SƯU TẬP) --- */
+.carousel-caption p {
+  font-size: 1rem;
+  max-width: 100%;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* --- 4.2. PERFUME COLLECTION SLIDER (3D Style) --- */
 .perfume-slider {
   width: 100%;
   padding: 30px 0;
@@ -222,7 +426,6 @@ a {
   width: 380px;
   height: 500px;
   border-radius: 12px;
-  /* Hiệu ứng mờ cho các slide phụ */
   opacity: 0 !important;
   visibility: hidden;
   transition: all 0.4s ease;
@@ -258,6 +461,7 @@ a {
   border-radius: 10px;
   display: block;
 }
+
 .collection-title {
   position: absolute;
   top: 20px;
@@ -271,12 +475,13 @@ a {
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
   letter-spacing: 3px;
+  text-decoration: none;
   pointer-events: none;
   width: 100%;
   text-align: center;
 }
 
-/* Nút Next/Prev của Slider */
+/* Navigation Buttons for 3D Slider */
 .swiper-button-next,
 .swiper-button-prev {
   color: #000 !important;
@@ -288,6 +493,13 @@ a {
   z-index: 50;
   transition: all 0.3s ease;
 }
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: var(--accent-color) !important;
+  color: #fff !important;
+}
+
 .swiper-button-next::after,
 .swiper-button-prev::after {
   font-size: 16px !important;
@@ -301,24 +513,27 @@ a {
 .swiper-button-prev {
   left: 5%;
 }
+
 .swiper-button-next {
   right: 5%;
 }
 
-/* Info Box (Cam kết) */
+/* --- 4.3. INFO & KNOWLEDGE SECTION --- */
 .info-box {
   text-align: center;
   padding: 40px 20px;
-  border: 1px solid var(--border-color);
+  border: 1px solid #eee;
   transition: 0.3s;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .info-box:hover {
   border-color: var(--accent-color);
 }
+
 .info-box i {
   font-size: 3rem;
   color: var(--accent-color);
@@ -326,20 +541,21 @@ a {
   display: block;
 }
 
-/* Knowledge Card (Kiến thức) */
 .knowledge-card {
   padding: 30px 20px;
   background: #fff;
-  border: 1px solid var(--border-color);
+  border: 1px solid #eee;
   border-radius: 8px;
   transition: all 0.3s ease;
   height: 100%;
 }
+
 .knowledge-card:hover {
   border-color: var(--accent-color);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   transform: translateY(-5px);
 }
+
 .k-icon {
   font-size: 2.5rem;
   color: var(--accent-color);
@@ -353,7 +569,14 @@ a {
   margin-bottom: 10px;
 }
 
-/* Scent Tags */
+.concentration-item {
+  margin-bottom: 25px;
+}
+
+.progress-bar {
+  background-color: #333;
+}
+
 .scent-tag {
   background: #fff;
   padding: 15px 5px;
@@ -375,73 +598,80 @@ a {
   margin-bottom: 5px;
   display: block;
 }
-.tiny-text {
-  font-size: 0.7rem;
-  font-weight: 400;
-  opacity: 0.8;
+
+
+/* ==========================================================================
+   5. PRODUCT CARD COMPONENT (THẺ SẢN PHẨM)
+   Dùng chung cho: Trang chủ (Slider), Trang Shop, Sản phẩm liên quan
+   ========================================================================== */
+.product-slider {
+  padding-bottom: 50px;
 }
 
-/* =========================================
-   4. SẢN PHẨM (CARD & LIST)
-   ========================================= */
+.product-slider .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  opacity: 1;
+}
+
+.product-slider .swiper-pagination-bullet-active {
+  background: var(--accent-color);
+  width: 25px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
 .product-card {
-  border: 1px solid var(--border-color);
+  border: 1px solid #eee;
   transition: 0.3s;
+  margin-bottom: 30px;
   text-decoration: none;
   color: inherit;
   display: block;
   border-radius: 8px;
   overflow: hidden;
   background: #fff;
-  height: 100%;
 }
+
+.product-slider .product-card {
+  margin-bottom: 0;
+}
+
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Khung ảnh sản phẩm */
 .product-img-box {
   background: #fcfcfc;
   position: relative;
   overflow: hidden;
+  padding: 0;
   height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .product-img-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
+  will-change: transform;
 }
+
 .product-card:hover .product-img-box img {
   transform: scale(1.08);
 }
 
-/* Thông tin sản phẩm */
 .product-info {
   padding: 15px;
   text-align: center;
 }
-.product-info h6 {
-  font-size: 1.1rem;
-  line-height: 1.4;
-  margin: 10px 0;
-}
-.product-brand {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  color: #999;
-}
-.product-price {
-  color: var(--accent-color);
-  font-weight: 700;
-  font-size: 1rem;
-}
 
-/* Nút Action (Giỏ hàng/Xem) */
+/* Nút Action trên ảnh sản phẩm */
 .product-actions {
   position: absolute;
   top: 0;
@@ -457,6 +687,7 @@ a {
   visibility: hidden;
   transition: all 0.3s ease;
 }
+
 .product-card:hover .product-actions {
   opacity: 1;
   visibility: visible;
@@ -471,271 +702,188 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transform: translateY(20px);
   transition: all 0.3s ease;
 }
+
 .product-card:hover .btn-action {
   transform: translateY(0);
 }
+
 .btn-action:hover {
   background: #000;
   color: #fff;
 }
 
-/* Pagination (Dấu chấm slider sản phẩm) */
-.product-slider {
-  padding-bottom: 50px;
-}
-.swiper-pagination-bullet-active {
-  background: var(--accent-color) !important;
-  width: 25px;
-  border-radius: 5px;
+
+/* ==========================================================================
+   6. SHOP PAGE (TRANG SẢN PHẨM/DANH MỤC)
+   Bao gồm: Sidebar bộ lọc, Nút lọc tùy chỉnh
+   ========================================================================== */
+.filter-sidebar {
+  position: relative;
+  padding-right: 20px;
+  background: #fff;
 }
 
-/* =========================================
-   5. TRANG CHI TIẾT SẢN PHẨM
-   ========================================= */
-/* Wrapper ảnh lớn */
-.main-image-wrapper {
-  border: 1px solid var(--border-color) !important;
+.filter-group {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-/* Thumbnails */
-.thumb-box {
-  width: 100px;
-  height: 100px;
-  cursor: pointer;
-  border: 1px solid var(--border-color);
-  padding: 5px;
+/* Nút Lọc và Đặt lại trong Sidebar */
+.filter-actions {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.filter-actions .btn {
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.filter-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filter-actions .btn-dark {
+  background-color: #111;
+  border-color: #111;
   transition: all 0.3s ease;
 }
+
+.filter-actions .btn-outline-dark:hover {
+  background-color: #f8f8f8;
+  color: #111;
+  border-color: #111;
+}
+
+.filter-checkbox {
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   7. PRODUCT DETAIL PAGE (TRANG CHI TIẾT SẢN PHẨM)
+   Bao gồm: Thư viện ảnh nhỏ, Chọn dung tích, Tabs nội dung
+   ========================================================================== */
+
+/* Thư viện ảnh nhỏ (Thumbnail) */
+.thumb-box {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #eee;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
 .thumb-box img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
+
+.thumb-box.active {
+  border-color: #000;
+}
+
 .thumb-box:hover {
+  border-color: #ccc;
+}
+
+/* Ô chọn dung tích (Capacity) */
+.capacity-option {
+  border: 1px solid #e0e0e0;
+  padding: 10px 15px;
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+  min-width: 110px;
+  transition: all 0.2s;
+}
+
+.capacity-option:hover {
   border-color: #999;
 }
-.thumb-box.active {
-  border: 1px solid #000 !important;
-}
 
-/* Giá & Specs */
-.current-price {
-  font-family: "SVN-Gilroy", sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  color: #000;
-}
-.spec-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 1px dashed #e5e5e5;
-  font-size: 0.95rem;
-}
-.spec-item:last-child {
-  border-bottom: none;
-}
-.spec-label {
-  color: #777;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  font-weight: 600;
-}
-.spec-value {
-  color: #000;
-  font-weight: 500;
-  text-align: right;
-}
-
-/* Nút Dung tích (Vuông) */
-.cap-btn {
-  background: #fff;
-  border: 1px solid #ddd;
-  color: #000;
-  padding: 10px 25px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 90px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.cap-btn:hover {
+.capacity-option.active {
   border-color: #000;
-}
-.cap-btn.active {
-  background: #000;
-  color: #fff;
-  border-color: #000;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 0 0 1px #000;
 }
 
-/* Tabs */
+.capacity-option.disabled {
+  opacity: 0.5;
+  background-color: #eee;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+/* Tabs (Mô tả/Tầng hương) */
 .nav-tabs .nav-link {
-  border: none;
-  color: #999;
-  font-family: "SVN-Gilroy", sans-serif;
-  font-weight: 700;
   background: transparent;
-  padding-bottom: 15px;
-  position: relative;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
+  border-radius: 0;
 }
-.nav-tabs .nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: #000;
-  transition: width 0.3s ease;
-}
-.nav-tabs .nav-link:hover,
-.nav-tabs .nav-link.active {
+
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
   color: #000 !important;
 }
-.nav-tabs .nav-link.active::after {
-  width: 100%;
-}
 
-/* Nội dung Tab */
-.content-style {
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #555;
-}
 
-/* Bộ chọn số lượng */
-.qty-pill {
-  max-width: 120px;
-  height: 40px;
-}
-.qty-pill input:focus {
-  box-shadow: none;
-}
+/* ==========================================================================
+   8. CONTENT PAGES (TRANG NỘI DUNG)
+   Bao gồm: About (Giới thiệu), Auth (Đăng nhập/Đăng ký), Contact (Liên hệ)
+   ========================================================================== */
 
-/* Icon chia sẻ */
-.share-icon {
-  width: 24px;
-  height: 24px;
-  background: #000;
-  color: #fff !important;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  transition: 0.3s;
-}
-.share-icon:hover {
-  transform: scale(1.1);
-}
-
-/* =========================================
-   6. TRANG AUTH (LOGIN/REGISTER)
-   ========================================= */
+/* --- 8.1. AUTH PAGE (LOGIN/REGISTER) --- */
 .auth-card {
   border: none;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
+  overflow: hidden;
   background: #fff;
 }
+
 .auth-header h3 {
   font-size: 1.8rem;
   font-weight: 700;
   margin-top: 15px;
   text-align: center;
+  color: #000;
 }
 
-.form-control {
-  border-radius: 8px;
-  padding: 12px 15px;
-  border: 1px solid #e0e0e0;
-  font-size: 0.95rem;
-  transition: all 0.3s;
-}
-.form-control:focus {
-  box-shadow: none;
-  border-color: #000;
+.auth-input {
+  height: 48px;
+  background-color: #fff;
 }
 
-.btn-black {
-  background: #000;
-  color: #fff;
-  border-radius: 50px;
-  height: 50px;
-  width: 100%;
-  font-weight: 600;
-  border: 1px solid #000;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn-black:hover {
-  background: #333;
-  border-color: #333;
-  color: #fff;
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: auto;
+  bottom: 13px;
+  cursor: pointer;
+  color: #999;
+  z-index: 10;
+  font-size: 1rem;
 }
 
-.btn-google {
-  background: #fff;
-  color: #333;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  height: 45px;
-  width: 100%;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: 0.3s;
-  margin-top: 15px;
-}
-.btn-google:hover {
-  background: #f9f9f9;
-  border-color: #ccc;
+.policy-text {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 15px;
 }
 
-/* =========================================
-   7. TRANG KHÁC (ABOUT, FILTER...)
-   ========================================= */
-/* Page Header (Sub-pages) */
-.page-header {
-  background-color: #f5f5f5;
-  padding: 60px 0;
-  margin-bottom: 50px;
-  text-align: center;
-}
-.page-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-.breadcrumb {
-  justify-content: center;
-  margin-bottom: 0;
-  font-size: 0.9rem;
-  color: var(--text-gray);
-}
-.breadcrumb a:hover {
-  color: var(--accent-color);
-}
-
-/* About Page */
+/* --- 8.2. ABOUT PAGE (GIỚI THIỆU) --- */
 .about-image-box {
   position: relative;
   padding: 15px;
@@ -746,6 +894,7 @@ a {
   display: block;
   transition: transform 0.6s ease;
 }
+
 .about-image-box:hover img {
   transform: scale(1.02);
 }
@@ -796,70 +945,46 @@ a {
   border-color: var(--accent-color);
 }
 
-/* Sidebar Filter */
-.filter-sidebar {
-  position: relative;
-  padding-right: 20px;
-  background: #fff;
-}
-.filter-group {
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-}
-.form-check-input {
-  border-radius: 50% !important;
-  border: 1px solid #ccc !important;
-}
-.form-check-input:checked {
-  background-color: #000 !important;
-  border-color: #000 !important;
+/* --- 8.3. CONTACT PAGE (LIÊN HỆ) --- */
+.contact-info-item {
+  display: flex;
+  margin-bottom: 30px;
 }
 
-/* =========================================
-   8. FOOTER
-   ========================================= */
-footer {
-  background: #111;
-  color: #fff;
-  padding-top: 80px;
-}
-footer a,
-footer p,
-footer .text-muted {
-  color: #bbbbbb !important;
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
-footer a:hover {
-  color: #c5a059 !important;
-}
-footer h6 {
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 25px;
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  background: #f9f9f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  margin-right: 20px;
+  flex-shrink: 0;
 }
 
-/* =========================================
-   9. RESPONSIVE (MOBILE/TABLET)
-   ========================================= */
+
+/* ==========================================================================
+   9. RESPONSIVE (MEDIA QUERIES)
+   Xử lý hiển thị trên Mobile và Tablet
+   ========================================================================== */
 @media (min-width: 992px) {
   .nav-item.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
   }
-  .border-start-md {
-    border-left: 1px solid #eee;
-    padding-left: 3rem !important;
-  }
 }
 
 @media (max-width: 768px) {
+
   /* Hero */
   .carousel-caption {
     left: 5% !important;
     max-width: 90%;
   }
+
   .carousel-caption h1 {
     font-size: 2rem;
   }
@@ -869,11 +994,12 @@ footer h6 {
     height: 250px;
   }
 
-  /* Perfume Slider */
+  /* Collection Slider */
   .perfume-slider .swiper-slide {
     width: 260px;
     height: 350px;
   }
+
   .swiper-button-next,
   .swiper-button-prev {
     display: none;
@@ -885,7 +1011,144 @@ footer h6 {
     bottom: 10px;
     padding: 15px;
   }
+
   .about-image-box {
     margin-bottom: 20px;
   }
+}
+
+.row.equal-cols {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   COUPON ROW STYLES (Dòng nhập mã giảm giá)
+   ========================================= */
+
+/* Khung bao ngoài ô nhập (độ rộng tối đa 1000px như bạn yêu cầu) */
+.coupon-wrapper {
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* Ô nhập liệu (Input) */
+.coupon-wrapper input.form-control {
+  height: 45px;
+  border-radius: 8px 0 0 8px;
+  /* Bo tròn góc trái */
+  border-right: none;
+  /* Xóa viền phải để dính liền với nút */
+}
+
+/* Nút ÁP DỤNG */
+.coupon-wrapper button.btn {
+  height: 45px;
+  border-radius: 0 8px 8px 0;
+  /* Bo tròn góc phải */
+}
+
+/* Hiệu ứng focus cho đẹp (tùy chọn) */
+.coupon-wrapper input.form-control:focus {
+  box-shadow: none;
+  border-color: #000;
+  z-index: 2;
+}
+
+/* Hiệu ứng nút Thanh toán chính */
+.btn-block-custom {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-block-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   CART TABLE STYLES (Căn chỉnh bảng giỏ hàng)
+   ========================================= */
+.cart-table thead th {
+  background-color: var(--bg-light);
+  color: #000;
+}
+
+/* 1. Chia độ rộng các cột */
+.cart-table th.col-product {
+  width: 45%;
+}
+
+/* Cột sản phẩm rộng nhất */
+.cart-table th.col-price {
+  width: 15%;
+}
+
+.cart-table th.col-qty {
+  width: 20%;
+  text-align: center;
+}
+
+/* Căn giữa tiêu đề số lượng */
+.cart-table th.col-total {
+  width: 15%;
+}
+
+.cart-table th.col-remove {
+  width: 5%;
+}
+
+/* 2. Căn giữa theo chiều dọc cho toàn bộ bảng */
+.cart-table td,
+.cart-table th {
+  vertical-align: middle !important;
+  /* Quan trọng: giúp ảnh và nút xóa thẳng hàng */
+}
+
+/* 3. Căn chỉnh ô nhập số lượng */
+.cart-table td .qty-group {
+  display: inline-flex;
+  /* Giúp cụm nút không bị kéo giãn */
+  justify-content: center;
+}
+
+/* 4. Đảm bảo ảnh không bị dính sát lề */
+.cart-table .cart-img-wrapper {
+  flex-shrink: 0;
+  /* Không cho ảnh bị co lại khi màn hình nhỏ */
+}
+
+/* =========================================
+   STYLE ẢNH SẢN PHẨM TRÒN TRONG GIỎ HÀNG
+   ========================================= */
+
+/* 1. Định dạng khung tròn */
+.cart-img-wrapper {
+  width: 70px;
+  /* Kích thước nhỏ gọn*/
+  height: 70px;
+  /* Chiều cao bắt buộc bằng chiều rộng */
+
+  padding: 0;
+  /* Bỏ padding để ảnh tràn ra sát viền */
+  border-radius: 50%;
+  /* Biến khung vuông thành hình tròn */
+  overflow: hidden;
+  /* Cắt bỏ các góc thừa của ảnh vuông bên trong */
+
+  border: 0;
+  /* Viền mỏng nhẹ */
+  background: #f9f9f9;
+  flex-shrink: 0;
+  /* Đảm bảo khung tròn không bị bóp méo trên màn hình nhỏ */
+  margin-right: 1rem !important;
+  /* Khoảng cách với tên sản phẩm */
+}
+
+/* 2. Định dạng ảnh bên trong để lấp đầy khung tròn */
+.cart-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  /* object-fit: giúp ảnh phóng to/thu nhỏ để lấp đầy khung 
+       và tự động cắt bỏ phần thừa để ảnh không bị méo. */
+  object-fit: cover;
 }
