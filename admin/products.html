@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Sản phẩm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>SCENT AURA</h2>
+                <p>ADMIN PANEL</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Tổng quan</a></li>
+                    <li class="active"><a href="products.html">Sản phẩm</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1>Quản lý Sản Phẩm</h1>
+            <div class="toolbar">
+                <button class="btn-primary" onclick="openModal()">+ Thêm Mới</button>
+            </div>
+            
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ảnh</th>
+                            <th>Tên</th>
+                            <th>Giá</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-table-body"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Thêm Sản Phẩm</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label>Tên sản phẩm:</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label>Thương hiệu:</label>
+                    <input type="text" id="productBrand" required>
+                </div>
+                <div class="form-group">
+                    <label>Giá (VNĐ):</label>
+                    <input type="number" id="productPrice" required>
+                </div>
+                <div class="form-group">
+                    <label>Hình ảnh:</label>
+                    <input type="file" id="imageInput" accept="image/*">
+                    <input type="hidden" id="productImage">
+                    <img id="imagePreview" src="" style="display:none; width: 100px; margin-top: 10px;">
+                </div>
+                <button type="submit" class="btn-primary">Lưu lại</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/admin.js"></script>
+</body>
+</html>
