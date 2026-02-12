@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SCENT AURA Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>SCENT AURA</h2>
+                <p>ADMIN PANEL</p>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="index.html"><i class="fas fa-home"></i> Tổng quan</a></li>
+                    <li><a href="products.html"><i class="fas fa-box"></i> Sản phẩm</a></li>
+                    <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
+                    <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Về trang chủ</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Tổng Quan Kinh Doanh</h1>
+                <div class="user-info">Admin: <strong>Nhóm IT</strong></div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="card">
+                    <h3>Tổng Doanh Thu</h3>
+                    <p class="number" id="total-revenue">0 ₫</p>
+                </div>
+                <div class="card">
+                    <h3>Tổng Đơn Hàng</h3>
+                    <p class="number" id="total-orders">0</p>
+                </div>
+                <div class="card">
+                    <h3>Sản Phẩm Đã Bán</h3>
+                    <p class="number" id="total-products-sold">0</p>
+                </div>
+            </div>
+
+            <div class="recent-orders">
+                <h2>Đơn hàng mới nhất</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Đơn</th>
+                            <th>Khách Hàng</th>
+                            <th>Tổng Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Ngày Đặt</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-orders-body">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/admin.js"></script>
+</body>
+</html>
