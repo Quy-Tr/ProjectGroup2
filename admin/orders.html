@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Đơn hàng - SCENT AURA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>SCENT AURA</h2>
+                <p>ADMIN PANEL</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Tổng quan</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li class="active"><a href="orders.html">Đơn hàng</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Quản lý Đơn Hàng</h1>
+            </header>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Mã Đơn</th>
+                            <th>Khách Hàng</th>
+                            <th>Ngày Đặt</th>
+                            <th>Tổng Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-table-body">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeOrderModal()">&times;</span>
+            <h2>Chi Tiết Đơn Hàng <span id="modalOrderId"></span></h2>
+            
+            <div class="order-info">
+                <p><strong>Khách hàng:</strong> <span id="modalCustomer"></span></p>
+                <p><strong>Ngày đặt:</strong> <span id="modalDate"></span></p>
+                <p><strong>Sản phẩm:</strong> <span id="modalItems"></span></p>
+                <p><strong>Tổng tiền:</strong> <span id="modalTotal" class="text-danger fw-bold"></span></p>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label>Cập nhật trạng thái:</label>
+                <select id="modalStatus" class="form-control">
+                    <option value="pending">🟡 Đang xử lý</option>
+                    <option value="shipping">🔵 Đang giao hàng</option>
+                    <option value="completed">🟢 Đã giao (Hoàn thành)</option>
+                    <option value="cancelled">🔴 Đã hủy</option>
+                </select>
+            </div>
+            <div class="text-right mt-3">
+                <button class="btn-primary" onclick="saveOrderStatus()">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/admin.js"></script>
+</body>
+</html>
