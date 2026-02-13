@@ -2,7 +2,7 @@
    1. KHỞI TẠO SLIDER (CHẠY KHI DOM LOAD XONG)
    ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   // --- A. SLIDER BỘ SƯU TẬP (3D COVERFLOW) ---
   const sliderEl = document.querySelector(".perfume-slider");
   if (sliderEl) {
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       slidesPerView: "auto",
       loop: true,
       speed: 600,
-      
+
       // Hiệu ứng 3D
       coverflowEffect: {
         rotate: 0,
@@ -85,8 +85,8 @@ function changeImage(element) {
     // 1. Đổi ảnh lớn
     mainImg.style.opacity = 0; // Hiệu ứng mờ nhẹ
     setTimeout(() => {
-        mainImg.src = newImgSrc;
-        mainImg.style.opacity = 1;
+      mainImg.src = newImgSrc;
+      mainImg.style.opacity = 1;
     }, 200);
 
     // 2. Xử lý viền đen (active) cho thumbnail
@@ -109,7 +109,7 @@ function updateQty(change) {
 
     // Không cho số lượng nhỏ hơn 1
     if (newVal < 1) newVal = 1;
-    
+
     qtyInput.value = newVal;
   }
 }
@@ -124,7 +124,7 @@ function selectCapacity(element, newPrice) {
   // 1. Tìm tất cả các nút dung tích (.cap-btn hoặc .capacity-option)
   // Để an toàn, ta tìm cả 2 class phòng trường hợp bạn chưa sửa hết HTML
   const allButtons = document.querySelectorAll(".cap-btn, .capacity-option");
-  
+
   // 2. Xóa class active cũ
   allButtons.forEach((btn) => btn.classList.remove("active"));
 
@@ -133,7 +133,7 @@ function selectCapacity(element, newPrice) {
 
   // 4. Cập nhật giá tiền (nếu có tham số newPrice)
   const mainPriceElement = document.getElementById("main-price"); // ID giá ở trang Product Detail
-  
+
   if (mainPriceElement && newPrice) {
     // Hiệu ứng nháy giá
     mainPriceElement.style.opacity = 0;
@@ -141,5 +141,20 @@ function selectCapacity(element, newPrice) {
       mainPriceElement.innerText = newPrice;
       mainPriceElement.style.opacity = 1;
     }, 200);
+  }
+}
+// Hàm 4: Hiển thị/ẩn mật khẩu khi bấm vào biểu tượng mắt
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const icon = document.getElementById("togglePassword");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  } else {
+    passwordInput.type = "password";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
   }
 }
