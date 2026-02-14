@@ -1152,3 +1152,37 @@ footer .small {
        và tự động cắt bỏ phần thừa để ảnh không bị méo. */
   object-fit: cover;
 }
+/* --- NÂNG CẤP GIAO DIỆN TRANG CHỦ --- */
+
+/* 1. Hiệu ứng Card Sản phẩm */
+.product-card {
+    transition: all 0.3s ease-in-out; /* Chuyển động mượt */
+    border: 1px solid #eee; /* Viền mờ sang trọng */
+    border-radius: 8px;
+    overflow: hidden; /* Để ảnh zoom không bị tràn ra ngoài */
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Bay lên 10px */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Đổ bóng mờ */
+    border-color: transparent;
+}
+
+.product-img-box img {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img-box img {
+    transform: scale(1.1); /* Phóng to ảnh 10% */
+}
+
+/* Nút mua hàng/xem chi tiết (nếu có) */
+.product-info h6 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.product-card:hover .product-info h6 {
+    color: #d4af37; /* Đổi màu chữ tên sản phẩm khi hover (Màu vàng kim) */
+}
