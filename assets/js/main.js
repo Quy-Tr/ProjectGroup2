@@ -3,6 +3,8 @@
    ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
 
+  checkLoginStatus(); // Kiem tra trang thai dang nhap
+
   // --- A. SLIDER BỘ SƯU TẬP (3D COVERFLOW) ---
   const sliderEl = document.querySelector(".perfume-slider");
   if (sliderEl) {
@@ -156,5 +158,64 @@ function togglePassword() {
     passwordInput.type = "password";
     icon.classList.remove("fa-eye-slash");
     icon.classList.add("fa-eye");
+  }
+}
+
+/* =========================================
+   3. AUTHENTICATION LOGIC (XỬ LÝ ĐĂNG NHẬP)
+   ========================================= */
+
+function checkLoginStatus() {
+  // 1. Kiem tra xem co user trong localStorage khong (Gia su key la 'currentUser' hoac 'isLoggedIn')
+  // De test, ban co the mo Console go: localStorage.setItem('currentUser', JSON.stringify({name: 'User Test'}));
+  const currentUser = localStorage.getItem('currentUser');
+
+  // Tim cac element trong Navbar
+  const loginLink = document.querySelector('a[href*="login.html"]'); // Link ĐĂNG NHẬP
+  const profileLink = document.querySelector('a[href*="profile.html"]'); // Icon USER
+
+  // Xử lý path cho đúng (vì file js này dùng chung cho cả root và folder user/)
+  const currentPath = window.location.pathname;
+  const isUserPage = currentPath.includes('/user/');
+  const logoutPath = isUserPage ? '../login.html' : 'login.html';
+  const profilePath = isUserPage ? 'profile.html' : 'user/profile.html';
+
+  if (currentUser) {
+    // --- TRANG THAI: DA DANG NHAP ---
+
+    // 1. Doi Icon User link den trang profile dung
+    if (profileLink) {
+      profileLink.href = profilePath;
+    }
+
+    // 2. Doi chu "DANG NHAP" thanh "DANG XUAT"
+    if (loginLink) {
+      loginLink.textContent = "ĐĂNG XUẤT";
+      loginLink.href = "#"; // Khong chuyen trang ngay
+      loginLink.onclick = function (e) {
+        e.preventDefault();
+        logout();
+      };
+    }
+  } else {
+    // --- TRANG THAI: CHUA DANG NHAP ---
+    // Mac dinh HTML da la "DANG NHAP" va link dung roi, khong can lam gi
+    // Tuy nhien, neu muon chac chan:
+    if (profileLink) {
+      // Neu chua dang nhap, bam icon User se ra trang Login
+      profileLink.href = isUserPage ? '../login.html' : 'login.html';
+    }
+  }
+}
+
+function logout() {
+  if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('isLoggedIn'); // Xoa ca 2 cho chac
+
+    // Redirect ve trang login
+    const currentPath = window.location.pathname;
+    const isUserPage = currentPath.includes('/user/');
+    window.location.href = isUserPage ? '../login.html' : 'login.html';
   }
 }

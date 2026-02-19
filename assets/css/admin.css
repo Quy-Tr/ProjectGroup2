@@ -1,178 +1,380 @@
-/* --- Các Style cơ bản của Admin (giữ nguyên phần cũ của bạn) --- */
+/* STANDARD ADMIN LAYOUT */
+
 :root {
-    --primary-color: #333;
-    --accent-color: #d4af37; /* Màu vàng kim */
-    --light-bg: #f4f6f9;
-    --white: #fff;
-    --grey: #eee;
+    --primary-color: #111;
+    --sidebar-bg: #1e1e2d;
+    --sidebar-text: #a2a3b7;
+    --sidebar-text-active: #ffffff;
+    --sidebar-active-bg: #1b1b28;
+    --accent-color: #c5a059;
+    --bg-color: #f5f8fa;
+    --white: #ffffff;
+    --border-color: #ebedf2;
+    --text-color: #3f4254;
+    --sidebar-width: 260px;
+    --header-height: 70px;
 }
 
-/* --- Style cho trang Sản phẩm (Thêm mới) --- */
+body {
+    background-color: var(--bg-color);
+    font-family: 'Josefin Sans', sans-serif;
+    /* Consistent with main site */
+    margin: 0;
+    overflow-x: hidden;
+}
 
-/* Thanh công cụ */
-.toolbar {
-    display: flex;
-    justify-content: space-between;
+/* --- SIDEBAR --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    z-index: 1000;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.brand {
+    text-align: center;
+    padding: 0 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     margin-bottom: 20px;
 }
 
-.search-box {
-    position: relative;
-}
-.search-box input {
-    padding: 10px 35px 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 250px;
-}
-.search-box i {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
+.brand h2 {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 2px;
 }
 
-/* Nút bấm */
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.btn-primary:hover {
-    background-color: var(--accent-color);
-}
-.btn-secondary {
-    background-color: #888;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
+.brand span {
+    color: var(--accent-color);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Bảng dữ liệu */
-.table-container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
+
+.nav-item {
+    padding: 0 20px;
+    margin-bottom: 5px;
 }
-.data-table th, .data-table td {
+
+.nav-link {
+    display: flex;
+    align-items: center;
     padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-weight: 500;
 }
-.data-table th {
-    background-color: #f8f9fa;
+
+.nav-link i {
+    width: 30px;
+    font-size: 1.1rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--sidebar-active-bg);
+    color: var(--sidebar-text-active);
+}
+
+.nav-link.active i {
+    color: var(--accent-color);
+}
+
+.nav-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 30px;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* --- HEADER --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: var(--white);
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+}
+
+.header-title h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* --- CARDS & STATS --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--white);
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat-info h3 {
+    font-size: 0.9rem;
+    color: #7e8299;
+    margin-bottom: 5px;
+    text-transform: uppercase;
     font-weight: 600;
 }
-.data-table img {
+
+.stat-info .number {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.stat-icon {
     width: 50px;
     height: 50px;
-    object-fit: cover;
-    border-radius: 5px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
 }
 
-/* Các nút hành động trong bảng */
-.action-btn {
-    padding: 5px 10px;
+.stat-icon.revenue {
+    background: rgba(197, 160, 89, 0.1);
+    color: var(--accent-color);
+}
+
+.stat-icon.orders {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+}
+
+.stat-icon.products {
+    background: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+}
+
+/* --- TABLES --- */
+.admin-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+    margin-bottom: 30px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    background: transparent;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 5px;
+    padding: 0;
 }
-.edit-btn { background-color: #ffc107; color: #333; }
-.delete-btn { background-color: #dc3545; color: white; }
 
-/* --- MODAL (Popup Form) --- */
+.card-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: #b5b5c3;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table td {
+    padding: 15px;
+    vertical-align: middle;
+    color: var(--text-color);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --- BADGES --- */
+.badge {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-pending {
+    background: #fff4de;
+    color: #ffa800;
+}
+
+.badge-shipping {
+    background: #e1f0ff;
+    color: #3699ff;
+}
+
+.badge-completed {
+    background: #c9f7f5;
+    color: #1bc5bd;
+}
+
+.badge-cancelled {
+    background: #ffe2e5;
+    color: #f64e60;
+}
+
+/* --- MODALS --- */
 .modal {
-    display: none; /* Mặc định ẩn */
+    display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5); /* Màu nền mờ */
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    overflow: auto;
 }
 
 .modal-content {
-    background-color: white;
-    margin: 10% auto;
+    background-color: #fff;
+    margin: 50px auto;
     padding: 30px;
-    border-radius: 10px;
-    width: 50%;
+    border-radius: 12px;
+    width: 600px;
+    max-width: 90%;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 }
 
 .close {
     position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 28px;
-    font-weight: bold;
+    right: 25px;
+    top: 25px;
+    font-size: 1.5rem;
     cursor: pointer;
-    color: #aaa;
+    color: #b5b5c3;
 }
-.close:hover { color: black; }
 
-/* Form trong modal */
-.form-group {
-    margin-bottom: 15px;
+.close:hover {
+    color: var(--text-color);
 }
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
+
+/* --- BUTTONS --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 10px 20px;
     font-weight: 600;
 }
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-.form-actions {
-    text-align: right;
-    margin-top: 20px;
-}
-/* --- Style cho trang Khách Hàng (Users) --- */
 
-.badge-role {
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: bold;
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
 }
 
-.role-admin {
-    background-color: #333;
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edit-btn {
+    background-color: #e1f0ff;
+    color: #3699ff;
+}
+
+.edit-btn:hover {
+    background-color: #3699ff;
     color: #fff;
-    border: 1px solid #000;
 }
 
-.role-user {
-    background-color: #e9ecef;
-    color: #495057;
-    border: 1px solid #ced4da;
+.delete-btn {
+    background-color: #ffe2e5;
+    color: #f64e60;
 }
 
-.status-active {
-    color: #28a745; /* Màu xanh lá */
-    font-weight: 600;
+.delete-btn:hover {
+    background-color: #f64e60;
+    color: #fff;
 }
 
-.status-locked {
-    color: #dc3545; /* Màu đỏ */
-    font-weight: 600;
+/* Responsive */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+        width: var(--sidebar-width);
+    }
 }

@@ -70,13 +70,13 @@ function renderOrderTable() {
     tbody.innerHTML = orders.map(o => {
         let badgeClass = '';
         let statusText = '';
-        switch(o.status) {
+        switch (o.status) {
             case 'pending': badgeClass = 'badge-pending'; statusText = 'Đang xử lý'; break;
             case 'shipping': badgeClass = 'badge-shipping'; statusText = 'Đang giao'; break;
             case 'completed': badgeClass = 'badge-completed'; statusText = 'Đã giao'; break;
             case 'cancelled': badgeClass = 'badge-cancelled'; statusText = 'Đã hủy'; break;
         }
-        
+
         return `
         <tr>
             <td><strong>#${o.id}</strong></td>
@@ -115,16 +115,81 @@ function renderUserTable() {
             <td>${roleBadge}</td>
             <td>${statusText}</td>
             <td>
-                <button class="action-btn delete-btn" onclick="deleteUser(${u.id})"><i class="fas fa-trash"></i> Xóa</button>
+                <button class="action-btn delete-btn" onclick="deleteUser(${u.id})" title="Xóa người dùng">
+                    <i class="fas fa-trash"></i>
+                </button>
             </td>
         </tr>`;
     }).join('');
 }
 
+// --- 5.5. LOGIC DASHBOARD (TỔNG QUAN) ---
+
+function renderDashboard() {
+    // 1. Cập nhật Thống Kê
+    const totalRevenueEl = document.getElementById('total-revenue');
+    const totalOrdersEl = document.getElementById('total-orders');
+    const totalProductsSoldEl = document.getElementById('total-products-sold');
+    const recentOrdersBody = document.getElementById('recent-orders-body');
+
+    if (!totalRevenueEl) return; // Không phải trang Dashboard thì thoát
+
+    const orders = getData(ORDER_KEY, []);
+
+    // Tính toán
+    const totalRevenue = orders.reduce((sum, order) => sum + (order.status !== 'cancelled' ? order.total : 0), 0);
+    const totalOrders = orders.length;
+
+    // Tính sơ bộ số sản phẩm bán ra (dựa vào text "x1", "x2"...)
+    let totalProducts = 0;
+    orders.forEach(order => {
+        if (order.status !== 'cancelled') {
+            const matches = order.items.match(/x(\d+)/g);
+            if (matches) {
+                matches.forEach(m => {
+                    totalProducts += parseInt(m.replace('x', ''));
+                });
+            } else {
+                totalProducts += 1; // Mặc định là 1 nếu không ghi số lượng
+            }
+        }
+    });
+
+    // Hiển thị số liệu
+    totalRevenueEl.innerText = formatCurrency(totalRevenue);
+    totalOrdersEl.innerText = totalOrders;
+    totalProductsSoldEl.innerText = totalProducts;
+
+    // 2. Hiển thị Đơn hàng mới nhất (Lấy 5 đơn gần nhất)
+    const recentOrders = [...orders].reverse().slice(0, 5);
+
+    recentOrdersBody.innerHTML = recentOrders.map(o => {
+        let badgeClass = '';
+        let statusText = '';
+        switch (o.status) {
+            case 'pending': badgeClass = 'badge-pending'; statusText = 'Đang xử lý'; break;
+            case 'shipping': badgeClass = 'badge-shipping'; statusText = 'Đang giao'; break;
+            case 'completed': badgeClass = 'badge-completed'; statusText = 'Đã giao'; break;
+            case 'cancelled': badgeClass = 'badge-cancelled'; statusText = 'Đã hủy'; break;
+        }
+
+        return `
+            <tr>
+                <td>#${o.id}</td>
+                <td>${o.customer}</td>
+                <td>${formatCurrency(o.total)}</td>
+                <td><span class="badge ${badgeClass}">${statusText}</span></td>
+                <td>${o.date}</td>
+            </tr>
+        `;
+    }).join('');
+}
+
 // --- 6. KHỞI CHẠY KHI LOAD TRANG (MAIN) ---
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Gọi cả 3 hàm render (Hàm nào thấy đúng trang của mình thì mới chạy)
+    renderDashboard(); // <--- Thêm dòng này
     renderProductTable();
     renderOrderTable();
     renderUserTable();
@@ -132,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // A. Xử lý Form Sản Phẩm (Thêm / Sửa)
     const productForm = document.getElementById('productForm');
     if (productForm) {
-        productForm.addEventListener('submit', function(e) {
+        productForm.addEventListener('submit', function (e) {
             e.preventDefault();
             const id = document.getElementById('productId').value;
             const name = document.getElementById('productName').value;
@@ -141,14 +206,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const img = document.getElementById('productImage').value;
 
             let products = getData(PRODUCT_KEY, []);
-            
+
             if (id) { // Sửa
                 const index = products.findIndex(p => p.id == id);
                 if (index !== -1) products[index] = { ...products[index], name, brand, price, img };
             } else { // Thêm mới
                 products.push({ id: Date.now(), name, brand, price, img });
             }
-            
+
             saveData(PRODUCT_KEY, products);
             renderProductTable();
             closeModal();
@@ -159,11 +224,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // B. Xử lý Input Ảnh (Chuyển sang Base64)
     const imageInput = document.getElementById('imageInput');
     if (imageInput) {
-        imageInput.addEventListener('change', function(e) {
+        imageInput.addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.getElementById('imagePreview').src = e.target.result;
                     document.getElementById('imagePreview').style.display = 'block';
                     document.getElementById('productImage').value = e.target.result;
@@ -178,17 +243,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // -- Product Modal --
 const productModal = document.getElementById('productModal');
-window.openModal = function() {
-    if(productModal) {
+window.openModal = function () {
+    if (productModal) {
         document.getElementById('productForm').reset();
         document.getElementById('productId').value = '';
         document.getElementById('imagePreview').style.display = 'none';
         productModal.style.display = 'block';
     }
 }
-window.closeModal = function() { if(productModal) productModal.style.display = 'none'; }
+window.closeModal = function () { if (productModal) productModal.style.display = 'none'; }
 
-window.editProduct = function(id) {
+window.editProduct = function (id) {
     const products = getData(PRODUCT_KEY, []);
     const p = products.find(i => i.id == id);
     if (p && productModal) {
@@ -203,7 +268,7 @@ window.editProduct = function(id) {
     }
 }
 
-window.deleteProduct = function(id) {
+window.deleteProduct = function (id) {
     if (confirm('Bạn chắc chắn muốn xóa sản phẩm này?')) {
         let products = getData(PRODUCT_KEY, []);
         products = products.filter(p => p.id != id);
@@ -216,7 +281,7 @@ window.deleteProduct = function(id) {
 const orderModal = document.getElementById('orderModal');
 let currentOrderId = null;
 
-window.openOrderModal = function(id) {
+window.openOrderModal = function (id) {
     const orders = getData(ORDER_KEY, []);
     const order = orders.find(o => o.id === id);
     if (order && orderModal) {
@@ -231,7 +296,7 @@ window.openOrderModal = function(id) {
     }
 }
 
-window.saveOrderStatus = function() {
+window.saveOrderStatus = function () {
     const newStatus = document.getElementById('modalStatus').value;
     let orders = getData(ORDER_KEY, []);
     const index = orders.findIndex(o => o.id === currentOrderId);
@@ -243,11 +308,11 @@ window.saveOrderStatus = function() {
         alert("Cập nhật trạng thái thành công!");
     }
 }
-window.closeOrderModal = function() { if(orderModal) orderModal.style.display = 'none'; }
+window.closeOrderModal = function () { if (orderModal) orderModal.style.display = 'none'; }
 
 // -- User Actions --
-window.deleteUser = function(id) {
-    if(confirm('Bạn có chắc chắn muốn xóa khách hàng này?')) {
+window.deleteUser = function (id) {
+    if (confirm('Bạn có chắc chắn muốn xóa khách hàng này?')) {
         let users = getData(USER_KEY, []);
         users = users.filter(u => u.id !== id);
         saveData(USER_KEY, users);
@@ -256,7 +321,7 @@ window.deleteUser = function(id) {
 }
 
 // Đóng modal khi click ra ngoài
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == productModal) window.closeModal();
     if (event.target == orderModal) window.closeOrderModal();
 }

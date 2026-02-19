@@ -11,6 +11,7 @@
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Josefin Sans";
   src: url("fonts/JosefinSans-Bold.ttf") format("truetype");
@@ -25,6 +26,7 @@
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: "SVN-Gilroy";
   src: url("fonts/SVN-Gilroy\ Bold.otf") format("truetype");
@@ -35,7 +37,8 @@
 /* --- 1.2. VARIABLES (BIẾN MÀU SẮC) --- */
 :root {
   --primary-color: #000000;
-  --accent-color: #c5a059; /* Màu vàng đồng */
+  --accent-color: #c5a059;
+  /* Màu vàng đồng */
   --bg-light: #f9f9f9;
   --text-gray: #666;
   --border-color: #eee;
@@ -46,7 +49,8 @@ body {
   font-family: "Josefin Sans", sans-serif;
   color: #333;
   line-height: 1.6;
-  overflow-x: hidden; /* Tránh thanh cuộn ngang không mong muốn */
+  overflow-x: hidden;
+  /* Tránh thanh cuộn ngang không mong muốn */
 }
 
 /* Tiêu đề dùng SVN-Gilroy cho sự đẳng cấp */
@@ -304,10 +308,12 @@ h6,
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   margin-top: 0;
 }
+
 .dropdown-item {
   font-size: 0.9rem;
   padding: 10px 20px;
 }
+
 .dropdown-item:hover {
   background-color: #f8f9fa;
   color: var(--accent-color);
@@ -319,6 +325,7 @@ h6,
   display: flex;
   align-items: center;
 }
+
 .search-input {
   width: 200px;
   height: 38px;
@@ -329,6 +336,7 @@ h6,
   font-size: 0.85rem;
   transition: width 0.3s ease;
 }
+
 .search-icon {
   position: absolute;
   right: 15px;
@@ -383,6 +391,7 @@ footer .small {
   background-position: center;
   position: relative;
 }
+
 .carousel-overlay {
   position: absolute;
   top: 0;
@@ -391,6 +400,7 @@ footer .small {
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
 }
+
 .carousel-caption {
   top: 50%;
   transform: translateY(-50%);
@@ -400,6 +410,7 @@ footer .small {
   max-width: 650px;
   padding-right: 20px;
 }
+
 .carousel-caption h1 {
   font-size: 3.5rem;
   line-height: 1.2;
@@ -419,7 +430,8 @@ footer .small {
   width: 100%;
   padding: 30px 0;
   overflow: hidden;
-  position: relative; /* Quan trọng để nút bấm hiển thị */
+  position: relative;
+  /* Quan trọng để nút bấm hiển thị */
 }
 
 .perfume-slider .swiper-slide {
@@ -454,6 +466,7 @@ footer .small {
   display: block;
   position: relative;
 }
+
 .collection-item img {
   width: 100%;
   height: 100%;
@@ -505,11 +518,13 @@ footer .small {
   font-size: 16px !important;
   font-weight: bold;
 }
+
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   background: var(--accent-color) !important;
   color: #fff !important;
 }
+
 .swiper-button-prev {
   left: 5%;
 }
@@ -561,6 +576,7 @@ footer .small {
   color: var(--accent-color);
   margin-bottom: 15px;
 }
+
 .k-percent {
   font-family: "SVN-Gilroy", serif;
   font-size: 2rem;
@@ -588,11 +604,13 @@ footer .small {
   color: #555;
   cursor: default;
 }
+
 .scent-tag:hover {
   background: var(--accent-color);
   color: #fff;
   border-color: var(--accent-color);
 }
+
 .scent-tag i {
   font-size: 1.2rem;
   margin-bottom: 5px;
@@ -889,6 +907,7 @@ footer .small {
   padding: 15px;
   border: 1px solid #eee;
 }
+
 .about-image-box img {
   width: 100%;
   display: block;
@@ -909,6 +928,7 @@ footer .small {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border-left: 4px solid var(--accent-color);
 }
+
 .since-badge .year {
   font-size: 2rem;
   font-weight: 700;
@@ -920,11 +940,13 @@ footer .small {
   transition: all 0.3s ease;
   border: 1px solid transparent;
 }
+
 .value-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
   border-color: #eee;
 }
+
 .icon-circle {
   width: 70px;
   height: 70px;
@@ -939,6 +961,7 @@ footer .small {
   transition: 0.3s;
   border: 1px solid #eee;
 }
+
 .value-card:hover .icon-circle {
   background: var(--accent-color);
   color: #fff;
@@ -1152,37 +1175,95 @@ footer .small {
        và tự động cắt bỏ phần thừa để ảnh không bị méo. */
   object-fit: cover;
 }
+
 /* --- NÂNG CẤP GIAO DIỆN TRANG CHỦ --- */
 
 /* 1. Hiệu ứng Card Sản phẩm */
 .product-card {
-    transition: all 0.3s ease-in-out; /* Chuyển động mượt */
-    border: 1px solid #eee; /* Viền mờ sang trọng */
-    border-radius: 8px;
-    overflow: hidden; /* Để ảnh zoom không bị tràn ra ngoài */
+  transition: all 0.3s ease-in-out;
+  /* Chuyển động mượt */
+  border: 1px solid #eee;
+  /* Viền mờ sang trọng */
+  border-radius: 8px;
+  overflow: hidden;
+  /* Để ảnh zoom không bị tràn ra ngoài */
 }
 
 .product-card:hover {
-    transform: translateY(-10px); /* Bay lên 10px */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Đổ bóng mờ */
-    border-color: transparent;
+  transform: translateY(-10px);
+  /* Bay lên 10px */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  /* Đổ bóng mờ */
+  border-color: transparent;
 }
 
 .product-img-box img {
-    transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
 }
 
 .product-card:hover .product-img-box img {
-    transform: scale(1.1); /* Phóng to ảnh 10% */
+  transform: scale(1.1);
+  /* Phóng to ảnh 10% */
 }
 
 /* Nút mua hàng/xem chi tiết (nếu có) */
 .product-info h6 {
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    transition: color 0.3s;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
 }
 
 .product-card:hover .product-info h6 {
-    color: #d4af37; /* Đổi màu chữ tên sản phẩm khi hover (Màu vàng kim) */
+  color: #d4af37;
+  /* Đổi màu chữ tên sản phẩm khi hover (Màu vàng kim) */
+}
+
+/* noUiSlider Custom Theme - Clean & Minimal */
+#price-slider.noUi-target {
+  background: #ebebeb;
+  border: none;
+  box-shadow: none;
+  border-radius: 4px;
+  margin: 10px 0 14px;
+}
+
+#price-slider.noUi-horizontal {
+  height: 4px;
+}
+
+#price-slider .noUi-connect {
+  background: #c5a059;
+  border-radius: 4px;
+}
+
+#price-slider .noUi-handle {
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  top: -7px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #c5a059;
+  box-shadow: 0 2px 6px rgba(197, 160, 89, 0.35);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  outline: none;
+}
+
+#price-slider .noUi-handle:hover,
+#price-slider .noUi-handle:focus,
+#price-slider .noUi-handle.noUi-active {
+  box-shadow: 0 0 0 5px rgba(197, 160, 89, 0.2);
+  transform: none;
+}
+
+#price-slider .noUi-handle::before,
+#price-slider .noUi-handle::after {
+  display: none;
+}
+
+.price-values span {
+  font-size: 0.8rem;
+  color: #555;
+  font-weight: 600;
 }

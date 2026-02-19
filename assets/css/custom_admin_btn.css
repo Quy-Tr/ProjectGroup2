@@ -1,0 +1,27 @@
+/* --- ACTION BUTTONS --- */
+.action-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s;
+    color: #b5b5c3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn:hover {
+    color: var(--accent-color);
+    background-color: rgba(197, 160, 89, 0.1);
+}
+
+.action-btn.delete-btn:hover {
+    color: #f64e60;
+    background-color: #ffe2e5;
+}
+
+.action-btn i {
+    font-size: 1.1rem;
+}
