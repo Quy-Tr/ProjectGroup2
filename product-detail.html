@@ -1,539 +1,353 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AfnanSupremacySilver | SCENT AURA</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link href="assets/images/logo_SA2.png" rel="icon" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Chi tiết sản phẩm | SCENT AURA</title>
 
-  <body>
-    <nav class="navbar navbar-expand-lg sticky-top">
-      <div class="container">
-        <a class="navbar-brand" href="trangchu.html">SCENT AURA</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="assets/images/logo_SA2.png" rel="icon" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="trangchu.html">SCENT AURA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="trangchu.html">Trang chủ</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Sản phẩm
+            </a>
+            <ul class="dropdown-content dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="products.html?gender=nam">Nước hoa Nam</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="products.html?gender=nu">Nước hoa Nữ</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="products.html?gender=unisex">Nước hoa Unisex</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">Về SCENT AURA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Liên hệ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="quiz.html">Gợi ý mùi hương</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <div class="search-wrapper d-none d-lg-block me-3">
+            <input type="text" class="search-input" placeholder="Tìm mùi hương..." />
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          </div>
+
+          <a href="profile.html" class="text-dark me-3"><i class="fa-regular fa-user"></i></a>
+          <a href="login.html" class="text-dark me-3" style="font-size: 0.8rem; font-weight: 600">ĐĂNG NHẬP</a>
+
+          <a href="cart.html" class="text-dark position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge bg-dark rounded-pill position-absolute top-0 start-100 translate-middle"
+              style="font-size: 0.6rem">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="py-3 bg-light border-bottom">
+    <div class="container">
+      <div class="custom-breadcrumb text-uppercase small" style="letter-spacing: 1px">
+        <a href="trangchu.html" class="text-muted text-decoration-none">Trang chủ</a>
+        <span class="mx-2 text-muted">/</span>
+        <a href="products.html" class="text-muted text-decoration-none">Sản phẩm</a>
+        <span class="mx-2 text-muted">/</span>
+        <span class="text-dark fw-bold" id="breadcrumb-name">...</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding pt-2">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-stretch">
+        <div class="col-lg-5 mb-5 mb-lg-0 d-flex flex-column">
+          <div
+            class="main-image-wrapper bg-white border rounded-3 position-relative mb-3 d-flex align-items-center justify-content-center flex-grow-1"
+            style="overflow: hidden; min-height: 400px">
+            <img id="main-img" src="" class="img-fluid" style="width: 100%; height: 100%; object-fit: contain"
+              alt="Main Image" />
+
+            <button class="btn btn-light rounded-circle shadow-sm position-absolute start-0 ms-3"
+              style="width: 40px; height: 40px" onclick="prevImage()">
+              <i class="fa-solid fa-chevron-left text-muted"></i>
+            </button>
+            <button class="btn btn-light rounded-circle shadow-sm position-absolute end-0 me-3"
+              style="width: 40px; height: 40px" onclick="nextImage()">
+              <i class="fa-solid fa-chevron-right text-muted"></i>
+            </button>
+          </div>
+
+          <div class="d-flex gap-3 justify-content-center justify-content-lg-start" id="thumbnail-container">
+            <!-- Thumbnails will be injected by JS -->
+          </div>
+        </div>
+
+        <div class="col-lg-7 d-flex flex-column">
+          <div class="h-100 d-flex flex-column justify-content-between">
+            <div>
+              <h1 class="brand-font h2 fw-bold mb-2" id="detail-name">...</h1>
+              <p class="small text-muted mb-4">
+                Thương hiệu:
+                <span class="text-dark fw-bold" id="detail-brand">...</span>
+                <span class="mx-2">|</span>
+                SKU:
+                <span class="text-dark fw-bold" id="detail-sku">...</span>
+              </p>
+
+              <h2 class="text-dark fw-bold mb-4" id="main-price">...</h2>
+
+              <div class="product-options mb-4">
+                <div class="d-flex align-items-center mb-3">
+                  <span class="text-muted" style="width: 100px">Dung Tích</span>
+                  <button class="btn btn-outline-dark btn-sm active px-3 rounded-pill">
+                    100ml
+                  </button>
+                </div>
+                <div class="d-flex align-items-center mb-4">
+                  <span class="text-muted" style="width: 100px">Số Lượng:</span>
+                  <div class="qty-pill d-flex align-items-center bg-light rounded-pill px-2">
+                    <button class="btn btn-sm" onclick="updateQty(-1)">
+                      -
+                    </button>
+                    <input type="text" id="qty" value="1"
+                      class="form-control border-0 bg-transparent text-center fw-bold" style="width: 40px" readonly />
+                    <button class="btn btn-sm" onclick="updateQty(1)">
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-6">
+                  <a href="checkout.html"
+                    class="btn btn-dark w-100 py-3 rounded-pill fw-bold text-decoration-none d-block text-center">
+                    Mua ngay
+                  </a>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-outline-dark w-100 py-3 rounded-pill fw-bold">
+                    Thêm vào giỏ hàng
+                  </button>
+                </div>
+              </div>
+
+              <div class="d-flex flex-wrap align-items-center justify-content-between border-top pt-3 mb-4 gap-3">
+                <div class="d-flex gap-3 small">
+                  <a href="#" class="text-dark text-decoration-none"><i class="fa-brands fa-whatsapp"></i>
+                    Zalo</a>
+                  <a href="#" class="text-dark text-decoration-none"><i class="fa-brands fa-facebook"></i>
+                    Fanpage</a>
+                  <a href="tel:0589506666" class="text-dark text-decoration-none"><i class="fa-solid fa-phone"></i> 058
+                    950 6666</a>
+                </div>
+                <div class="d-flex align-items-center gap-2 small">
+                  <span>Chia Sẻ:</span>
+                  <a href="#" class="share-icon text-dark"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="#" class="share-icon text-dark"><i class="fa-brands fa-whatsapp"></i></a>
+                  <a href="#" class="share-icon text-dark"><i class="fa-solid fa-link"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="specs-box bg-light rounded-3 p-4 mt-auto">
+              <div class="row g-4 text-center text-md-start">
+                <div class="col-6 col-md-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-flask fs-4 text-muted"></i>
+                    <div>
+                      <div class="fw-bold small">Thương hiệu</div>
+                      <div class="text-muted small" id="spec-brand">...</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-droplet fs-4 text-muted"></i>
+                    <div>
+                      <div class="fw-bold small">Nồng độ</div>
+                      <div class="text-muted small" id="spec-concentration">...</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-wind fs-4 text-muted"></i>
+                    <div>
+                      <div class="fw-bold small">Độ tỏa hương</div>
+                      <div class="text-muted small" id="spec-sillage">...</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-clock fs-4 text-muted"></i>
+                    <div>
+                      <div class="fw-bold small">Độ lưu hương</div>
+                      <div class="text-muted small" id="spec-longevity">...</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-venus-mars fs-4 text-muted"></i>
+                    <div>
+                      <div class="fw-bold small">Giới tính</div>
+                      <div class="text-muted small" id="spec-gender">...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <ul class="nav nav-tabs justify-content-center border-0 mb-5 gap-4" id="productTabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link" href="trangchu.html">Trang chủ</a>
+              <button class="nav-link active text-uppercase ls-1" id="desc-tab" data-bs-toggle="tab"
+                data-bs-target="#desc" type="button">
+                Mô tả sản phẩm
+              </button>
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Sản phẩm
-              </a>
-              <ul
-                class="dropdown-content dropdown-menu"
-                aria-labelledby="navbarDropdown"
-              >
-                <li>
-                  <a class="dropdown-item" href="products.html?gender=nam"
-                    >Nước hoa Nam</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="products.html?gender=nu"
-                    >Nước hoa Nữ</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="products.html?gender=unisex"
-                    >Nước hoa Unisex</a
-                  >
-                </li>
-              </ul>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link text-uppercase ls-1" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes"
+                type="button" role="tab">
+                Tầng hương
+              </button>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">Về SCENT AURA</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Liên hệ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="quiz.html">Gợi ý mùi hương</a>
+              <button class="nav-link text-uppercase ls-1" id="usage-tab" data-bs-toggle="tab" data-bs-target="#usage"
+                type="button">
+                Sử dụng & Bảo quản
+              </button>
             </li>
           </ul>
-          <div class="d-flex align-items-center">
-            <div class="search-wrapper d-none d-lg-block me-3">
-              <input
-                type="text"
-                class="search-input"
-                placeholder="Tìm mùi hương..."
-              />
-              <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            </div>
 
-            <a href="profile.html" class="text-dark me-3"
-              ><i class="fa-regular fa-user"></i
-            ></a>
-            <a
-              href="login.html"
-              class="text-dark me-3"
-              style="font-size: 0.8rem; font-weight: 600"
-              >ĐĂNG NHẬP</a
-            >
-
-            <a href="cart.html" class="text-dark position-relative">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <span
-                class="badge bg-dark rounded-pill position-absolute top-0 start-100 translate-middle"
-                style="font-size: 0.6rem"
-                >0</span
-              >
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <section class="py-3 bg-light border-bottom">
-      <div class="container">
-        <div
-          class="custom-breadcrumb text-uppercase small"
-          style="letter-spacing: 1px"
-        >
-          <a href="trangchu.html" class="text-muted text-decoration-none"
-            >Trang chủ</a
-          >
-          <span class="mx-2 text-muted">/</span>
-          <a href="products.html" class="text-muted text-decoration-none"
-            >AfnanSupremacy</a
-          >
-          <span class="mx-2 text-muted">/</span>
-          <span class="text-dark fw-bold">AfnanSupremacySilver</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-padding pt-2">
-      <div class="container">
-        <div class="row gx-lg-5 align-items-stretch">
-          <div class="col-lg-5 mb-5 mb-lg-0 d-flex flex-column">
-            <div
-              class="main-image-wrapper bg-white border rounded-3 position-relative mb-3 d-flex align-items-center justify-content-center flex-grow-1"
-              style="overflow: hidden; min-height: 400px"
-            >
-              <img
-                id="main-img"
-                src="assets/images/supsilver1.jpg"
-                class="img-fluid"
-                style="width: 100%; height: 100%; object-fit: contain"
-                alt="Main Image"
-              />
-
-              <button
-                class="btn btn-light rounded-circle shadow-sm position-absolute start-0 ms-3"
-                style="width: 40px; height: 40px"
-              >
-                <i class="fa-solid fa-chevron-left text-muted"></i>
-              </button>
-              <button
-                class="btn btn-light rounded-circle shadow-sm position-absolute end-0 me-3"
-                style="width: 40px; height: 40px"
-              >
-                <i class="fa-solid fa-chevron-right text-muted"></i>
-              </button>
-            </div>
-
-            <div
-              class="d-flex gap-3 justify-content-center justify-content-lg-start"
-            >
-              <div
-                class="thumb-box active bg-white border rounded-3 d-flex align-items-center justify-content-center p-2"
-                onclick="changeImage(this)"
-              >
-                <img src="assets/images/supsilver1.jpg" class="img-fluid" />
-              </div>
-
-              <div
-                class="thumb-box bg-white border rounded-3 d-flex align-items-center justify-content-center p-2"
-                onclick="changeImage(this)"
-              >
-                <img src="assets/images/subsilver2.jpg" class="img-fluid" />
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-7 d-flex flex-column">
-            <div class="h-100 d-flex flex-column justify-content-between">
-              <div>
-                <h1 class="brand-font h2 fw-bold mb-2">
-                  Afnan Supremacy Silver
-                </h1>
-                <p class="small text-muted mb-4">
-                  Danh mục:
-                  <span class="text-dark fw-bold">Nước hoa, Nước hoa nam</span>
-                  <span class="mx-2">|</span>
-                  SKU:
-                  <span class="text-dark fw-bold">AfnanSupremacySilver</span>
-                </p>
-
-                <h2 class="text-dark fw-bold mb-4" id="main-price">
-                  1.350.000 ₫
-                </h2>
-
-                <div class="product-options mb-4">
-                  <div class="d-flex align-items-center mb-3">
-                    <span class="text-muted" style="width: 100px"
-                      >Dung Tích</span
-                    >
-                    <button
-                      class="btn btn-outline-dark btn-sm active px-3 rounded-pill"
-                    >
-                      100ml
-                    </button>
-                  </div>
-                  <div class="d-flex align-items-center mb-4">
-                    <span class="text-muted" style="width: 100px"
-                      >Số Lượng:</span
-                    >
-                    <div
-                      class="qty-pill d-flex align-items-center bg-light rounded-pill px-2"
-                    >
-                      <button class="btn btn-sm" onclick="updateQty(-1)">
-                        -
-                      </button>
-                      <input
-                        type="text"
-                        id="qty"
-                        value="1"
-                        class="form-control border-0 bg-transparent text-center fw-bold"
-                        style="width: 40px"
-                        readonly
-                      />
-                      <button class="btn btn-sm" onclick="updateQty(1)">
-                        +
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row g-3 mb-4">
-                  <div class="col-6">
-                    <button
-                      class="btn btn-secondary w-100 py-3 rounded-pill fw-bold"
-                      style="background-color: #d1d1d1; border: none"
-                    >
-                      Mua ngay
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button
-                      class="btn btn-outline-dark w-100 py-3 rounded-pill fw-bold"
-                    >
-                      Thêm vào giỏ hàng
-                    </button>
-                  </div>
-                </div>
-
-                <div
-                  class="d-flex flex-wrap align-items-center justify-content-between border-top pt-3 mb-4 gap-3"
-                >
-                  <div class="d-flex gap-3 small">
-                    <a href="#" class="text-dark text-decoration-none"
-                      ><i class="fa-brands fa-whatsapp text-success"></i>
-                      Zalo</a
-                    >
-                    <a href="#" class="text-dark text-decoration-none"
-                      ><i class="fa-brands fa-facebook text-primary"></i>
-                      Fanpage</a
-                    >
-                    <a
-                      href="tel:0589506666"
-                      class="text-dark text-decoration-none"
-                      ><i class="fa-solid fa-phone"></i> 058 950 6666</a
-                    >
-                  </div>
-                  <div class="d-flex align-items-center gap-2 small">
-                    <span>Chia Sẻ:</span>
-                    <a href="#" class="share-icon"
-                      ><i class="fa-brands fa-facebook-f"></i
-                    ></a>
-                    <a href="#" class="share-icon"
-                      ><i class="fa-brands fa-whatsapp"></i
-                    ></a>
-                    <a href="#" class="share-icon"
-                      ><i class="fa-solid fa-link"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="specs-box bg-light rounded-3 p-4 mt-auto">
-                <div class="row g-4 text-center text-md-start">
-                  <div class="col-6 col-md-4">
-                    <div class="d-flex align-items-center gap-2">
-                      <i class="fa-solid fa-flask fs-4 text-muted"></i>
-                      <div>
-                        <div class="fw-bold small">Thương hiệu</div>
-                        <div class="text-muted small">Afnan</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-md-4">
-                    <div class="d-flex align-items-center gap-2">
-                      <i class="fa-solid fa-droplet fs-4 text-muted"></i>
-                      <div>
-                        <div class="fw-bold small">Nồng độ</div>
-                        <div class="text-muted small">Eau de Parfum</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-md-4">
-                    <div class="d-flex align-items-center gap-2">
-                      <i class="fa-solid fa-wind fs-4 text-muted"></i>
-                      <div>
-                        <div class="fw-bold small">Độ tỏa hương</div>
-                        <div class="text-muted small">1 sải tay</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-md-4">
-                    <div class="d-flex align-items-center gap-2">
-                      <i class="fa-solid fa-clock fs-4 text-muted"></i>
-                      <div>
-                        <div class="fw-bold small">Độ lưu hương</div>
-                        <div class="text-muted small">6 - 8h</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-md-4">
-                    <div class="d-flex align-items-center gap-2">
-                      <i class="fa-solid fa-venus-mars fs-4 text-muted"></i>
-                      <div>
-                        <div class="fw-bold small">Giới tính</div>
-                        <div class="text-muted small">Nam</div>
-                      </div>
-                    </div>
+          <div class="tab-content" id="productTabsContent">
+            <div class="tab-pane fade show active" id="desc" role="tabpanel">
+              <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                  <h4 class="brand-font mb-4">Giới thiệu sản phẩm</h4>
+                  <div class="content-style text-muted" id="detail-desc">
+                    <p class="mb-4">Đang tải...</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="pb-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <ul
-              class="nav nav-tabs justify-content-center border-0 mb-5 gap-4"
-              id="productTabs"
-              role="tablist"
-            >
-              <li class="nav-item">
-                <button
-                  class="nav-link active text-uppercase ls-1"
-                  id="desc-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#desc"
-                  type="button"
-                >
-                  Mô tả sản phẩm
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link text-uppercase ls-1"
-                  id="notes-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#notes"
-                  type="button"
-                  role="tab"
-                >
-                  Tầng hương
-                </button>
-              </li>
-              <li class="nav-item">
-                <button
-                  class="nav-link text-uppercase ls-1"
-                  id="usage-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#usage"
-                  type="button"
-                >
-                  Sử dụng & Bảo quản
-                </button>
-              </li>
-            </ul>
-
-            <div class="tab-content" id="productTabsContent">
-              <div class="tab-pane fade show active" id="desc" role="tabpanel">
-                <div class="row justify-content-center">
-                  <div class="col-lg-8 text-center">
-                    <h4 class="brand-font mb-4">Câu chuyện mùi hương</h4>
-                    <div class="content-style text-muted">
-                      <p class="mb-4">
-                        <strong>Afnan Supremacy Silver</strong> là hiện thân của
-                        sự quyền lực và tinh tế. Được chế tác dành riêng cho
-                        những quý ông hiện đại, mùi hương này mở đầu bằng sự
-                        tươi mát rực rỡ của cam Bergamot và táo xanh, như một
-                        luồng năng lượng "hào quang" (Aura) bao quanh người sử
-                        dụng.
-                      </p>
-                      <p>
-                        Khi lắng xuống, lớp hương gỗ trầm ấm và xạ hương tạo nên
-                        một dấu ấn khó phai. Đây không chỉ là nước hoa, mà là
-                        một lời tuyên ngôn về phong cách sống phóng khoáng và
-                        đẳng cấp mà <strong>SCENT AURA</strong> muốn gửi gắm.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tab-pane fade" id="notes" role="tabpanel">
-                <div class="row justify-content-center">
-                  <div class="col-lg-9">
-                    <div class="row g-4 text-center">
-                      <div class="col-md-4">
-                        <div
-                          class="h-100 p-4 border rounded-3 bg-white shadow-sm"
-                        >
-                          <div class="mb-3 text-secondary">
-                            <i class="fa-regular fa-clock fs-2"></i>
-                          </div>
-                          <h6
-                            class="fw-bold text-uppercase ls-1 mb-2"
-                            style="font-size: 0.85rem"
-                          >
-                            Hương Đầu
-                          </h6>
-                          <p class="text-muted small mb-0">
-                            Quả lý chua đen, Cam Bergamot, Táo xanh, Quả dứa
-                            (thơm).
-                          </p>
+            <div class="tab-pane fade" id="notes" role="tabpanel">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+                  <div class="row g-4 text-center">
+                    <div class="col-md-4">
+                      <div class="h-100 p-4 border rounded-3 bg-white shadow-sm">
+                        <div class="mb-3 text-secondary">
+                          <i class="fa-regular fa-clock fs-2"></i>
                         </div>
+                        <h6 class="fw-bold text-uppercase ls-1 mb-2" style="font-size: 0.85rem">Hương Đầu</h6>
+                        <p class="text-muted small mb-0" id="notes-top">...</p>
                       </div>
-
-                      <div class="col-md-4">
-                        <div
-                          class="h-100 p-4 border rounded-3 bg-white shadow-sm"
-                        >
-                          <div class="mb-3 text-secondary">
-                            <i class="fa-solid fa-wind fs-2"></i>
-                          </div>
-                          <h6
-                            class="fw-bold text-uppercase ls-1 mb-2"
-                            style="font-size: 0.85rem"
-                          >
-                            Hương Giữa
-                          </h6>
-                          <p class="text-muted small mb-0">
-                            Hoa hồng, Gỗ Bu-lô khô, Hoa nhài Morocco, Cây hoắc
-                            hương.
-                          </p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="h-100 p-4 border rounded-3 bg-white shadow-sm">
+                        <div class="mb-3 text-secondary">
+                          <i class="fa-solid fa-wind fs-2"></i>
                         </div>
+                        <h6 class="fw-bold text-uppercase ls-1 mb-2" style="font-size: 0.85rem">Hương Giữa</h6>
+                        <p class="text-muted small mb-0" id="notes-middle">...</p>
                       </div>
-
-                      <div class="col-md-4">
-                        <div
-                          class="h-100 p-4 border rounded-3 bg-white shadow-sm"
-                        >
-                          <div class="mb-3 text-secondary">
-                            <i class="fa-solid fa-gem fs-2"></i>
-                          </div>
-                          <h6
-                            class="fw-bold text-uppercase ls-1 mb-2"
-                            style="font-size: 0.85rem"
-                          >
-                            Hương Cuối
-                          </h6>
-                          <p class="text-muted small mb-0">
-                            Rêu sồi, Xạ hương, Long diên hương, Hương Vanille.
-                          </p>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="h-100 p-4 border rounded-3 bg-white shadow-sm">
+                        <div class="mb-3 text-secondary">
+                          <i class="fa-solid fa-gem fs-2"></i>
                         </div>
+                        <h6 class="fw-bold text-uppercase ls-1 mb-2" style="font-size: 0.85rem">Hương Cuối</h6>
+                        <p class="text-muted small mb-0" id="notes-base">...</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="tab-pane fade" id="usage" role="tabpanel">
-                <div class="row justify-content-center">
-                  <div class="col-lg-10">
-                    <div class="row g-5">
-                      <div class="col-md-6">
-                        <div class="d-flex mb-3 align-items-center">
-                          <i
-                            class="fa-solid fa-spray-can text-secondary me-3 fs-4"
-                          ></i>
-                          <h5 class="brand-font mb-0 text-uppercase">
-                            Cách sử dụng
-                          </h5>
-                        </div>
-                        <ul
-                          class="list-unstyled text-muted content-style small-ul"
-                        >
-                          <li class="mb-3">
-                            • <strong>Vị trí xịt:</strong> Tập trung vào các
-                            điểm mạch đập như cổ tay, sau tai và gáy để mùi
-                            hương tỏa đều theo nhiệt độ cơ thể.
-                          </li>
-                          <li>
-                            • <strong>Thời điểm:</strong> Tốt nhất là sau khi
-                            tắm, khi da còn ẩm để tinh dầu nước hoa bám chặt
-                            hơn.
-                          </li>
-                        </ul>
+            <div class="tab-pane fade" id="usage" role="tabpanel">
+              <div class="row justify-content-center">
+                <div class="col-lg-10">
+                  <div class="row g-5">
+                    <div class="col-md-6">
+                      <div class="d-flex mb-3 align-items-center">
+                        <i class="fa-solid fa-spray-can text-secondary me-3 fs-4"></i>
+                        <h5 class="brand-font mb-0 text-uppercase">
+                          Cách sử dụng
+                        </h5>
                       </div>
+                      <ul class="list-unstyled text-muted content-style small-ul">
+                        <li class="mb-3">
+                          • <strong>Vị trí xịt:</strong> Tập trung vào các
+                          điểm mạch đập như cổ tay, sau tai và gáy để mùi
+                          hương tỏa đều theo nhiệt độ cơ thể.
+                        </li>
+                        <li>
+                          • <strong>Thời điểm:</strong> Tốt nhất là sau khi
+                          tắm, khi da còn ẩm để tinh dầu nước hoa bám chặt
+                          hơn.
+                        </li>
+                      </ul>
+                    </div>
 
-                      <div class="col-md-6 border-start-md">
-                        <div class="d-flex mb-3 align-items-center">
-                          <i
-                            class="fa-solid fa-box-archive text-secondary me-3 fs-4"
-                          ></i>
-                          <h5 class="brand-font mb-0 text-uppercase">
-                            Bảo quản
-                          </h5>
-                        </div>
-                        <ul
-                          class="list-unstyled text-muted content-style small-ul"
-                        >
-                          <li class="mb-3">
-                            • <strong>Nhiệt độ:</strong> Giữ ở nơi khô ráo,
-                            tránh ánh nắng trực tiếp. Tia UV sẽ làm biến đổi nốt
-                            hương gốc.
-                          </li>
-                          <li>
-                            • <strong>Đậy nắp:</strong> Luôn đóng chặt nắp sau
-                            khi dùng để tránh quá trình oxy hóa tinh dầu.
-                          </li>
-                        </ul>
+                    <div class="col-md-6 border-start-md">
+                      <div class="d-flex mb-3 align-items-center">
+                        <i class="fa-solid fa-box-archive text-secondary me-3 fs-4"></i>
+                        <h5 class="brand-font mb-0 text-uppercase">
+                          Bảo quản
+                        </h5>
                       </div>
+                      <ul class="list-unstyled text-muted content-style small-ul">
+                        <li class="mb-3">
+                          • <strong>Nhiệt độ:</strong> Giữ ở nơi khô ráo,
+                          tránh ánh nắng trực tiếp. Tia UV sẽ làm biến đổi nốt
+                          hương gốc.
+                        </li>
+                        <li>
+                          • <strong>Đậy nắp:</strong> Luôn đóng chặt nắp sau
+                          khi dùng để tránh quá trình oxy hóa tinh dầu.
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -542,160 +356,69 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section-padding bg-white border-top pb-5">
-      <div class="container">
-        <h3 class="text-center mb-5 fw-bold brand-font">SẢN PHẨM LIÊN QUAN</h3>
+  <section class="section-padding bg-white border-top pb-5">
+    <div class="container">
+      <h3 class="text-center mb-5 fw-bold brand-font">SẢN PHẨM LIÊN QUAN</h3>
+      <div class="row row-cols-2 row-cols-lg-3 g-4" id="related-products">
+        <!-- Related products injected by JS -->
+      </div>
+    </div>
+  </section>
 
-        <div class="row row-cols-2 row-cols-lg-3 g-4">
-          <div class="col">
-            <div class="product-card h-100">
-              <div class="product-img-box">
-                <img
-                  src="assets/images/subsilver2.jpg"
-                  class="img-fluid w-100"
-                  alt="Tobacco Vanille"
-                />
-
-                <div class="product-actions">
-                  <a href="#" class="btn-action" title="Thêm vào giỏ">
-                    <i class="fa-solid fa-cart-plus"></i>
-                  </a>
-                  <a
-                    href="product-detail.html"
-                    class="btn-action"
-                    title="Xem chi tiết"
-                  >
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-              </div>
-
-              <div class="product-info mt-2">
-                <span class="text-muted small text-uppercase">Tom Ford</span>
-                <h6 class="fw-bold my-1">
-                  <a href="#" class="text-dark text-decoration-none"
-                    >Tobacco Vanille</a
-                  >
-                </h6>
-                <div class="price">6.200.000₫</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="product-card h-100">
-              <div class="product-img-box">
-                <img
-                  src="assets/images/subsilver3.jpg"
-                  class="img-fluid w-100"
-                  alt="Fabulous"
-                />
-                <div class="product-actions">
-                  <a href="#" class="btn-action">
-                    <i class="fa-solid fa-cart-plus"></i>
-                  </a>
-                  <a href="product-detail.html" class="btn-action">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info mt-2">
-                <span class="text-muted small text-uppercase">Tom Ford</span>
-                <h6 class="fw-bold my-1">
-                  <a href="#" class="text-dark text-decoration-none"
-                    >Fucking Fabulous</a
-                  >
-                </h6>
-                <div class="price">7.500.000₫</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="product-card h-100">
-              <div class="product-img-box">
-                <img
-                  src="assets/images/subsilver3.jpg"
-                  class="img-fluid w-100"
-                  alt="Noir Extreme"
-                />
-                <div class="product-actions">
-                  <a href="#" class="btn-action">
-                    <i class="fa-solid fa-cart-plus"></i>
-                  </a>
-                  <a href="product-detail.html" class="btn-action">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="product-info mt-2">
-                <span class="text-muted small text-uppercase">Tom Ford</span>
-                <h6 class="fw-bold my-1">
-                  <a href="#" class="text-dark text-decoration-none"
-                    >Noir Extreme Parfum</a
-                  >
-                </h6>
-                <div class="price">4.200.000₫</div>
-              </div>
-            </div>
+  <footer class="pb-4">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <h5 class="brand-font mb-4">SCENT AURA</h5>
+          <p class="small text-muted">
+            Đẳng cấp nước hoa chính hãng. Chúng tôi mang đến những nốt hương
+            tinh tế nhất từ các nghệ nhân hàng đầu.
+          </p>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <h6>MUA SẮM</h6>
+          <ul class="list-unstyled">
+            <li><a href="products.html">Tất cả sản phẩm</a></li>
+            <li><a href="cart.html">Giỏ hàng</a></li>
+            <li><a href="checkout.html">Thanh toán</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <h6>TÀI KHOẢN</h6>
+          <ul class="list-unstyled">
+            <li><a href="profile.html">Hồ sơ cá nhân</a></li>
+            <li><a href="my-orders.html">Đơn hàng của tôi</a></li>
+            <li><a href="login.html">Đăng nhập / Đăng ký</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <h6>LIÊN HỆ</h6>
+          <p class="small text-muted">
+            Địa chỉ: 456 Luxury Road, Quận 1, TP.HCM
+          </p>
+          <p class="small text-muted">Email: contact@scentaura.com</p>
+          <div class="mt-4">
+            <a href="#" class="me-3"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="me-3"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
           </div>
         </div>
       </div>
-    </section>
-
-    <footer class="pb-4">
-      <div class="container">
-        <div class="row g-5">
-          <div class="col-lg-4">
-            <h5 class="brand-font mb-4">SCENT AURA</h5>
-            <p class="small text-muted">
-              Đẳng cấp nước hoa chính hãng. Chúng tôi mang đến những nốt hương
-              tinh tế nhất từ các nghệ nhân hàng đầu.
-            </p>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2">
-            <h6>MUA SẮM</h6>
-            <ul class="list-unstyled">
-              <li><a href="products.html">Tất cả sản phẩm</a></li>
-              <li><a href="cart.html">Giỏ hàng</a></li>
-              <li><a href="checkout.html">Thanh toán</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2">
-            <h6>TÀI KHOẢN</h6>
-            <ul class="list-unstyled">
-              <li><a href="profile.html">Hồ sơ cá nhân</a></li>
-              <li><a href="my-orders.html">Đơn hàng của tôi</a></li>
-              <li><a href="login.html">Đăng nhập / Đăng ký</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <h6>LIÊN HỆ</h6>
-            <p class="small text-muted">
-              Địa chỉ: 456 Luxury Road, Quận 1, TP.HCM
-            </p>
-            <p class="small text-muted">Email: contact@scentaura.com</p>
-            <div class="mt-4">
-              <a href="#" class="me-3"
-                ><i class="fa-brands fa-facebook-f"></i
-              ></a>
-              <a href="#" class="me-3"
-                ><i class="fa-brands fa-instagram"></i
-              ></a>
-              <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-            </div>
-          </div>
-        </div>
-        <hr class="my-5 border-secondary" />
-        <div class="text-center small text-muted">
-          © 2024 SCENT AURA Team. Bản quyền thuộc về dự án bài tập nhóm.
-        </div>
+      <hr class="my-5 border-secondary" />
+      <div class="text-center small text-muted">
+        © 2024 SCENT AURA Team. Bản quyền thuộc về dự án bài tập nhóm.
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <script src="assets/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/product-detail.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+
 </html>

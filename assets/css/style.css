@@ -392,6 +392,11 @@ footer .small {
   position: relative;
 }
 
+/* Tăng tốc hiệu ứng fade chuyển slide */
+.carousel-fade .carousel-item {
+  transition: opacity 0.4s ease-in-out !important;
+}
+
 .carousel-overlay {
   position: absolute;
   top: 0;
@@ -423,6 +428,26 @@ footer .small {
   max-width: 100%;
   margin-bottom: 30px;
   opacity: 0.9;
+}
+
+/* Ảnh nền cho từng slide hero */
+.hero-slide-1 {
+  background-image: url("../images/landscape1.jpg");
+}
+
+.hero-slide-2 {
+  background-image: url("../images/landscape2jpg.jpg");
+}
+
+/* --- 4.1b. PARALLAX BANNER (QUOTE SECTION) --- */
+.parallax-banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/landscape3.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  margin: 80px 0;
 }
 
 /* --- 4.2. PERFUME COLLECTION SLIDER (3D Style) --- */

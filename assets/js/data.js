@@ -8,7 +8,8 @@ const products = [
         gender: "nam",
         capacity: "55ml",
         price: 1550000,
-        img: "https://vuahanghieu.com/images/products/2024/09/16/nuoc-hoa-armaf-club-de-nuit-precieux-extrait-de-parfum-55ml-66e80b27af8bd-16092024172439.jpg",
+        img: "assets/images/Armaf-Club-De-Nuit-Precieux-1-Extrait-De-Parfum-01.jpg",
+        img2: "assets/images/Armaf-Club-De-Nuit-Precieux-1-Extrait-De-Parfum-02.jpg.webp",
         desc: "Hương Chypre Amber sang trọng với dứa, tiêu hồng và gỗ ấm.",
         category: "Gỗ Ấm",
         notes: {
@@ -29,7 +30,8 @@ const products = [
         gender: "unisex",
         capacity: "100ml",
         price: 1100000,
-        img: "https://product.hstatic.net/200000404397/product/armaf_odyssey_limoni_fresh_edp_100ml_a1459462d7c5417482834b9cfcf2da06_master.jpg",
+        img: "assets/images/Armaf-Odyssey-Limoni-Fresh-Edition-EDP-01.jpg",
+        img2: "assets/images/Armaf-Odyssey-Limoni-Fresh-Edition-EDP-02.jpg",
         desc: "Hương chanh tươi mát, sảng khoái như ly trà chanh đá ngày hè.",
         category: "Cam Chanh",
         notes: {
@@ -50,7 +52,8 @@ const products = [
         gender: "nam",
         capacity: "100ml",
         price: 950000,
-        img: "https://product.hstatic.net/200000223113/product/nuoc-hoa-nam-armaf-odyssey-homme-edp-white-edition-100ml-1_2c9d1872146f4772b936d54c149eb552_master.jpg",
+        img: "assets/images/Armaf-Odyssey-Homme-EDP-01.webp",
+        img2: "assets/images/Armaf-Odyssey-Homme-EDP-02.webp",
         desc: "Hương thơm ngọt ngào, ấm áp của Vani và Hổ phách, bản dupe hoàn hảo của TF Noir Extreme.",
         category: "Gỗ Ấm",
         notes: {
@@ -62,7 +65,7 @@ const products = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 4. Dior Homme Parfum 2025 (Dior Homme Parfum)
+    // 4. Dior Homme Parfum
     {
         id: 4,
         sku: "DIOR-HOM-PAR-100",
@@ -71,7 +74,8 @@ const products = [
         gender: "nam",
         capacity: "100ml",
         price: 3600000,
-        img: "https://namperfume.net/wp-content/uploads/2020/06/Dior-Homme-Parfum-100ml.png",
+        img: "assets/images/Dior-Homme-Parfum-2025-01.png.webp",
+        img2: "assets/images/Dior-Homme-Parfum-2025-apa-niche-02.png",
         desc: "Đỉnh cao của sự lịch lãm với hoa diên vĩ Tuscan và da thuộc đậm đà.",
         category: "Da Thuộc",
         notes: {
@@ -92,7 +96,8 @@ const products = [
         gender: "nam",
         capacity: "60ml",
         price: 4200000,
-        img: "https://images.unsplash.com/photo-1592914610354-fd354ea45e48?auto=format&fit=crop&w=500&q=80",
+        img: "assets/images/sauvage-elixir-01.jpg",
+        img2: "assets/images/sauvage-elixir-02.jpg",
         desc: "Hương thơm nồng nàn, quyến rũ và đầy bản lĩnh với nồng độ tinh dầu cao.",
         category: "Thảo Mộc",
         notes: {
@@ -113,7 +118,8 @@ const products = [
         gender: "nam",
         capacity: "100ml",
         price: 4500000,
-        img: "https://file.hstatic.net/1000340570/file/nuoc-hoa-chanel-allure-homme-sport-superleggera-edp-100ml-nam-tinh-manh-me-tuoi-mat_988bd372605e4c029288e1465d3d4b67.jpg",
+        img: "assets/images/chanel-allure-homme-sport-superleggera-01.webp",
+        img2: "assets/images/chanel-allure-homme-sport-superleggera-edp-02.webp",
         desc: "Phiên bản giới hạn 2024, tái định nghĩa sự tươi mát và tốc độ.",
         category: "Gỗ Ấm",
         notes: {
@@ -134,7 +140,8 @@ const products = [
         gender: "nam",
         capacity: "100ml",
         price: 3200000,
-        img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=500&q=80",
+        img: "assets/images/chanel-bleu-de-chanel-edt-100ml-01.webp",
+        img2: "assets/images/chanel-bleu-de-chanel-edt-100ml-02.webp",
         desc: "Mùi hương gỗ thơm kinh điển, nam tính và tự do.",
         category: "Cam Chanh",
         notes: {
@@ -155,7 +162,8 @@ const products = [
         gender: "nam",
         capacity: "100ml",
         price: 3800000,
-        img: "https://www.sephora.com/productimages/sku/s2792695-main-zoom.jpg",
+        img: "assets/images/yves-saint-laurent-ysl-myslf-le-parfum-01.png.webp",
+        img2: "assets/images/yves-saint-laurent-ysl-myslf-le-parfum-02.png",
         desc: "Hương hoa cam và gỗ đậm đà, khẳng định cái tôi hiện đại.",
         category: "Hoa Cỏ",
         notes: {
@@ -167,16 +175,17 @@ const products = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 9. YSL La Nuit de L’Homme Bleu Electrique EDT Intense
+    // 9. YSL La Nuit de L'Homme Bleu Electrique EDT Intense
     {
         id: 9,
         sku: "YSL-LANUIT-BLEU-100",
-        name: "YSL La Nuit de L’Homme Bleu Electrique",
+        name: "YSL La Nuit de L'Homme Bleu Electrique",
         brand: "Yves Saint Laurent",
         gender: "nam",
         capacity: "100ml",
         price: 4000000,
-        img: "https://product.hstatic.net/1000340570/product/nuoc-hoa-nam-yves-saint-laurent-la-nuit-de-l_homme-bleu-electrique-edt-intense_fc39922e4d0d4e9a80e1572c83315729_master.jpg",
+        img: "assets/images/ysl-bleu-electrique-01.jpg",
+        img2: "assets/images/ysl-bleu-electrique-02.jpg",
         desc: "Phiên bản 'Điện' đầy mê hoặc với gừng, bạch đậu khấu và oải hương.",
         category: "Thảo Mộc",
         notes: {
@@ -197,7 +206,8 @@ const products = [
         gender: "nu",
         capacity: "90ml",
         price: 3500000,
-        img: "https://images.unsplash.com/photo-1585864190802-bdj4d1a01e52?auto=format&fit=crop&w=500&q=80",
+        img: "assets/images/nuoc-hoa-nu-yves-saint-laurent-ysl-black-opium-eau-de-parfum-150ml-01.webp",
+        img2: "assets/images/nuoc-hoa-nu-yves-saint-laurent-ysl-black-opium-eau-de-parfum-150ml-02.webp",
         desc: "Hương cà phê đen gây nghiện kết hợp với hoa trắng nữ tính.",
         category: "Phương Đông",
         notes: {
@@ -218,7 +228,8 @@ const products = [
         gender: "nu",
         capacity: "90ml",
         price: 3600000,
-        img: "https://product.hstatic.net/1000025647/product/4_156158c3db074cc89369345700810137_master.jpg",
+        img: "assets/images/nuoc-hoa-nu-yves-saint-laurent-ysl-libre-edp-90ml-01.webp",
+        img2: "assets/images/nuoc-hoa-nu-yves-saint-laurent-ysl-libre-edp-90ml-02.webp",
         desc: "Sự tự do quyến rũ với hoa oải hương Pháp và hoa cam Morocco.",
         category: "Hoa Cỏ",
         notes: {
@@ -230,7 +241,7 @@ const products = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 12. Yves Saint Laurent Libre Vanille Couture (Libre Flowers & Flames / New 2024/2025)
+    // 12. Yves Saint Laurent Libre Vanille Couture
     {
         id: 12,
         sku: "YSL-LIBRE-VAN-90",
@@ -239,7 +250,8 @@ const products = [
         gender: "nu",
         capacity: "90ml",
         price: 4500000,
-        img: "https://www.yslbeauty.co.uk/dw/image/v2/AAWH_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw18b62c47/pdp/Fragrance/LIBRE/Libre_Flowers_Flames/WW-51200YSL_Libre_Flowers_Flames_30ml.jpg?sw=650&sh=650&sm=cut&sfrm=jpg&q=85",
+        img: "assets/images/YSL-Libre-Vanille-Couture-EDP-50ml-01.jpg",
+        img2: "assets/images/YSL-Libre-Vanille-Couture-EDP-50ml-02.jpg",
         desc: "Phiên bản cao cấp 2025 với Vani Bourbon đen và hương hoa rực rỡ.",
         category: "Hoa Cỏ",
         notes: {
@@ -251,7 +263,7 @@ const products = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 13. Dior Miss Dior Essence (Miss Dior Parfum 2024 / Essence de Parfum)
+    // 13. Dior Miss Dior Essence
     {
         id: 13,
         sku: "DIOR-MISS-ESS-80",
@@ -260,7 +272,8 @@ const products = [
         gender: "nu",
         capacity: "80ml",
         price: 4800000,
-        img: "https://www.dior.com/on/demandware.static/-/Sites-dior_international/default/dw83748281/makeup/2024/miss-dior-parfum/Y0997160/Y0997160_C099700947_E01_GHC.jpg",
+        img: "assets/images/miss-dior-essence-80ml-01.webp",
+        img2: "assets/images/miss-dior-essence-80ml-02.webp",
         desc: "Hương hoa Chypre đậm đà, tinh tế và sang trọng bậc nhất của Dior.",
         category: "Hoa Cỏ",
         notes: {
@@ -281,7 +294,8 @@ const products = [
         gender: "nu",
         capacity: "90ml",
         price: 2800000,
-        img: "https://product.hstatic.net/200000223113/product/nuoc-hoa-nu-versace-crystal-noir-parfum_b740510166d141e69512395632746401_master.jpg",
+        img: "assets/images/versace-crystal-noir-2024-parfum-90ml-01.webp",
+        img2: "assets/images/versace-crystal-noir-2024-parfum-90ml-02.webp",
         desc: "Hương thơm huyền bí, gợi cảm với gừng, dừa và hoa cam.",
         category: "Phương Đông",
         notes: {
@@ -302,7 +316,8 @@ const products = [
         gender: "unisex",
         capacity: "100ml",
         price: 3200000,
-        img: "https://product.hstatic.net/1000025647/product/upload_9f5cb325b1284a0c86241b21c437651a_master.jpg",
+        img: "assets/images/black-orchid-01.jpg",
+        img2: "assets/images/black-orchid-02.jpg",
         desc: "Mạnh mẽ và quyến rũ với phong lan đen, gia vị và hắc hương.",
         category: "Phương Đông",
         notes: {
@@ -323,7 +338,8 @@ const products = [
         gender: "nu",
         capacity: "100ml",
         price: 850000,
-        img: "https://vuahanghieu.com/images/products/2023/11/22/nuoc-hoa-nu-armaf-le-parfait-pour-femme-panache-edp-100ml-655db4db5d45d-22112023145403.jpg",
+        img: "assets/images/Armaf-Le-Parfait-Opus-Pour-Femme-EDP-100ml-01.jpg",
+        img2: "assets/images/Armaf-Le-Parfait-Opus-Pour-Femme-EDP-100ml-02.jpg",
         desc: "Sự pha trộn tinh tế của hoa cỏ và trái cây, ngọt ngào và thanh lịch.",
         category: "Hoa Cỏ",
         notes: {
@@ -335,7 +351,7 @@ const products = [
         longevity: "Tạm ổn - Từ 6 đến 8 giờ",
         sillage: "Gần - Toả hương trong vòng 1 cánh tay"
     },
-    // 17. Unisex Yves Saint Laurent Muse (Le Vestiaire des Parfums - New 2025)
+    // 17. Unisex Yves Saint Laurent Muse
     {
         id: 17,
         sku: "YSL-MUSE-125",
@@ -344,7 +360,8 @@ const products = [
         gender: "unisex",
         capacity: "125ml",
         price: 8500000,
-        img: "https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw1b465691/pdp/Fragrance/Le_Vestiaire_Des_Parfums/WW-51300YSL/3614274151703_Muse_125ml.jpg?sw=650&sh=650&sm=cut&sfrm=jpg&q=85",
+        img: "assets/images/Unisex-Yves-Saint-Laurent-Muse-01.avif",
+        img2: "assets/images/Unisex-Yves-Saint-Laurent-Muse-02.avif",
         desc: "Hương thơm nghệ thuật với hợp hương Mực và Gỗ, độc đáo và lôi cuốn.",
         category: "Gỗ Ấm",
         notes: {
@@ -365,7 +382,8 @@ const products = [
         gender: "unisex",
         capacity: "125ml",
         price: 8500000,
-        img: "https://www.yslbeauty.co.uk/dw/image/v2/AAWH_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwbf85078a/pdp/Fragrance/Le_Vestiaire_Des_Parfums/6_place_Saint_Sulpice/WW-50701YSL_6_place_Saint_Sulpice_125ml.jpg?sw=650&sh=650&sm=cut&sfrm=jpg&q=85",
+        img: "assets/images/Unisex-Yves-Saint-Laurent-6-place-Saint-Sulpice-01.png",
+        img2: "assets/images/Unisex-Yves-Saint-Laurent-6-place-Saint-Sulpice-02.png",
         desc: "Hương da thuộc và khói ấm áp, gợi nhớ về cửa hàng Couture lịch sử.",
         category: "Da Thuộc",
         notes: {
