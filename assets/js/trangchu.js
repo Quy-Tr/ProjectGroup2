@@ -9,7 +9,7 @@
     if (!heroEl) return;
 
     new bootstrap.Carousel(heroEl, {
-        interval: 1000,
+        interval: 3000,
         ride: 'carousel',
         wrap: true
     });

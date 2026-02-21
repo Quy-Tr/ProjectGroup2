@@ -24,10 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
 function applyInitialUrlParams() {
     const urlParams = new URLSearchParams(window.location.search);
     const genderParam = urlParams.get('gender');
+    const searchParam = urlParams.get('search');
+    const categoryParam = urlParams.get('category');
 
     // Reset filters
     currentFilters.gender = null;
+    currentFilters.search = '';
+    currentFilters.categories = [];
     document.querySelectorAll('.gender-filter').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.category-filter').forEach(cb => cb.checked = false);
 
     if (genderParam) {
         const genderCheckbox = document.querySelector(`.gender-filter[value="${genderParam}"]`);
@@ -36,7 +41,21 @@ function applyInitialUrlParams() {
             currentFilters.gender = genderParam;
         }
     }
+
+    if (searchParam) {
+        currentFilters.search = searchParam;
+        const searchInput = document.getElementById('search-input') || document.querySelector('.search-input');
+        if (searchInput) searchInput.value = searchParam;
+    }
+
+    if (categoryParam) {
+        currentFilters.categories = [categoryParam];
+        // Tích checkbox tương ứng nếu có trong filter sidebar
+        const catCheckbox = document.querySelector(`.category-filter[value="${categoryParam}"]`);
+        if (catCheckbox) catCheckbox.checked = true;
+    }
 }
+
 
 // 1. Render Brand Filters
 function renderBrandFilters() {
@@ -274,6 +293,4 @@ function filterByGender(gender) {
     filterAndRender();
 }
 
-function addToCart(productId) {
-    alert(`Đã thêm sản phẩm ID ${productId} vào giỏ hàng!`);
-}
+// addToCart is provided globally by cart.js
