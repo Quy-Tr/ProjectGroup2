@@ -1,18 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Sản phẩm - SCENT AURA</title>
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Admin Style -->
+    <link rel="icon" href="../assets/images/favicon-32x32.png" />
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 
@@ -47,7 +44,10 @@
             </li>
         </ul>
         <div class="nav-footer">
-            <a href="../trangchu.html" class="nav-link">
+            <a href="../trangchu.html" class="nav-link mb-1">
+                <i class="fas fa-store"></i> Xem trang web
+            </a>
+            <a href="#" class="nav-link text-danger" onclick="adminLogout()">
                 <i class="fas fa-sign-out-alt"></i> Đăng xuất
             </a>
         </div>
@@ -62,18 +62,25 @@
             </div>
             <div class="user-profile">
                 <div class="text-end d-none d-sm-block">
-                    <h6 class="mb-0">Admin User</h6>
+                    <h6 class="mb-0 admin-name-display">Admin</h6>
                     <small class="text-muted">Quản trị viên</small>
                 </div>
-                <div class="user-avatar">AD</div>
+                <div class="user-avatar admin-avatar-initials">AD</div>
             </div>
         </header>
 
         <div class="admin-card">
             <div class="card-header">
                 <h3>Danh Sách Sản Phẩm</h3>
-                <button class="btn btn-primary btn-sm" onclick="openModal()"><i class="fas fa-plus"></i> Thêm
-                    Mới</button>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="resetToDefaultProducts()"
+                        title="Khôi phục các sản phẩm mặc định bị thiếu">
+                        <i class="fas fa-undo"></i> Khôi phục mặc định
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="openModal()">
+                        <i class="fas fa-plus"></i> Thêm Mới
+                    </button>
+                </div>
             </div>
 
             <div class="table-responsive">
@@ -84,6 +91,7 @@
                             <th>Hình Ảnh</th>
                             <th>Tên Sản Phẩm</th>
                             <th>Thương Hiệu</th>
+                            <th>Giới Tính</th>
                             <th>Giá</th>
                             <th>Hành động</th>
                         </tr>
@@ -98,41 +106,97 @@
 
     <!-- PRODUCT MODAL -->
     <div id="productModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="width: 680px;">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h3 class="mb-4" id="modalTitle">Thêm Sản Phẩm</h3>
+            <h3 class="mb-4" id="modalTitle">Thêm Sản Phẩm Mới</h3>
             <form id="productForm">
-                <input type="hidden" id="productId">
-                <div class="mb-3">
-                    <label class="form-label">Tên sản phẩm</label>
-                    <input type="text" id="productName" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Thương hiệu</label>
-                    <input type="text" id="productBrand" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Giá bán (VNĐ)</label>
-                    <input type="number" id="productPrice" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Link Hình ảnh</label>
-                    <div class="d-flex align-items-center">
-                        <input type="file" id="imageInput" class="form-control me-2" accept="image/*">
-                        <input type="hidden" id="productImage">
+                <input type="hidden" id="pId">
+
+                <div class="row g-3">
+                    <!-- Tên sản phẩm -->
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Tên sản phẩm <span class="text-danger">*</span></label>
+                        <input type="text" id="pName" class="form-control" placeholder="VD: Chanel No.5 EDP" required>
                     </div>
-                    <img id="imagePreview" src="" class="mt-2 rounded"
-                        style="display:none; width: 100px; height: 100px; object-fit: cover;">
+
+                    <!-- Thương hiệu & Giới tính -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Thương hiệu <span class="text-danger">*</span></label>
+                        <input type="text" id="pBrand" class="form-control" placeholder="VD: Chanel" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Giới tính</label>
+                        <select id="pGender" class="form-select">
+                            <option value="nam">Nam</option>
+                            <option value="nu">Nữ</option>
+                            <option value="unisex" selected>Unisex</option>
+                        </select>
+                    </div>
+
+                    <!-- Dung tích & Giá -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Dung tích</label>
+                        <input type="text" id="pCapacity" class="form-control" placeholder="VD: 100ml">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Giá bán (VNĐ) <span class="text-danger">*</span></label>
+                        <input type="number" id="pPrice" class="form-control" placeholder="VD: 1500000" min="0"
+                            required>
+                    </div>
+
+                    <!-- Danh mục -->
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Danh mục (Nhóm hương)</label>
+                        <select id="pCategory" class="form-select">
+                            <option value="">— Chọn nhóm hương —</option>
+                            <option value="Gỗ Ấm">Gỗ Ấm</option>
+                            <option value="Cam Chanh">Cam Chanh</option>
+                            <option value="Hoa Cỏ">Hoa Cỏ</option>
+                            <option value="Thảo Mộc">Thảo Mộc</option>
+                            <option value="Phương Đông">Phương Đông</option>
+                            <option value="Da Thuộc">Da Thuộc</option>
+                            <option value="Trái Cây">Trái Cây</option>
+                        </select>
+                    </div>
+
+                    <!-- Mô tả -->
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Mô tả ngắn</label>
+                        <textarea id="pDesc" class="form-control" rows="2"
+                            placeholder="Mô tả ngắn về sản phẩm..."></textarea>
+                    </div>
+
+                    <!-- Hình ảnh -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Ảnh chính (img)</label>
+                        <input type="file" id="imageInput" class="form-control" accept="image/*">
+                        <input type="hidden" id="pImage">
+                        <img id="imagePreview" src="" class="mt-2 rounded"
+                            style="display:none; width:90px; height:90px; object-fit:cover; border:1px solid #eee;">
+                        <div class="text-muted small mt-1">Để trống = giữ ảnh cũ.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Ảnh phụ (img2)</label>
+                        <input type="file" id="imageInput2" class="form-control" accept="image/*">
+                        <input type="hidden" id="pImage2">
+                        <img id="imagePreview2" src="" class="mt-2 rounded"
+                            style="display:none; width:90px; height:90px; object-fit:cover; border:1px solid #eee;">
+                        <div class="text-muted small mt-1">Ảnh hover / ảnh thứ 2.</div>
+                    </div>
                 </div>
-                <div class="text-end">
+
+                <div class="text-end mt-4">
                     <button type="button" class="btn btn-secondary me-2" onclick="closeModal()">Hủy</button>
-                    <button type="submit" class="btn btn-primary">Lưu Sản Phẩm</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i> Lưu Sản Phẩm
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/data.js"></script>
     <script src="../assets/js/admin.js"></script>
 </body>
 

@@ -14,35 +14,50 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            // Tài khoản Admin Demo
-            if (email === "admin@gmail.com" && password === "123456") {
-                // Lưu vào localStorage thông tin admin
-                localStorage.setItem("currentUser", JSON.stringify({
-                    name: "Admin",
-                    email: email,
-                    role: "admin"
-                }));
-                localStorage.setItem("isLoggedIn", "true");
+            // Khởi tạo DB người dùng nếu chưa có
+            let users = JSON.parse(localStorage.getItem('scent_aura_users')) || [];
 
-                // Hiển thị thông báo và chuyển hướng
-                alert("Đăng nhập Admin thành công!");
-                window.location.href = "admin/index.html"; // Chuyển đến trang dashboard admin
-                return;
+            // Đảm bảo tạo tài khoản mặc định nếu chưa có
+            let isModified = false;
+            if (!users.some(u => u.email === "admin@gmail.com")) {
+                users.push({ id: 101, name: "Admin Quản Trị", email: "admin@gmail.com", phone: "0909123456", role: "admin", status: "active", password: "123456" });
+                isModified = true;
+            }
+            if (!users.some(u => u.email === "user@gmail.com")) {
+                users.push({ id: 102, name: "Khách hàng", email: "user@gmail.com", phone: "0912345678", role: "user", status: "active", password: "123456" });
+                isModified = true;
             }
 
-            // Tài khoản User Demo
-            if (email === "user@gmail.com" && password === "123456") {
-                // Lưu vào localStorage thông tin user
+            if (isModified) {
+                localStorage.setItem('scent_aura_users', JSON.stringify(users));
+            }
+
+            const foundUser = users.find(u => u.email === email && u.password === password);
+
+            if (foundUser) {
+                if (foundUser.status === 'locked') {
+                    alert("Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Admin!");
+                    return;
+                }
+
+                // Lưu vào localStorage thông tin người dùng đang truy cập
                 localStorage.setItem("currentUser", JSON.stringify({
-                    name: "Khách hàng",
-                    email: email,
-                    role: "user"
+                    id: foundUser.id,
+                    name: foundUser.name,
+                    email: foundUser.email,
+                    phone: foundUser.phone,
+                    role: foundUser.role
                 }));
                 localStorage.setItem("isLoggedIn", "true");
 
-                // Hiển thị thông báo và chuyển hướng
-                alert("Đăng nhập User thành công!");
-                window.location.href = "trangchu.html"; // Chuyển về trang chủ
+                // Phân quyền chuyển hướng
+                if (foundUser.role === 'admin') {
+                    alert("Đăng nhập Admin thành công!");
+                    window.location.href = "admin/index.html";
+                } else {
+                    alert("Đăng nhập thành công!");
+                    window.location.href = "trangchu.html";
+                }
                 return;
             }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -18,7 +18,7 @@
 
   <!-- ================= CSS CUSTOM ================= -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link href="assets/images/logo_SA2.png" rel="icon" />
+  <link href="assets/images/favicon-32x32.png" rel="icon" />
 </head>
 
 <body>
@@ -40,7 +40,7 @@
 
           <!-- Trang chủ -->
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Trang chủ</a>
+            <a class="nav-link" href="trangchu.html">Trang chủ</a>
           </li>
 
           <!-- Dropdown sản phẩm -->
@@ -101,9 +101,7 @@
           <a href="cart.html" class="text-dark position-relative">
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="badge bg-dark rounded-pill position-absolute top-0 start-100 translate-middle"
-              style="font-size: 0.6rem">
-              2
-            </span>
+              style="font-size: 0.6rem" data-cart-badge>0</span>
           </a>
 
         </div>
@@ -134,200 +132,9 @@
   <!-- ==================== CART SECTION =================== -->
   <section class="cart-section section-padding">
     <div class="container">
-      <div class="row">
+      <div class="row" id="cart-content">
 
-        <!-- ================= BẢNG SẢN PHẨM ================= -->
-        <div class="col-lg-8 mb-5 mb-lg-0">
-          <div class="table-responsive">
-
-            <table class="table cart-table">
-
-              <!-- Tiêu đề bảng -->
-              <thead>
-                <tr>
-                  <th scope="col" class="col-product ps-0">Tên sản phẩm</th>
-                  <th scope="col" class="col-price">Giá</th>
-                  <th scope="col" class="col-qty">Số lượng</th>
-                  <th scope="col" class="col-total">Tạm tính</th>
-                  <th scope="col" class="col-remove"></th>
-                </tr>
-              </thead>
-
-              <!-- Nội dung sản phẩm -->
-              <tbody>
-
-                <!-- ===== Sản phẩm 1 ===== -->
-                <tr>
-                  <td class="ps-0">
-                    <div class="d-flex align-items-center">
-                      <div class="cart-img-wrapper me-3">
-                        <img src="assets/images/oudwood.png" alt="Sản phẩm" class="img-fluid" />
-                      </div>
-                      <div>
-                        <h6 class="mb-1 cart-product-title">
-                          Tom Ford Oud Wood
-                        </h6>
-                        <span class="text-muted small">
-                          Dung tích: 100ml
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="text-accent fw-bold">
-                    5.100.000₫
-                  </td>
-
-                  <td class="text-center">
-                    <div class="input-group qty-group">
-                      <button class="btn btn-qty" type="button" onclick="updateQty(this, -1)">-</button>
-
-                      <input type="text" class="form-control text-center qty-input" value="1" readonly />
-
-                      <button class="btn btn-qty" type="button" onclick="updateQty(this, 1)">+</button>
-                    </div>
-                  </td>
-
-                  <td class="fw-bold">
-                    5.100.000₫
-                  </td>
-
-                  <td class="text-end">
-                    <a href="#" class="remove-btn">
-                      <i class="fa-solid fa-trash-can"></i>
-                    </a>
-                  </td>
-                </tr>
-
-                <!-- ===== Sản phẩm 2 ===== -->
-                <tr>
-                  <td class="ps-0">
-                    <div class="d-flex align-items-center">
-                      <div class="cart-img-wrapper me-3">
-                        <img src="assets/images/Tom-Ford-Noir-Extreme-4.png" alt="Sản phẩm" class="img-fluid" />
-                      </div>
-                      <div>
-                        <h6 class="mb-1 cart-product-title">
-                          Tom Ford Noir Extreme
-                        </h6>
-                        <span class="text-muted small">
-                          Dung tích: 100ml
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="text-accent fw-bold">
-                    3.500.000₫
-                  </td>
-
-                  <td class="text-center">
-                    <div class="input-group qty-group">
-                      <button class="btn btn-qty" type="button" onclick="updateQty(this, -1)">-</button>
-
-                      <input type="text" class="form-control text-center qty-input" value="1" readonly />
-
-                      <button class="btn btn-qty" type="button" onclick="updateQty(this, 1)">+</button>
-                    </div>
-                  </td>
-
-                  <td class="fw-bold">
-                    3.500.000₫
-                  </td>
-
-                  <td class="text-end">
-                    <a href="#" class="remove-btn">
-                      <i class="fa-solid fa-trash-can"></i>
-                    </a>
-                  </td>
-                </tr>
-
-                <!-- ===== Mã giảm giá ===== -->
-                <tr>
-                  <td colspan="5" class="pt-4 pb-0 border-0">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-
-                      <div class="input-group coupon-wrapper">
-                        <input type="text" class="form-control rounded-start-pill border-dark"
-                          placeholder="Nhập mã ưu đãi" />
-
-                        <button class="btn btn-dark rounded-end-pill px-4" type="button">
-                          ÁP DỤNG
-                        </button>
-                      </div>
-
-                    </div>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Nút quay lại mua sắm -->
-          <div class="d-flex justify-content-between mt-4">
-            <a href="products.html" class="btn btn-outline-dark rounded-pill px-4 fw-bold">
-              <i class="fa-solid fa-arrow-left me-2"></i>
-              Tiếp tục mua sắm
-            </a>
-          </div>
-
-        </div>
-
-
-        <!-- ================= TÓM TẮT GIỎ HÀNG ================= -->
-        <div class="col-lg-4">
-          <div class="cart-summary bg-light p-4 rounded-3">
-
-            <h4 class="mb-4">Cộng Giỏ Hàng</h4>
-
-            <div class="d-flex justify-content-between mb-3 border-bottom pb-3">
-              <span class="text-muted">Tạm tính</span>
-              <span class="fw-bold">8.600.000₫</span>
-            </div>
-
-            <div class="d-flex justify-content-between mb-3 border-bottom pb-3">
-              <span class="text-muted">Phí vận chuyển</span>
-              <span class="text-success fw-bold">Miễn phí</span>
-            </div>
-
-            <div class="d-flex justify-content-between mb-3 border-bottom pb-3">
-              <span class="text-muted">Ưu đãi</span>
-              <span class="text-success fw-bold">0đ</span>
-            </div>
-
-            <br>
-
-            <div class="d-flex justify-content-between mb-4">
-              <span class="h6 mb-0 text-uppercase fw-bold">
-                Tổng cộng
-              </span>
-              <span class="h5 mb-0 text-accent fw-bold">
-                8.600.000₫
-              </span>
-            </div>
-
-            <!-- Nút thanh toán -->
-            <a href="checkout.html"
-              class="btn btn-black w-100 rounded-pill py-3 fw-bold btn btn-outline-dark fw-bold px-3" type="button">
-              Tiến hành thanh toán
-            </a>
-
-            <!-- Phương thức thanh toán -->
-            <div class="mt-4 text-center">
-              <p class="small text-muted mb-2">
-                Chúng tôi chấp nhận:
-              </p>
-              <div class="payment-icons fs-4 text-secondary">
-                <i class="fa-brands fa-cc-visa me-2"></i>
-                <i class="fa-brands fa-cc-mastercard me-2"></i>
-                <i class="fa-brands fa-cc-paypal"></i>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
+        <!-- Nội dung giỏ hàng sẽ được render bởi cart-page.js -->
       </div>
     </div>
   </section>
@@ -404,10 +211,11 @@
 
   <!-- ======================= SCRIPTS ===================== -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/cart-page.js"></script>
   <script src="assets/js/main.js"></script>
-
-
-    <script src="assets/js/search.js"></script>
+  <script src="assets/js/search.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-const products = [
+const PRELOADED_PRODUCTS = [
     // 1. Armaf Club De Nuit Precieux
     {
         id: 1,
@@ -396,3 +396,52 @@ const products = [
         sillage: "Xa - Toả hương trong vòng 2m"
     }
 ];
+
+// Đọc dữ liệu từ Admin hoặc dùng danh sách mặc định
+let products = [];
+(function () {
+    try {
+        const stored = localStorage.getItem('scent_aura_products');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                // Kiểm tra xem có sản phẩm mặc định nào bị mất không
+                // (có thể do vô tình xóa khi test admin)
+                const storedIds = new Set(parsed.map(p => p.id));
+                const missingPreloaded = PRELOADED_PRODUCTS.filter(p => !storedIds.has(p.id));
+
+                if (missingPreloaded.length > 0) {
+                    // Ghép sản phẩm còn thiếu vào — đặt trước để giữ thứ tự
+                    products = [...missingPreloaded, ...parsed];
+                    try {
+                        localStorage.setItem('scent_aura_products', JSON.stringify(products));
+                    } catch (e) {
+                        console.warn('Could not save merged products:', e);
+                    }
+                } else {
+                    products = parsed;
+                }
+            } else {
+                // Mảng rỗng hoặc không hợp lệ — khôi phục mặc định
+                products = [...PRELOADED_PRODUCTS];
+                try {
+                    localStorage.setItem('scent_aura_products', JSON.stringify(products));
+                } catch (e) { /* ignore */ }
+            }
+        } else {
+            // Chưa có data — khởi tạo từ danh sách mặc định
+            products = [...PRELOADED_PRODUCTS];
+            try {
+                localStorage.setItem('scent_aura_products', JSON.stringify(products));
+            } catch (quotaErr) {
+                console.warn('localStorage quota exceeded, using in-memory products.');
+            }
+        }
+    } catch (e) {
+        // Lỗi parse JSON — dùng danh sách mặc định
+        products = [...PRELOADED_PRODUCTS];
+        console.warn('Failed to parse scent_aura_products from localStorage:', e);
+    }
+})();
+

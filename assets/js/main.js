@@ -166,45 +166,41 @@ function togglePassword() {
    ========================================= */
 
 function checkLoginStatus() {
-  // 1. Kiem tra xem co user trong localStorage khong (Gia su key la 'currentUser' hoac 'isLoggedIn')
-  // De test, ban co the mo Console go: localStorage.setItem('currentUser', JSON.stringify({name: 'User Test'}));
   const currentUser = localStorage.getItem('currentUser');
-
-  // Tim cac element trong Navbar
-  const loginLink = document.querySelector('a[href*="login.html"]'); // Link ĐĂNG NHẬP
-  const profileLink = document.querySelector('a[href*="profile.html"]'); // Icon USER
-
-  // Xử lý path cho đúng (vì file js này dùng chung cho cả root và folder user/)
   const currentPath = window.location.pathname;
   const isUserPage = currentPath.includes('/user/');
-  const logoutPath = isUserPage ? '../login.html' : 'login.html';
+
+  // Determine correct paths based on current directory
+  const loginPath = isUserPage ? '../login.html' : 'login.html';
   const profilePath = isUserPage ? 'profile.html' : 'user/profile.html';
+  const ordersPath = isUserPage ? 'my-orders.html' : 'user/my-orders.html';
+
+  // Select all relevant links (navbar + footer)
+  const profileLinks = document.querySelectorAll('a[href*="profile.html"]');
+  const ordersLinks = document.querySelectorAll('a[href*="my-orders.html"]');
+  const loginLinks = document.querySelectorAll('a[href*="login.html"]');
 
   if (currentUser) {
     // --- TRANG THAI: DA DANG NHAP ---
+    profileLinks.forEach(link => link.href = profilePath);
+    ordersLinks.forEach(link => link.href = ordersPath);
 
-    // 1. Doi Icon User link den trang profile dung
-    if (profileLink) {
-      profileLink.href = profilePath;
-    }
-
-    // 2. Doi chu "DANG NHAP" thanh "DANG XUAT"
-    if (loginLink) {
-      loginLink.textContent = "ĐĂNG XUẤT";
-      loginLink.href = "#"; // Khong chuyen trang ngay
-      loginLink.onclick = function (e) {
-        e.preventDefault();
-        logout();
-      };
-    }
+    loginLinks.forEach(link => {
+      // Normalize whitespace to safely match text spread across newlines
+      const normalizedText = link.textContent.replace(/\s+/g, ' ').trim().toUpperCase();
+      if (normalizedText.includes('ĐĂNG NHẬP')) {
+        link.textContent = normalizedText === 'ĐĂNG NHẬP' ? 'ĐĂNG XUẤT' : 'Đăng xuất';
+        link.href = "#";
+        link.onclick = function (e) {
+          e.preventDefault();
+          logout();
+        };
+      }
+    });
   } else {
     // --- TRANG THAI: CHUA DANG NHAP ---
-    // Mac dinh HTML da la "DANG NHAP" va link dung roi, khong can lam gi
-    // Tuy nhien, neu muon chac chan:
-    if (profileLink) {
-      // Neu chua dang nhap, bam icon User se ra trang Login
-      profileLink.href = isUserPage ? '../login.html' : 'login.html';
-    }
+    profileLinks.forEach(link => link.href = loginPath);
+    ordersLinks.forEach(link => link.href = loginPath);
   }
 }
 

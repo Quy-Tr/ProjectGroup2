@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -8,7 +8,170 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link href="assets/images/logo_SA2.png" rel="icon" />
+  <link href="assets/images/favicon-32x32.png" rel="icon" />
+  <style>
+    /* Quiz Specific Styles */
+    .option-card {
+      border: 2px solid #eee;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+
+    .option-card:hover {
+      border-color: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .option-card.selected {
+      border-color: #000;
+      background-color: #f8f9fa;
+      box-shadow: inset 0 0 0 1px #000;
+    }
+
+    .option-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .option-label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .option-desc {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+
+    .result-card {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      height: 100%;
+      background: #fff;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .result-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .rank-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      z-index: 10;
+    }
+
+    .match-pct {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #eaffea;
+      color: #28a745;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .result-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+
+    .result-card-brand {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: #888;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .result-card-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .result-card-price {
+      font-weight: bold;
+      color: #bfa15f;
+      margin-bottom: 15px;
+    }
+
+    .result-card-tags {
+      margin-bottom: 20px;
+    }
+
+    .result-tag {
+      display: inline-block;
+      background: #f1f1f1;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      margin: 2px;
+      color: #555;
+    }
+
+    .result-card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-view-detail,
+    .btn-add-result {
+      flex: 1;
+      padding: 8px;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .btn-view-detail {
+      background: #fff;
+      border: 1px solid #ddd;
+      color: #333;
+    }
+
+    .btn-view-detail:hover {
+      background: #f8f9fa;
+      color: #000;
+    }
+
+    .btn-add-result {
+      background: #000;
+      border: 1px solid #000;
+      color: #fff;
+    }
+
+    .btn-add-result:hover {
+      background: #333;
+    }
+  </style>
 </head>
 
 <body>
@@ -62,12 +225,82 @@
           <a href="cart.html" class="text-dark position-relative">
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="badge bg-dark rounded-pill position-absolute top-0 start-100 translate-middle"
-              style="font-size: 0.6rem">0</span>
+              style="font-size: 0.6rem" data-cart-badge>0</span>
           </a>
         </div>
       </div>
     </div>
   </nav>
+
+  <section id="quiz-hero" class="align-items-center justify-content-center text-center text-white"
+    style="display: flex; min-height: calc(100vh - 86px); background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/quiz1.jpg') center/cover no-repeat;">
+    <div class="container py-5">
+      <h1 class="brand-font mb-4 display-4 text-white">Tìm Kiếm Mùi Hương Dành Riêng Cho Bạn</h1>
+      <p class="mb-5 lead text-light" style="max-width: 700px; margin: 0 auto;">
+        Hãy để chúng tôi gợi ý cho bạn những chai nước hoa phù hợp nhất dựa trên sở thích, phong cách và cá tính của
+        bạn. Chỉ mất chưa đầy 1 phút!
+      </p>
+      <button id="btn-start" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold shadow border-0"
+        style="background-color: #c5a059;" onclick="startQuiz()">
+        Bắt đầu trắc nghiệm <i class="fa-solid fa-arrow-right ms-2"></i>
+      </button>
+    </div>
+  </section>
+
+  <section id="quiz-container" class="section-padding bg-light py-5"
+    style="display: none; align-items: center; justify-content: center; min-height: calc(100vh - 86px);">
+    <div class="container" style="max-width: 900px;">
+      <div class="card border-0 shadow-lg p-4 p-md-5 rounded-4" style="border-radius: 20px !important;">
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+          <span id="step-label" class="fw-bold text-uppercase" style="letter-spacing: 1px; color: #c5a059;">Câu 1 /
+            6</span>
+          <div class="progress flex-grow-1 mx-4" style="height: 8px; border-radius: 10px; background-color: #f0f0f0;">
+            <div id="progress-fill" class="progress-bar" role="progressbar"
+              style="width: 0%; transition: width 0.4s ease; background-color: #c5a059; border-radius: 10px;"></div>
+          </div>
+        </div>
+
+        <h2 id="quiz-q" class="brand-font mb-3"></h2>
+        <p id="quiz-sub" class="text-muted mb-5 lead"></p>
+
+        <div id="options-grid" class="d-grid gap-3"
+          style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+          <!-- Options injected by JS -->
+        </div>
+
+        <div class="d-flex justify-content-between mt-5 pt-4 border-top">
+          <button id="btn-back" class="btn btn-outline-secondary px-4 py-2 rounded-pill" onclick="prevStep()">
+            <i class="fa-solid fa-arrow-left me-2"></i> Quay lại
+          </button>
+          <button id="btn-next" class="btn btn-dark px-5 py-2 rounded-pill" onclick="nextStep()" disabled>
+            Tiếp theo <i class="fa-solid fa-arrow-right ms-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="results-container" class="section-padding bg-light py-5"
+    style="display: none; min-height: calc(100vh - 86px);">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div id="scent-profile-text" class="badge bg-dark text-white rounded-pill px-4 py-2 mb-4 shadow-sm"
+          style="font-size: 0.95rem; font-weight: 500; letter-spacing: 1px;"></div>
+        <h2 id="result-title" class="brand-font mb-3 display-5"></h2>
+        <p id="result-desc" class="text-muted lead" style="max-width: 600px; margin: 0 auto;"></p>
+      </div>
+
+      <div id="result-grid" class="row g-4 justify-content-center mb-5">
+        <!-- Results injected by JS -->
+      </div>
+
+      <div class="text-center mt-5 pt-4 border-top">
+        <button class="btn btn-outline-dark px-5 py-3 rounded-pill fw-bold" onclick="resetQuiz()">
+          <i class="fa-solid fa-rotate-right me-2"></i> Làm lại bài trắc nghiệm
+        </button>
+      </div>
+    </div>
+  </section>
 
   <footer class="pb-4">
     <div class="container">
@@ -115,7 +348,12 @@
     </div>
   </footer>
 
-    <script src="assets/js/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/quiz.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/search.js"></script>
 </body>
 
 </html>

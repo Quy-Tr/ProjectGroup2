@@ -110,7 +110,7 @@
         e.preventDefault();
         const qty = parseInt(document.getElementById('qty')?.value) || 1;
         Cart.add(product.id, qty);
-        window.location.href = 'cart.html';
+        window.location.href = 'checkout.html';
       });
     }
   });

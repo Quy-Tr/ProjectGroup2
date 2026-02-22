@@ -125,14 +125,25 @@ function renderStep() {
 
     // Options
     const grid = document.getElementById('options-grid');
-    grid.innerHTML = q.options.map((opt, i) => `
-        <div class="option-card ${answers[q.id]?.label === opt.label ? 'selected' : ''}"
-             onclick="selectOption(${i})" id="opt-${i}">
-            <span class="option-icon">${opt.icon}</span>
-            <div class="option-label">${opt.label}</div>
-            <div class="option-desc">${opt.desc}</div>
-        </div>
-    `).join('');
+    grid.innerHTML = q.options.map((opt, i) => {
+        const isSelected = answers[q.id]?.label === opt.label;
+        return `
+            <div class="option-card ${isSelected ? 'selected' : ''}"
+                 onclick="selectOption(${i})" id="opt-${i}"
+                 style="border: 2px solid ${isSelected ? '#c5a059' : '#eaeaea'}; 
+                        border-radius: 16px; padding: 25px 15px; cursor: pointer; 
+                        transition: all 0.3s ease; 
+                        background-color: ${isSelected ? '#fcf9f2' : '#ffffff'};
+                        text-align: center; display: flex; flex-direction: column; 
+                        align-items: center; justify-content: center; min-height: 180px; 
+                        box-shadow: ${isSelected ? '0 8px 25px rgba(197,160,89,0.15)' : '0 4px 15px rgba(0,0,0,0.04)'};
+                        transform: ${isSelected ? 'translateY(-3px)' : 'none'};">
+                <span class="option-icon" style="font-size: 3rem; margin-bottom: 15px; display: block; filter: ${isSelected ? 'drop-shadow(0 4px 6px rgba(197,160,89,0.3))' : 'none'};">${opt.icon}</span>
+                <div class="option-label" style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 8px; color: ${isSelected ? '#c5a059' : '#333'};">${opt.label}</div>
+                <div class="option-desc" style="font-size: 0.9rem; color: #777; line-height: 1.4;">${opt.desc}</div>
+            </div>
+        `;
+    }).join('');
 
     // Buttons
     const btnBack = document.getElementById('btn-back');
@@ -156,9 +167,7 @@ function selectOption(index) {
     const q = QUESTIONS[currentStep];
     answers[q.id] = q.options[index];
 
-    document.querySelectorAll('.option-card').forEach((el, i) => {
-        el.classList.toggle('selected', i === index);
-    });
+    renderStep();
 
     document.getElementById('btn-next').disabled = false;
 }

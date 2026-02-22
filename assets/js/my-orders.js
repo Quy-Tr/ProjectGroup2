@@ -8,15 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const ordersTableBody = document.getElementById('orders-table-body');
     if (!ordersTableBody) return;
 
-    // Lấy dữ liệu từ localStorage
+    // Lấy tất cả đơn hàng từ localStorage
     let savedOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
-
-    // Tự động xóa những đơn hàng cũ (bị thiếu ảnh do code đợt trước) để dọn dẹp
-    const oldLength = savedOrders.length;
-    savedOrders = savedOrders.filter(order => order.firstItemImg && order.firstItemName);
-    if (savedOrders.length !== oldLength) {
-        localStorage.setItem('userOrders', JSON.stringify(savedOrders));
-    }
 
     if (savedOrders.length === 0) {
         ordersTableBody.innerHTML = `
@@ -34,33 +27,47 @@ document.addEventListener('DOMContentLoaded', function () {
     // Render danh sách đơn hàng
     ordersTableBody.innerHTML = savedOrders.map(order => {
         let statusBadge = '';
-        if (order.status === 'Processing') {
+        if (order.status === 'pending') {
             statusBadge = '<span class="badge-status status-pending">Đơn hàng mới</span>';
-        } else if (order.status === 'Completed') {
+        } else if (order.status === 'shipping') {
+            statusBadge = '<span class="badge-status status-shipping">Đang giao hàng</span>';
+        } else if (order.status === 'completed') {
             statusBadge = '<span class="badge-status status-completed">Đã giao hàng</span>';
+        } else if (order.status === 'cancelled') {
+            statusBadge = '<span class="badge-status status-cancelled">Đã hủy</span>';
         } else {
-            statusBadge = `<span class="badge-status">${order.status}</span>`;
+            statusBadge = `<span class="badge-status">${order.status || 'Không xác định'}</span>`;
         }
+
+        const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+        const itemCount = order.itemCount || 1;
+        const payment = order.payment || 'Không xác định';
+        const imgSrc = order.firstItemImg
+            ? (order.firstItemImg.startsWith('http') || order.firstItemImg.startsWith('data:')
+                ? order.firstItemImg
+                : '../' + order.firstItemImg)
+            : 'https://via.placeholder.com/100?text=IMG';
 
         return `
             <tr>
-                <td><a href="#" class="order-id">${order.id}</a></td>
-                <td>${order.date}</td>
+                <td><a href="#" class="order-id">#${order.id}</a></td>
+                <td>${order.date || '—'}</td>
                 <td>
                     <div class="d-flex align-items-center">
-                        <img src="${(order.firstItemImg && order.firstItemImg.startsWith('http')) ? order.firstItemImg : (order.firstItemImg ? '../' + order.firstItemImg : 'https://via.placeholder.com/100?text=IMG')}"
-                            class="rounded me-3" style="width: 40px; height: 40px; object-fit: cover; background: #f8f9fa;">
+                        <img src="${imgSrc}"
+                            class="rounded me-3" style="width: 40px; height: 40px; object-fit: cover; background: #f8f9fa;"
+                            onerror="this.src='https://via.placeholder.com/40?text=IMG'">
                         <div>
                             <div class="fw-bold text-dark" style="font-size: 0.9rem;">
                                 ${order.firstItemName || 'Đơn hàng Scent Aura'}
                             </div>
                             <div class="text-muted small">
-                                ${order.itemCount > 1 ? `(Và ${order.itemCount - 1} sản phẩm khác) - ` : ''}${order.payment}
+                                ${itemCount > 1 ? `(Và ${itemCount - 1} sản phẩm khác) — ` : ''}${payment}
                             </div>
                         </div>
                     </div>
                 </td>
-                <td class="order-total">${order.total}</td>
+                <td class="order-total">${typeof order.total === 'number' ? formatter.format(order.total) : (order.total || '—')}</td>
                 <td>${statusBadge}</td>
             </tr>
         `;

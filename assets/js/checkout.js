@@ -276,36 +276,40 @@ function showSuccessModal() {
 
     const orderTotal = Math.max(Cart.getSubtotal() + state.shippingFee - state.discount, 0);
 
-    // Lưu vào list Order cá nhân
-    const ordersItemCount = Cart.getItems().reduce((total, item) => total + item.qty, 0); // Tính tổng số lượng thay vì đếm số dòng
-    const currentUserStr = localStorage.getItem('currentUser');
-    if (currentUserStr) {
-        // Lấy danh sách sản phẩm hiện tại để lấy ảnh và tên item đầu
-        const items = Cart.getItems();
-        let firstItemImg = 'https://via.placeholder.com/100?text=Scent+Aura';
-        let firstItemName = 'Đơn hàng Scent Aura';
+    // Lấy danh sách sản phẩm để lấy ảnh và tên item đầu
+    const items = Cart.getItems();
+    const ordersItemCount = items.reduce((total, item) => total + item.qty, 0);
+    let firstItemImg = 'https://via.placeholder.com/100?text=Scent+Aura';
+    let firstItemName = 'Đơn hàng Scent Aura';
 
-        if (items.length > 0 && items[0].product) {
-            firstItemImg = items[0].product.img;
-            firstItemName = items[0].product.name;
-        }
-
-        const orderData = {
-            id: orderId,
-            date: new Date().toLocaleDateString('vi-VN'),
-            total: formatVND(orderTotal),
-            status: 'Processing',
-            itemCount: ordersItemCount,
-            address: fullAddress,
-            payment: paymentLabels[state.selectedPayment],
-            firstItemImg: firstItemImg,
-            firstItemName: firstItemName
-        };
-
-        const existingOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
-        existingOrders.unshift(orderData); // Them vao dau tien
-        localStorage.setItem('userOrders', JSON.stringify(existingOrders));
+    if (items.length > 0 && items[0].product) {
+        firstItemImg = items[0].product.img;
+        firstItemName = items[0].product.name;
     }
+
+    let itemsString = items.map(i => `${i.product ? i.product.name : 'Sản phẩm'} (x${i.qty})`).join(', ');
+
+    const orderData = {
+        id: orderId.replace('#', ''),
+        customer: fullName,
+        date: new Date().toLocaleDateString('vi-VN'),
+        total: orderTotal,
+        status: 'pending',
+        items: itemsString,
+        itemCount: ordersItemCount,
+        address: fullAddress,
+        payment: paymentLabels[state.selectedPayment],
+        firstItemImg: firstItemImg,
+        firstItemName: firstItemName,
+        isGuest: !localStorage.getItem('currentUser') // đánh dấu đơn khách vãng lai
+    };
+
+    // Luôn lưu đơn hàng — kể cả khách chưa đăng nhập
+    // Admin sẽ thấy tất cả; user chỉ thấy đơn của mình khi đăng nhập
+    const existingOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
+    existingOrders.unshift(orderData);
+    localStorage.setItem('userOrders', JSON.stringify(existingOrders));
+
 
     document.getElementById('modal-order-id').textContent = orderId;
     document.getElementById('modal-customer-name').textContent = fullName;
