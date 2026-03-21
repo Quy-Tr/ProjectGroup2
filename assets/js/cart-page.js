@@ -1,41 +1,20 @@
-/**
- * cart-page.js — SCENT AURA Cart Page Renderer
- * ================================================
- * Render giỏ hàng động từ Cart module (localStorage).
- * Yêu cầu: data.js + cart.js phải được load trước.
- */
-
-/* =========================================================
-   COUPON & SHIPPING STATE (dùng chung với checkout.js)
-   ========================================================= */
-let cartPageState = {
+﻿let cartPageState = {
     shippingFee: 0,
     discount: 0,
     couponCode: '',
 };
-
 const CART_COUPONS = {
     'SCENT10': { type: 'percent', value: 10, label: 'Giảm 10%' },
     'AURA200': { type: 'flat', value: 200000, label: 'Giảm 200.000₫' },
     'WELCOME': { type: 'percent', value: 5, label: 'Giảm 5%' },
 };
-
-/* =========================================================
-   FORMAT
-   ========================================================= */
 function fmtVND(n) {
     return n.toLocaleString('vi-VN') + '₫';
 }
-
-/* =========================================================
-   MAIN RENDER
-   ========================================================= */
 function renderCartPage() {
     const container = document.getElementById('cart-content');
     if (!container) return;
-
     const items = Cart.getItems();
-
     if (items.length === 0) {
         container.innerHTML = `
             <div class="col-12 text-center py-5">
@@ -50,17 +29,14 @@ function renderCartPage() {
             </div>`;
         return;
     }
-
     const subtotal = Cart.getSubtotal();
     const total = Math.max(subtotal + cartPageState.shippingFee - cartPageState.discount, 0);
-
     container.innerHTML = `
         <!-- ===== DANH SÁCH GIỎ HÀNG ===== -->
         <div class="col-lg-8 mb-5 mb-lg-0">
             <div class="cart-items-list mb-4">
                ${renderCartRows(items)}
             </div>
-
             <!-- Coupon row -->
             <div class="bg-light p-4 rounded-4 mb-4">
                 <p class="fw-bold mb-3 small text-uppercase" style="letter-spacing:1px;">Mã Ưu Đãi</p>
@@ -75,7 +51,6 @@ function renderCartPage() {
                     <div id="coupon-msg" style="font-size:0.85rem;" class="fw-bold mt-2 mt-md-0"></div>
                 </div>
             </div>
-
             <!-- Back button -->
             <div class="d-flex justify-content-between mt-4">
                 <a href="products.html" class="btn btn-outline-dark rounded-pill px-4 fw-bold py-2">
@@ -87,42 +62,34 @@ function renderCartPage() {
                 </button>
             </div>
         </div>
-
         <!-- ===== TÓM TẮT GIỎ HÀNG ===== -->
         <div class="col-lg-4">
             <div class="cart-summary bg-light p-4 rounded-4 position-sticky" style="top: 100px;">
                 <h4 class="brand-font mb-4 pb-3 border-bottom">Tóm Tắt Đơn Hàng</h4>
-
                 <div class="d-flex justify-content-between mb-3">
                     <span class="text-muted">Tạm tính</span>
                     <span class="fw-bold" id="cart-subtotal">${fmtVND(subtotal)}</span>
                 </div>
-
                 <div class="d-flex justify-content-between mb-3">
                     <span class="text-muted">Phí vận chuyển</span>
                     <span class="fw-bold text-success" id="cart-shipping">
                         ${cartPageState.shippingFee === 0 ? 'Miễn phí' : fmtVND(cartPageState.shippingFee)}
                     </span>
                 </div>
-
                 <div class="d-flex justify-content-between mb-3 pb-3 border-bottom">
                     <span class="text-muted">Giảm giá</span>
                     <span class="fw-bold text-success" id="cart-discount">
                         ${cartPageState.discount > 0 ? '−' + fmtVND(cartPageState.discount) : '—'}
                     </span>
                 </div>
-
                 <div class="d-flex justify-content-between mb-4 align-items-center">
                     <span class="fw-bold text-uppercase" style="letter-spacing:1px; font-size:1.1rem">Tổng cộng</span>
                     <span class="fw-bold" style="color: #c5a059; font-size: 1.5rem;" id="cart-total">${fmtVND(total)}</span>
                 </div>
-                
                 <p class="small text-muted text-end mb-4">(Đã bao gồm VAT nếu có)</p>
-
                 <a href="checkout.html" class="btn w-100 py-3 rounded-pill fw-bold text-white shadow-sm mb-3 text-decoration-none" style="background-color: #c5a059;">
                     <i class="fa-solid fa-lock me-2"></i> Tiến hành thanh toán
                 </a>
-
                 <!-- Payment icons -->
                 <div class="text-center">
                     <p class="small text-muted mb-2">Chúng tôi chấp nhận:</p>
@@ -135,8 +102,6 @@ function renderCartPage() {
                 </div>
             </div>
         </div>`;
-
-    // Restore coupon msg nếu đã áp dụng
     if (cartPageState.couponCode) {
         const coupon = CART_COUPONS[cartPageState.couponCode];
         if (coupon) {
@@ -145,10 +110,6 @@ function renderCartPage() {
         }
     }
 }
-
-/* =========================================================
-   RENDER ROWS
-   ========================================================= */
 function renderCartRows(items) {
     return items.map(({ id, qty, product }) => `
         <div class="cart-item-row d-flex align-items-center bg-white p-3 p-md-4 rounded-4 border mb-3 shadow-sm" id="cart-row-${id}" style="transition: all 0.3s ease;">
@@ -156,7 +117,6 @@ function renderCartRows(items) {
                 <img src="${product.img}" alt="${product.name}" class="w-100 h-100 object-fit-contain"
                     onerror="this.src='https://via.placeholder.com/100?text=IMG'" />
             </div>
-            
             <div class="flex-grow-1">
                 <div class="d-flex justify-content-between align-items-start mb-2">
                     <div>
@@ -171,12 +131,10 @@ function renderCartRows(items) {
                         <i class="fa-solid fa-xmark fs-5"></i>
                     </button>
                 </div>
-                
                 <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
                     <div class="fw-bold fs-6" style="color: #555;">
                         ${fmtVND(product.price)}
                     </div>
-                    
                     <div class="d-flex align-items-center gap-2">
                         <div class="qty-pill d-flex align-items-center bg-light rounded-pill px-2 border" style="height: 38px;">
                             <button class="btn btn-sm text-secondary px-2 border-0 bg-transparent" type="button" onclick="changeItemQty(${id}, -1)">
@@ -189,7 +147,6 @@ function renderCartRows(items) {
                             </button>
                         </div>
                     </div>
-                    
                     <div class="fw-bold fs-5 text-end" id="row-total-${id}" style="color: #c5a059; min-width: 100px;">
                         ${fmtVND(product.price * qty)}
                     </div>
@@ -198,24 +155,16 @@ function renderCartRows(items) {
         </div>
     `).join('');
 }
-
-/* =========================================================
-   ACTIONS
-   ========================================================= */
 function changeItemQty(productId, delta) {
     const items = Cart.getItems();
     const item = items.find(i => i.id === productId);
     if (!item) return;
-
     const newQty = item.qty + delta;
-    Cart.updateQty(productId, newQty); // Nếu newQty <= 0, Cart.updateQty sẽ xóa item
-    // Không cần re-render full; lắng nghe cart:updated là đủ
+    Cart.updateQty(productId, newQty);
 }
-
 function removeCartItem(productId) {
     Cart.remove(productId);
 }
-
 function clearCartConfirm() {
     if (confirm('Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng?')) {
         cartPageState.discount = 0;
@@ -223,67 +172,43 @@ function clearCartConfirm() {
         Cart.clear();
     }
 }
-
-/* =========================================================
-   COUPON
-   ========================================================= */
 function applyCoupon() {
     const input = document.getElementById('coupon-input');
     const msgEl = document.getElementById('coupon-msg');
     if (!input || !msgEl) return;
-
     const code = input.value.trim().toUpperCase();
     cartPageState.couponCode = code;
-
     if (!code) {
         msgEl.innerHTML = '<span class="text-warning">Vui lòng nhập mã ưu đãi.</span>';
         return;
     }
-
     const coupon = CART_COUPONS[code];
-
     if (!coupon) {
         cartPageState.discount = 0;
         msgEl.innerHTML = '<span class="text-danger">Mã ưu đãi không hợp lệ.</span>';
         updateTotalsUI();
         return;
     }
-
     const subtotal = Cart.getSubtotal();
     cartPageState.discount = coupon.type === 'percent'
         ? Math.round(subtotal * coupon.value / 100)
         : coupon.value;
-
     msgEl.innerHTML = `<span class="text-success">✓ Áp dụng thành công: ${coupon.label}</span>`;
     updateTotalsUI();
 }
-
-/* =========================================================
-   UPDATE TOTALS (partial re-render, không render lại toàn bộ)
-   ========================================================= */
 function updateTotalsUI() {
     const subtotal = Cart.getSubtotal();
     const total = Math.max(subtotal + cartPageState.shippingFee - cartPageState.discount, 0);
-
     const sub = document.getElementById('cart-subtotal');
     const disc = document.getElementById('cart-discount');
     const tot = document.getElementById('cart-total');
-
     if (sub) sub.textContent = fmtVND(subtotal);
     if (disc) disc.textContent = cartPageState.discount > 0 ? '−' + fmtVND(cartPageState.discount) : '—';
     if (tot) tot.textContent = fmtVND(total);
 }
-
-/* =========================================================
-   LISTEN FOR CART CHANGES
-   ========================================================= */
 window.addEventListener('cart:updated', () => {
     renderCartPage();
 });
-
-/* =========================================================
-   INIT
-   ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
     renderCartPage();
 });

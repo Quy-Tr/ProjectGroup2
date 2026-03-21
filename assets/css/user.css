@@ -1,6 +1,4 @@
-/* USER DASHBOARD STYLES */
-
-:root {
+﻿:root {
     --primary-color: #111;
     --accent-color: #c5a059;
     --bg-light: #f9f9f9;
@@ -12,7 +10,6 @@ body {
     background-color: #f8f9fa;
 }
 
-/* --- SIDEBAR --- */
 .user-sidebar .list-group-item {
     border: none;
     padding: 15px 20px;
@@ -42,7 +39,7 @@ body {
     letter-spacing: 1px;
     font-size: 0.85rem;
     border-bottom: none;
-    /* Removed border to eliminate gap */
+    
     margin-bottom: 0;
 }
 
@@ -50,7 +47,7 @@ body {
     background-color: #f9f9f9;
     color: var(--primary-color);
     padding-left: 25px;
-    /* Slide effect */
+    
 }
 
 .user-sidebar .list-group-item.active {
@@ -71,7 +68,6 @@ body {
     color: var(--accent-color);
 }
 
-/* --- MAIN CARD --- */
 .dashboard-card {
     background: #fff;
     border-radius: 8px;
@@ -83,7 +79,7 @@ body {
 .dashboard-title {
     font-size: 1.5rem;
     font-weight: 400;
-    /* Regular weight for elegance */
+    
     margin-bottom: 30px;
     padding-bottom: 15px;
     border-bottom: 1px solid var(--border-color);
@@ -102,7 +98,6 @@ body {
     background-color: var(--accent-color);
 }
 
-/* --- FORMS --- */
 .form-label {
     font-size: 0.75rem;
     font-weight: 700;
@@ -149,7 +144,6 @@ body {
     box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
 }
 
-/* --- TABLES --- */
 .table-custom thead th {
     background-color: #f8f9fa;
     border-bottom: 2px solid #eee;
@@ -185,7 +179,6 @@ body {
     font-size: 1.1rem;
 }
 
-/* --- STATUS BADGES --- */
 .badge-status {
     padding: 6px 12px;
     border-radius: 30px;

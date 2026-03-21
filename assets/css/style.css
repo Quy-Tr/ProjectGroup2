@@ -1,11 +1,4 @@
-/* ==========================================================================
-   1. CORE & GLOBAL SETTINGS (CÀI ĐẶT CỐT LÕI)
-   Bao gồm: Fonts, Biến màu, Reset mặc định, Typography
-   ========================================================================== */
-
-/* --- 1.1. KHAI BÁO FONT LOCAL --- */
-/* Nhúng Josefin Sans (Dùng cho chữ nhỏ, mô tả) */
-@font-face {
+﻿@font-face {
   font-family: "Josefin Sans";
   src: url("fonts/JosefinSans-Regular.ttf") format("truetype");
   font-weight: 400;
@@ -19,7 +12,6 @@
   font-style: normal;
 }
 
-/* Nhúng SVN-Gilroy (Dùng cho Tiêu đề sang trọng) */
 @font-face {
   font-family: "SVN-Gilroy";
   src: url("fonts/SVN-Gilroy\ Regular.otf") format("truetype");
@@ -34,26 +26,23 @@
   font-style: normal;
 }
 
-/* --- 1.2. VARIABLES (BIẾN MÀU SẮC) --- */
 :root {
   --primary-color: #000000;
   --accent-color: #c5a059;
-  /* Màu vàng đồng */
+  
   --bg-light: #f9f9f9;
   --text-gray: #666;
   --border-color: #eee;
 }
 
-/* --- 1.3. GLOBAL STYLES (STYLE CHUNG TOÀN TRANG) --- */
 body {
   font-family: "Josefin Sans", sans-serif;
   color: #333;
   line-height: 1.6;
   overflow-x: hidden;
-  /* Tránh thanh cuộn ngang không mong muốn */
+  
 }
 
-/* Tiêu đề dùng SVN-Gilroy cho sự đẳng cấp */
 h1,
 h2,
 h3,
@@ -68,14 +57,12 @@ h6,
   font-weight: 400;
 }
 
-/* Class định dạng giá tiền */
 .price {
   font-family: "SVN-Gilroy", sans-serif;
   color: var(--accent-color);
   font-weight: 700;
 }
 
-/* Class tiêu đề trang con (Breadcrumb) */
 .page-header {
   background-color: #f5f5f5;
   padding: 60px 0;
@@ -108,7 +95,6 @@ h6,
   color: var(--accent-color);
 }
 
-/* --- 1.4. UTILITY CLASSES (CLASS TIỆN ÍCH) --- */
 .section-padding {
   padding: 80px 0;
 }
@@ -148,13 +134,6 @@ h6,
   opacity: 0.8;
 }
 
-/* ==========================================================================
-   2. UI COMPONENTS (CÁC THÀNH PHẦN GIAO DIỆN CHUNG)
-   Bao gồm: Nút bấm, Form Input, Checkbox
-   ========================================================================== */
-
-/* --- 2.1. BUTTONS --- */
-/* Nút đen bo tròn (Login/Register) */
 .btn-black {
   background: #000;
   color: #fff;
@@ -175,15 +154,14 @@ h6,
   color: #000;
   border: 1px solid #000;
 
-  /* Bo tròn vừa phải (8px là mức trung bình đẹp) */
-  /* !important để đè lên class rounded-0 nếu lỡ có trong HTML */
+  
+  
 
   transition: all 0.3s ease;
   font-weight: 600;
-  /* Chữ đậm vừa phải cho đẹp */
+  
 }
 
-/* Hiệu ứng khi lia chuột: Đảo ngược màu */
 .btn-outline-dark:hover,
 .btn-outline-dark:focus,
 .btn-outline-dark:active {
@@ -191,9 +169,9 @@ h6,
   color: #fff;
   border-color: #000;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-  /* Thêm bóng đổ nhẹ cho nổi */
+  
   transform: translateY(-2px);
-  /* Bay lên nhẹ */
+  
 }
 
 .btn-black:hover {
@@ -202,7 +180,6 @@ h6,
   color: #fff;
 }
 
-/* Nút Google */
 .btn-google {
   background: #fff;
   color: #333;
@@ -225,7 +202,6 @@ h6,
   border-color: #ccc;
 }
 
-/* Nút Accent (Dùng cho Contact) */
 .btn-accent {
   background: #000;
   color: #fff;
@@ -245,7 +221,6 @@ h6,
   color: #fff;
 }
 
-/* --- 2.2. FORMS & INPUTS --- */
 .form-control {
   border-radius: 8px;
   padding: 12px 15px;
@@ -259,7 +234,6 @@ h6,
   border-color: #000;
 }
 
-/* Checkbox tròn */
 .form-check-input {
   border-radius: 50% !important;
   border: 1px solid #ccc !important;
@@ -270,12 +244,6 @@ h6,
   border-color: #000 !important;
 }
 
-
-/* ==========================================================================
-   3. LAYOUT: HEADER & FOOTER (DÙNG CHO TẤT CẢ CÁC TRANG)
-   ========================================================================== */
-
-/* --- 3.1. NAVBAR --- */
 .navbar {
   padding: 20px 0;
   border-bottom: 1px solid var(--border-color);
@@ -301,7 +269,6 @@ h6,
   color: var(--accent-color) !important;
 }
 
-/* Dropdown Menu */
 .dropdown-menu {
   border: none;
   border-radius: 0;
@@ -319,7 +286,6 @@ h6,
   color: var(--accent-color);
 }
 
-/* Search Box */
 .search-wrapper {
   position: relative;
   display: flex;
@@ -348,7 +314,6 @@ h6,
   z-index: 10;
 }
 
-/* --- 3.2. FOOTER --- */
 footer {
   background: #111;
   color: #fff;
@@ -378,13 +343,6 @@ footer .small {
   color: #999999 !important;
 }
 
-
-/* ==========================================================================
-   4. HOME PAGE (TRANG CHỦ)
-   Bao gồm: Hero Banner, 3D Slider, Info Box, Knowledge
-   ========================================================================== */
-
-/* --- 4.1. HERO BANNER (CAROUSEL) --- */
 .carousel-item {
   height: calc(100vh - 72px);
   background-size: cover;
@@ -392,7 +350,6 @@ footer .small {
   position: relative;
 }
 
-/* Tăng tốc hiệu ứng fade chuyển slide */
 .carousel-fade .carousel-item {
   transition: opacity 0.4s ease-in-out !important;
 }
@@ -435,7 +392,6 @@ footer .small {
   opacity: 0.9;
 }
 
-/* Ảnh nền cho từng slide hero */
 .hero-slide-1 {
   background-image: url("../images/landscape01.jpg");
 }
@@ -444,7 +400,6 @@ footer .small {
   background-image: url("../images/landscape002.jpg");
 }
 
-/* --- 4.1b. PARALLAX BANNER (QUOTE SECTION) --- */
 .parallax-banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../images/landscape3.jpg");
@@ -455,13 +410,12 @@ footer .small {
   margin: 80px 0;
 }
 
-/* --- 4.2. PERFUME COLLECTION SLIDER (3D Style) --- */
 .perfume-slider {
   width: 100%;
   padding: 30px 0;
   overflow: hidden;
   position: relative;
-  /* Quan trọng để nút bấm hiển thị */
+  
 }
 
 .perfume-slider .swiper-slide {
@@ -524,7 +478,6 @@ footer .small {
   text-align: center;
 }
 
-/* Navigation Buttons for 3D Slider */
 .swiper-button-next,
 .swiper-button-prev {
   color: #000 !important;
@@ -563,7 +516,6 @@ footer .small {
   right: 5%;
 }
 
-/* --- 4.3. INFO & KNOWLEDGE SECTION --- */
 .info-box {
   text-align: center;
   padding: 40px 20px;
@@ -648,11 +600,6 @@ footer .small {
   display: block;
 }
 
-
-/* ==========================================================================
-   5. PRODUCT CARD COMPONENT (THẺ SẢN PHẨM)
-   Dùng chung cho: Trang chủ (Slider), Trang Shop, Sản phẩm liên quan
-   ========================================================================== */
 .product-slider {
   padding-bottom: 50px;
 }
@@ -720,7 +667,6 @@ footer .small {
   text-align: center;
 }
 
-/* Nút Action trên ảnh sản phẩm */
 .product-actions {
   position: absolute;
   top: 0;
@@ -766,11 +712,6 @@ footer .small {
   color: #fff;
 }
 
-
-/* ==========================================================================
-   6. SHOP PAGE (TRANG SẢN PHẨM/DANH MỤC)
-   Bao gồm: Sidebar bộ lọc, Nút lọc tùy chỉnh
-   ========================================================================== */
 .filter-sidebar {
   position: relative;
   padding-right: 20px;
@@ -783,7 +724,6 @@ footer .small {
   margin-bottom: 20px;
 }
 
-/* Nút Lọc và Đặt lại trong Sidebar */
 .filter-actions {
   margin-top: 20px;
   padding-top: 20px;
@@ -816,13 +756,6 @@ footer .small {
   cursor: pointer;
 }
 
-
-/* ==========================================================================
-   7. PRODUCT DETAIL PAGE (TRANG CHI TIẾT SẢN PHẨM)
-   Bao gồm: Thư viện ảnh nhỏ, Chọn dung tích, Tabs nội dung
-   ========================================================================== */
-
-/* Thư viện ảnh nhỏ (Thumbnail) */
 .thumb-box {
   width: 80px;
   height: 80px;
@@ -846,7 +779,6 @@ footer .small {
   border-color: #ccc;
 }
 
-/* Ô chọn dung tích (Capacity) */
 .capacity-option {
   border: 1px solid #e0e0e0;
   padding: 10px 15px;
@@ -874,7 +806,6 @@ footer .small {
   border-style: dashed;
 }
 
-/* Tabs (Mô tả/Tầng hương) */
 .nav-tabs .nav-link {
   background: transparent;
   border-radius: 0;
@@ -885,13 +816,6 @@ footer .small {
   color: #000 !important;
 }
 
-
-/* ==========================================================================
-   8. CONTENT PAGES (TRANG NỘI DUNG)
-   Bao gồm: About (Giới thiệu), Auth (Đăng nhập/Đăng ký), Contact (Liên hệ)
-   ========================================================================== */
-
-/* --- 8.1. AUTH PAGE (LOGIN/REGISTER) --- */
 .auth-card {
   border: none;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
@@ -932,7 +856,6 @@ footer .small {
   margin-bottom: 15px;
 }
 
-/* --- 8.2. ABOUT PAGE (GIỚI THIỆU) --- */
 .about-image-box {
   position: relative;
   padding: 15px;
@@ -999,7 +922,6 @@ footer .small {
   border-color: var(--accent-color);
 }
 
-/* --- 8.3. CONTACT PAGE (LIÊN HỆ) --- */
 .contact-info-item {
   display: flex;
   margin-bottom: 30px;
@@ -1019,11 +941,6 @@ footer .small {
   flex-shrink: 0;
 }
 
-
-/* ==========================================================================
-   9. RESPONSIVE (MEDIA QUERIES)
-   Xử lý hiển thị trên Mobile và Tablet
-   ========================================================================== */
 @media (min-width: 992px) {
   .nav-item.dropdown:hover .dropdown-menu {
     display: block;
@@ -1033,7 +950,7 @@ footer .small {
 
 @media (max-width: 768px) {
 
-  /* Hero */
+  
   .carousel-caption {
     left: 5% !important;
     max-width: 90%;
@@ -1043,12 +960,12 @@ footer .small {
     font-size: 2rem;
   }
 
-  /* Product */
+  
   .product-img-box {
     height: 250px;
   }
 
-  /* Collection Slider */
+  
   .perfume-slider .swiper-slide {
     width: 260px;
     height: 350px;
@@ -1059,7 +976,7 @@ footer .small {
     display: none;
   }
 
-  /* About Page */
+  
   .since-badge {
     left: 10px;
     bottom: 10px;
@@ -1076,40 +993,31 @@ footer .small {
   flex-wrap: wrap;
 }
 
-/* =========================================
-   COUPON ROW STYLES (Dòng nhập mã giảm giá)
-   ========================================= */
-
-/* Khung bao ngoài ô nhập (độ rộng tối đa 1000px như bạn yêu cầu) */
 .coupon-wrapper {
   max-width: 1000px;
   width: 100%;
 }
 
-/* Ô nhập liệu (Input) */
 .coupon-wrapper input.form-control {
   height: 45px;
   border-radius: 8px 0 0 8px;
-  /* Bo tròn góc trái */
+  
   border-right: none;
-  /* Xóa viền phải để dính liền với nút */
+  
 }
 
-/* Nút ÁP DỤNG */
 .coupon-wrapper button.btn {
   height: 45px;
   border-radius: 0 8px 8px 0;
-  /* Bo tròn góc phải */
+  
 }
 
-/* Hiệu ứng focus cho đẹp (tùy chọn) */
 .coupon-wrapper input.form-control:focus {
   box-shadow: none;
   border-color: #000;
   z-index: 2;
 }
 
-/* Hiệu ứng nút Thanh toán chính */
 .btn-block-custom {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -1119,20 +1027,15 @@ footer .small {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* =========================================
-   CART TABLE STYLES (Căn chỉnh bảng giỏ hàng)
-   ========================================= */
 .cart-table thead th {
   background-color: var(--bg-light);
   color: #000;
 }
 
-/* 1. Chia độ rộng các cột */
 .cart-table th.col-product {
   width: 45%;
 }
 
-/* Cột sản phẩm rộng nhất */
 .cart-table th.col-price {
   width: 15%;
 }
@@ -1142,7 +1045,6 @@ footer .small {
   text-align: center;
 }
 
-/* Căn giữa tiêu đề số lượng */
 .cart-table th.col-total {
   width: 15%;
 }
@@ -1151,80 +1053,67 @@ footer .small {
   width: 5%;
 }
 
-/* 2. Căn giữa theo chiều dọc cho toàn bộ bảng */
 .cart-table td,
 .cart-table th {
   vertical-align: middle !important;
-  /* Quan trọng: giúp ảnh và nút xóa thẳng hàng */
+  
 }
 
-/* 3. Căn chỉnh ô nhập số lượng */
 .cart-table td .qty-group {
   display: inline-flex;
-  /* Giúp cụm nút không bị kéo giãn */
+  
   justify-content: center;
 }
 
-/* 4. Đảm bảo ảnh không bị dính sát lề */
 .cart-table .cart-img-wrapper {
   flex-shrink: 0;
-  /* Không cho ảnh bị co lại khi màn hình nhỏ */
+  
 }
 
-/* =========================================
-   STYLE ẢNH SẢN PHẨM TRÒN TRONG GIỎ HÀNG
-   ========================================= */
-
-/* 1. Định dạng khung tròn */
 .cart-img-wrapper {
   width: 70px;
-  /* Kích thước nhỏ gọn*/
+  
   height: 70px;
-  /* Chiều cao bắt buộc bằng chiều rộng */
+  
 
   padding: 0;
-  /* Bỏ padding để ảnh tràn ra sát viền */
+  
   border-radius: 50%;
-  /* Biến khung vuông thành hình tròn */
+  
   overflow: hidden;
-  /* Cắt bỏ các góc thừa của ảnh vuông bên trong */
+  
 
   border: 0;
-  /* Viền mỏng nhẹ */
+  
   background: #f9f9f9;
   flex-shrink: 0;
-  /* Đảm bảo khung tròn không bị bóp méo trên màn hình nhỏ */
+  
   margin-right: 1rem !important;
-  /* Khoảng cách với tên sản phẩm */
+  
 }
 
-/* 2. Định dạng ảnh bên trong để lấp đầy khung tròn */
 .cart-img-wrapper img {
   width: 100%;
   height: 100%;
-  /* object-fit: giúp ảnh phóng to/thu nhỏ để lấp đầy khung 
-       và tự động cắt bỏ phần thừa để ảnh không bị méo. */
+  
   object-fit: cover;
 }
 
-/* --- NÂNG CẤP GIAO DIỆN TRANG CHỦ --- */
-
-/* 1. Hiệu ứng Card Sản phẩm */
 .product-card {
   transition: all 0.3s ease-in-out;
-  /* Chuyển động mượt */
+  
   border: 1px solid #eee;
-  /* Viền mờ sang trọng */
+  
   border-radius: 8px;
   overflow: hidden;
-  /* Để ảnh zoom không bị tràn ra ngoài */
+  
 }
 
 .product-card:hover {
   transform: translateY(-10px);
-  /* Bay lên 10px */
+  
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  /* Đổ bóng mờ */
+  
   border-color: transparent;
 }
 
@@ -1234,10 +1123,9 @@ footer .small {
 
 .product-card:hover .product-img-box img {
   transform: scale(1.1);
-  /* Phóng to ảnh 10% */
+  
 }
 
-/* Nút mua hàng/xem chi tiết (nếu có) */
 .product-info h6 {
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -1246,10 +1134,9 @@ footer .small {
 
 .product-card:hover .product-info h6 {
   color: #d4af37;
-  /* Đổi màu chữ tên sản phẩm khi hover (Màu vàng kim) */
+  
 }
 
-/* noUiSlider Custom Theme - Clean & Minimal */
 #price-slider.noUi-target {
   background: #ebebeb;
   border: none;
@@ -1299,7 +1186,6 @@ footer .small {
   font-weight: 600;
 }
 
-/* ─── Search Dropdown ──────────────────────────────────────── */
 .search-wrapper {
   position: relative;
 }

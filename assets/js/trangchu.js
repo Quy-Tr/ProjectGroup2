@@ -1,25 +1,15 @@
-// ============================================================
-// TRANG CHỦ - trangchu.js
-// Yêu cầu: bootstrap.bundle.min.js và data.js đã load trước
-// ============================================================
-
-// 1. Khởi tạo hero carousel với tốc độ 5000ms
-(function () {
+﻿(function () {
     var heroEl = document.getElementById('hero');
     if (!heroEl) return;
-
     new bootstrap.Carousel(heroEl, {
         interval: 3000,
         ride: 'carousel',
         wrap: true
     });
 })();
-
-// 2. Render section "Sản Phẩm Mới" từ data.js
 (function () {
     var wrapper = document.getElementById('new-products-wrapper');
     if (!wrapper || typeof products === 'undefined') return;
-
     var toShow = products.slice(0, 6);
     wrapper.innerHTML = toShow.map(function (p) {
         var price = p.price ? p.price.toLocaleString('vi-VN') + ' VNĐ' : '';

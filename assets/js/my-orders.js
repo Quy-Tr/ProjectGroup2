@@ -1,16 +1,12 @@
-document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', function () {
     const currentUserStr = localStorage.getItem('currentUser');
     if (!currentUserStr) {
         window.location.href = '../login.html';
         return;
     }
-
     const ordersTableBody = document.getElementById('orders-table-body');
     if (!ordersTableBody) return;
-
-    // Lấy tất cả đơn hàng từ localStorage
     let savedOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
-
     if (savedOrders.length === 0) {
         ordersTableBody.innerHTML = `
             <tr>
@@ -23,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         return;
     }
-
-    // Render danh sách đơn hàng
     ordersTableBody.innerHTML = savedOrders.map(order => {
         let statusBadge = '';
         if (order.status === 'pending') {
@@ -38,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             statusBadge = `<span class="badge-status">${order.status || 'Không xác định'}</span>`;
         }
-
         const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
         const itemCount = order.itemCount || 1;
         const payment = order.payment || 'Không xác định';
@@ -47,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 ? order.firstItemImg
                 : '../' + order.firstItemImg)
             : 'https://via.placeholder.com/100?text=IMG';
-
         return `
             <tr>
                 <td><a href="#" class="order-id">#${order.id}</a></td>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -14,7 +14,6 @@
 
 <body>
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="brand">
             <h2>SCENT AURA</h2>
@@ -52,7 +51,6 @@
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
         <header>
             <div class="header-title">
@@ -96,14 +94,12 @@
                         </tr>
                     </thead>
                     <tbody id="product-table-body">
-                        <!-- JS Populated -->
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
 
-    <!-- PRODUCT MODAL -->
     <div id="productModal" class="modal">
         <div class="modal-content" style="width: 680px;">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -112,13 +108,11 @@
                 <input type="hidden" id="pId">
 
                 <div class="row g-3">
-                    <!-- Tên sản phẩm -->
                     <div class="col-12">
                         <label class="form-label fw-bold">Tên sản phẩm <span class="text-danger">*</span></label>
                         <input type="text" id="pName" class="form-control" placeholder="VD: Chanel No.5 EDP" required>
                     </div>
 
-                    <!-- Thương hiệu & Giới tính -->
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Thương hiệu <span class="text-danger">*</span></label>
                         <input type="text" id="pBrand" class="form-control" placeholder="VD: Chanel" required>
@@ -132,7 +126,6 @@
                         </select>
                     </div>
 
-                    <!-- Dung tích & Giá -->
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Dung tích</label>
                         <input type="text" id="pCapacity" class="form-control" placeholder="VD: 100ml">
@@ -143,7 +136,6 @@
                             required>
                     </div>
 
-                    <!-- Danh mục -->
                     <div class="col-12">
                         <label class="form-label fw-bold">Danh mục (Nhóm hương)</label>
                         <select id="pCategory" class="form-select">
@@ -158,14 +150,12 @@
                         </select>
                     </div>
 
-                    <!-- Mô tả -->
                     <div class="col-12">
                         <label class="form-label fw-bold">Mô tả ngắn</label>
                         <textarea id="pDesc" class="form-control" rows="2"
                             placeholder="Mô tả ngắn về sản phẩm..."></textarea>
                     </div>
 
-                    <!-- Hình ảnh -->
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Ảnh chính (img)</label>
                         <input type="file" id="imageInput" class="form-control" accept="image/*">

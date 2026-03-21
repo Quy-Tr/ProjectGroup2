@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
 
 <head>
@@ -124,22 +124,52 @@
       <div class="col-lg-7">
         <div class="bg-light p-5 rounded-3 h-100">
           <h3 class="brand-font mb-4 text-center">Gửi tin nhắn</h3>
-          <form>
+          <form id="contactForm" novalidate>
             <div class="row g-3">
               <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Họ và tên của bạn" />
+                <input
+                  type="text"
+                  id="contactName"
+                  class="form-control"
+                  placeholder="Họ và tên của bạn *"
+                />
+                <div class="invalid-feedback" id="nameError"></div>
               </div>
               <div class="col-md-6">
-                <input type="email" class="form-control" placeholder="Email liên hệ" />
+                <input
+                  type="email"
+                  id="contactEmail"
+                  class="form-control"
+                  placeholder="Email liên hệ *"
+                />
+                <div class="invalid-feedback" id="emailError"></div>
               </div>
               <div class="col-12">
-                <input type="text" class="form-control" placeholder="Số điện thoại" />
+                <input
+                  type="text"
+                  id="contactPhone"
+                  class="form-control"
+                  placeholder="Số điện thoại *"
+                />
+                <div class="invalid-feedback" id="phoneError"></div>
               </div>
               <div class="col-12">
-                <textarea class="form-control" rows="5" placeholder="Nội dung cần tư vấn..."></textarea>
+                <textarea
+                  id="contactMessage"
+                  class="form-control"
+                  rows="5"
+                  placeholder="Nội dung cần tư vấn... (ít nhất 10 ký tự) *"
+                ></textarea>
+                <div class="invalid-feedback" id="messageError"></div>
               </div>
               <div class="col-12 mt-4">
-                <button type="submit" class="btn-accent">Gửi Tin Nhắn</button>
+                <button type="submit" id="contactSubmitBtn" class="btn-accent">Gửi Tin Nhắn</button>
+              </div>
+              <div class="col-12" id="contactSuccess" style="display:none;">
+                <div class="alert alert-success d-flex align-items-center gap-2 mt-2" role="alert">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Cảm ơn bạn! Tin nhắn đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm nhất có thể.</span>
+                </div>
               </div>
             </div>
           </form>
@@ -216,9 +246,9 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/search.js"></script>
 
-    <script src="assets/js/search.js"></script>
+  <script src="assets/js/contact.js"></script>
 </body>
 
 </html>
-

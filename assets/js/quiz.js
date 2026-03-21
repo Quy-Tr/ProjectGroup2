@@ -1,14 +1,4 @@
-/**
- * quiz.js — SCENT AURA Fragrance Quiz
- * =====================================
- * 6 câu hỏi, thuật toán scoring, gợi ý top 4 sản phẩm từ data.js
- */
-
-/* =============================================================
-   QUIZ DATA — 6 câu hỏi, mỗi câu có các lựa chọn với tags
-   Tags dùng để match với category, gender, concentration, notes
-============================================================= */
-const QUESTIONS = [
+﻿const QUESTIONS = [
     {
         id: 'gender',
         question: 'Bạn đang tìm nước hoa cho ai?',
@@ -76,28 +66,15 @@ const QUESTIONS = [
         ]
     },
 ];
-
-/* =============================================================
-   STATE
-============================================================= */
 let currentStep = 0;
-let answers = {}; // { questionId: option }
-
-/* =============================================================
-   INIT — ẩn quiz-container và results ngay khi trang load
-============================================================= */
+let answers = {};
 document.addEventListener('DOMContentLoaded', () => {
     const qc = document.getElementById('quiz-container');
     const rc = document.getElementById('results-container');
     if (qc) qc.style.display = 'none';
     if (rc) rc.style.display = 'none';
 });
-
-/* =============================================================
-   START QUIZ
-============================================================= */
 document.getElementById('btn-start').addEventListener('click', startQuiz);
-
 function startQuiz() {
     document.getElementById('quiz-hero').style.display = 'none';
     const qc = document.getElementById('quiz-container');
@@ -107,23 +84,13 @@ function startQuiz() {
     answers = {};
     renderStep();
 }
-
-/* =============================================================
-   RENDER STEP
-============================================================= */
 function renderStep() {
     const q = QUESTIONS[currentStep];
     const total = QUESTIONS.length;
-
-    // Progress
     document.getElementById('progress-fill').style.width = ((currentStep / total) * 100) + '%';
     document.getElementById('step-label').textContent = `Câu ${currentStep + 1} / ${total}`;
-
-    // Question
     document.getElementById('quiz-q').textContent = q.question;
     document.getElementById('quiz-sub').textContent = q.subtitle;
-
-    // Options
     const grid = document.getElementById('options-grid');
     grid.innerHTML = q.options.map((opt, i) => {
         const isSelected = answers[q.id]?.label === opt.label;
@@ -144,40 +111,23 @@ function renderStep() {
             </div>
         `;
     }).join('');
-
-    // Buttons
     const btnBack = document.getElementById('btn-back');
     const btnNext = document.getElementById('btn-next');
-
     btnBack.style.display = currentStep > 0 ? 'inline-flex' : 'none';
-
     const isLast = currentStep === total - 1;
     btnNext.innerHTML = isLast
         ? 'Xem kết quả <i class="fa-solid fa-wand-magic-sparkles ms-1"></i>'
         : 'Tiếp theo <i class="fa-solid fa-arrow-right ms-1"></i>';
-
-    // Enable next if already answered
     btnNext.disabled = !answers[q.id];
 }
-
-/* =============================================================
-   SELECT OPTION
-============================================================= */
 function selectOption(index) {
     const q = QUESTIONS[currentStep];
     answers[q.id] = q.options[index];
-
     renderStep();
-
     document.getElementById('btn-next').disabled = false;
 }
-
-/* =============================================================
-   NAVIGATION
-============================================================= */
 function nextStep() {
     if (!answers[QUESTIONS[currentStep].id]) return;
-
     if (currentStep < QUESTIONS.length - 1) {
         currentStep++;
         renderStep();
@@ -186,7 +136,6 @@ function nextStep() {
         showResults();
     }
 }
-
 function prevStep() {
     if (currentStep > 0) {
         currentStep--;
@@ -194,106 +143,67 @@ function prevStep() {
         scrollToQuiz();
     }
 }
-
 function scrollToQuiz() {
     document.getElementById('quiz-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
-/* =============================================================
-   SCORING ALGORITHM
-   Budget = hard filter (loại hẳn nếu ngoài tầm giá).
-   Các tiêu chí khác cộng điểm relative.
-============================================================= */
 function inBudget(product) {
     const ba = answers['budget'];
     if (!ba) return true;
     const { priceMin = 0, priceMax = Infinity } = ba.tags;
     return product.price >= priceMin && product.price <= priceMax;
 }
-
 function scoreProduct(product) {
     let score = 0;
-
-    // Q1 — gender (trọng số cao nhất)
     const ga = answers['gender'];
     if (ga && ga.tags.gender) {
         if (product.gender === ga.tags.gender) score += 35;
-        // unisex chọn nam/nữ: không phạt nặng
         else if (product.gender === 'unisex') score += 15;
         else score -= 30;
     }
-
-    // Q2 — occasion (category preference)
     const oa = answers['occasion'];
     if (oa && oa.tags.category) {
         const cats = Array.isArray(oa.tags.category) ? oa.tags.category : [oa.tags.category];
         if (cats.includes(product.category)) score += 15;
     }
-
-    // Q3 — scentFamily (tiêu chí chính)
     const sa = answers['scentFamily'];
     if (sa && sa.tags.category) {
         const cats = Array.isArray(sa.tags.category) ? sa.tags.category : [sa.tags.category];
         if (cats.includes(product.category)) score += 40;
-        else score -= 10; // nhóm hương sai thì kém ưu tiên
+        else score -= 10;
     }
-
-    // Q4 — personality
     const pa = answers['personality'];
     if (pa && pa.tags.category) {
         const cats = Array.isArray(pa.tags.category) ? pa.tags.category : [pa.tags.category];
         if (cats.includes(product.category)) score += 15;
     }
-
-    // Q5 — longevity/concentration
     const la = answers['longevity'];
     if (la && la.tags.concentration) {
         const concs = Array.isArray(la.tags.concentration) ? la.tags.concentration : [la.tags.concentration];
         if (concs.some(c => product.concentration && product.concentration.includes(c))) score += 20;
     }
-
     return score;
 }
-
-/* =============================================================
-   SHOW RESULTS
-============================================================= */
 function showResults() {
     document.getElementById('quiz-container').style.display = 'none';
     const rc = document.getElementById('results-container');
     rc.style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // 1. Hard filter: chỉ lấy sản phẩm trong ngân sách
     const inBudgetProducts = products.filter(p => inBudget(p));
-
-    // 2. Score + sort
     const scored = inBudgetProducts.map(p => ({
         ...p,
         score: scoreProduct(p)
     })).sort((a, b) => b.score - a.score);
-
-    // 3. Top 4 có điểm dương
     const top4 = scored.filter(p => p.score > 0).slice(0, 4);
-    // Fallback: nếu ít hơn 2 kết quả, lấy top trong budget không phân biệt điểm
     const results = top4.length >= 2 ? top4 : scored.slice(0, 4);
-
-    // 4. Điểm lý tưởng tuyệt đối = 35 + 15 + 40 + 15 + 20 = 125
     const IDEAL_SCORE = 125;
-
-    // Scent profile
     const scentFamily = answers['scentFamily']?.label || 'Đa dạng';
     const genderLabel = answers['gender']?.label || 'Tất cả';
     document.getElementById('scent-profile-text').textContent = `${scentFamily} · ${genderLabel}`;
-
     document.getElementById('result-title').textContent = `Hương ${scentFamily} Là Của Bạn`;
     document.getElementById('result-desc').textContent =
         `Từ ${inBudgetProducts.length} sản phẩm trong tầm giá của bạn, chúng tôi chọn được ${results.length} gợi ý tốt nhất.`;
-
-    // Render cards
     const labels = ['🥇 Phù hợp nhất', '🥈 Lựa chọn #2', '🥉 Lựa chọn #3', '✨ Gợi ý thêm'];
     const grid = document.getElementById('result-grid');
-
     if (results.length === 0) {
         grid.innerHTML = `<div class="col-12 text-center py-5">
             <i class="fa-solid fa-magnifying-glass fa-2x text-muted mb-3"></i>
@@ -301,9 +211,7 @@ function showResults() {
         </div>`;
         return;
     }
-
     grid.innerHTML = results.map((p, i) => {
-        // % tính từ điểm lý tưởng, giới hạn 30-98%
         const rawPct = Math.round((p.score / IDEAL_SCORE) * 100);
         const pct = Math.min(Math.max(rawPct, 30), 98);
         const tags = [p.category, p.concentration, p.capacity].filter(Boolean);
@@ -337,11 +245,6 @@ function showResults() {
         `;
     }).join('');
 }
-
-
-/* =============================================================
-   RESET
-============================================================= */
 function resetQuiz() {
     answers = {};
     currentStep = 0;

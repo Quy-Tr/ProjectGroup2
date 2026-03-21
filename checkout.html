@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
 
 <head>
@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <header>
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
       <a class="navbar-brand" href="trangchu.html">SCENT AURA</a>
@@ -70,7 +71,6 @@
     </div>
   </nav>
 
-  <!-- ==================== PAGE HEADER ==================== -->
   <div class="page-header py-4 bg-light">
     <div class="container">
       <h2 class="mb-0 brand-font">Thanh toán</h2>
@@ -82,17 +82,16 @@
       </nav>
     </div>
   </div>
+  </header>
 
-  <!-- ==================== MAIN CONTENT ==================== -->
+  <main>
   <section class="section-padding py-5">
     <div class="container">
       <div class="row g-5">
 
-        <!-- LEFT: CHECKOUT FORM -->
         <div class="col-lg-7">
           <form id="checkout-form" class="needs-validation" onsubmit="event.preventDefault(); placeOrder();" novalidate>
 
-            <!-- Thông tin giao hàng -->
             <h4 class="mb-4 brand-font">Thông tin giao hàng</h4>
             <div class="row g-3">
               <div class="col-sm-6">
@@ -142,7 +141,6 @@
               </div>
             </div>
 
-            <!-- Phương thức vận chuyển -->
             <h4 class="mb-4 mt-5 brand-font">Phương thức vận chuyển</h4>
             <div id="shipping-options" class="mb-4">
               <div
@@ -171,10 +169,8 @@
               </div>
             </div>
 
-            <!-- Phương thức thanh toán -->
             <h4 class="mb-4 mt-5 brand-font">Phương thức thanh toán</h4>
             <div id="payment-methods">
-              <!-- COD -->
               <div class="payment-method-item selected border rounded p-3 mb-2 cursor-pointer" data-method="cod"
                 onclick="selectPayment(this)">
                 <div class="d-flex align-items-center">
@@ -183,7 +179,6 @@
                 </div>
               </div>
 
-              <!-- Chuyển khoản -->
               <div class="payment-method-item border rounded p-3 mb-2 cursor-pointer" data-method="bank"
                 onclick="selectPayment(this)">
                 <div class="d-flex align-items-center mb-2">
@@ -202,7 +197,6 @@
                 </div>
               </div>
 
-              <!-- Thẻ Tín dung -->
               <div class="payment-method-item border rounded p-3 mb-2 cursor-pointer" data-method="card"
                 onclick="selectPayment(this)">
                 <div class="d-flex align-items-center mb-2">
@@ -229,7 +223,6 @@
                 </div>
               </div>
 
-              <!-- MoMo -->
               <div class="payment-method-item border rounded p-3 cursor-pointer" data-method="momo"
                 onclick="selectPayment(this)">
                 <div class="d-flex align-items-center mb-2">
@@ -243,17 +236,14 @@
               </div>
             </div>
 
-            <!-- Nút gửi đã được chuyển sang tay phải -->
           </form>
         </div>
 
-        <!-- RIGHT: ORDER SUMMARY -->
         <div class="col-lg-5 mb-5 mb-lg-0">
           <div class="cart-summary bg-light p-4 rounded-3 sticky-top" style="top: 90px;">
             <h4 class="brand-font mb-4">Tóm tắt đơn hàng</h4>
 
             <div id="order-items-list" class="mb-4" style="max-height: 300px; overflow-y: auto;">
-              <!-- Items loaded via JS -->
             </div>
 
             <div class="d-flex justify-content-between mb-3 pt-3 border-top">
@@ -301,7 +291,6 @@
     </div>
   </section>
 
-  <!-- SUCCESS MODAL -->
   <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-4 border-0">
@@ -348,6 +337,8 @@
       </div>
     </div>
   </div>
+
+  </main>
 
   <footer class="pb-4 mt-5">
     <div class="container">

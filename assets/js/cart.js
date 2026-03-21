@@ -1,26 +1,5 @@
-/**
- * cart.js — SCENT AURA Cart Manager
- * ===================================
- * Quản lý giỏ hàng toàn trang thông qua localStorage.
- * Load file này TRƯỚC data.js nếu cần, hoặc sau.
- *
- * API công khai:
- *   Cart.add(productId, qty)
- *   Cart.remove(productId)
- *   Cart.updateQty(productId, newQty)
- *   Cart.getItems()          → [{id, qty, product}]
- *   Cart.getCount()          → số lượng tất cả sản phẩm
- *   Cart.getSubtotal()       → tổng tiền (number)
- *   Cart.clear()
- *
- * Events phát ra khi giỏ hàng thay đổi:
- *   window.dispatchEvent(new Event('cart:updated'))
- */
-
-const Cart = (function () {
+﻿const Cart = (function () {
     const STORAGE_KEY = 'scent_aura_cart';
-
-    /* ---------- STORAGE HELPERS ---------- */
     function load() {
         try {
             return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
@@ -28,36 +7,25 @@ const Cart = (function () {
             return [];
         }
     }
-
     function save(items) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
         window.dispatchEvent(new Event('cart:updated'));
     }
-
-    /* ---------- PUBLIC API ---------- */
-
-    /** Thêm sản phẩm. qty mặc định là 1. Nếu đã tồn tại thì cộng dồn. */
     function add(productId, qty = 1) {
         const items = load();
         const existing = items.find(i => i.id === productId);
-
         if (existing) {
             existing.qty += qty;
         } else {
             items.push({ id: productId, qty });
         }
-
         save(items);
         showToast(productId, qty);
     }
-
-    /** Xóa sản phẩm theo id */
     function remove(productId) {
         const items = load().filter(i => i.id !== productId);
         save(items);
     }
-
-    /** Cập nhật số lượng. Nếu qty <= 0 thì xóa. */
     function updateQty(productId, newQty) {
         if (newQty <= 0) {
             remove(productId);
@@ -70,11 +38,6 @@ const Cart = (function () {
             save(items);
         }
     }
-
-    /**
-     * Trả về mảng các item đã join với dữ liệu sản phẩm.
-     * Yêu cầu: biến `products` (từ data.js) phải tồn tại.
-     */
     function getItems() {
         const raw = load();
         const allProducts = (typeof products !== 'undefined') ? products : [];
@@ -83,23 +46,15 @@ const Cart = (function () {
             product: allProducts.find(p => p.id === item.id) || null
         })).filter(item => item.product !== null);
     }
-
-    /** Tổng số lượng sản phẩm trong giỏ */
     function getCount() {
         return load().reduce((sum, i) => sum + i.qty, 0);
     }
-
-    /** Tổng tiền */
     function getSubtotal() {
         return getItems().reduce((sum, item) => sum + item.product.price * item.qty, 0);
     }
-
-    /** Xóa toàn bộ giỏ hàng */
     function clear() {
         save([]);
     }
-
-    /* ---------- BADGE UPDATE ---------- */
     function updateBadge() {
         const count = getCount();
         document.querySelectorAll('[data-cart-badge]').forEach(el => {
@@ -107,10 +62,7 @@ const Cart = (function () {
             el.style.display = count > 0 ? '' : 'none';
         });
     }
-
-    /* ---------- TOAST NOTIFICATION ---------- */
     function showToast(productId, qty) {
-        // Kiểm tra nếu đã có toast container
         let toastContainer = document.getElementById('cart-toast-container');
         if (!toastContainer) {
             toastContainer = document.createElement('div');
@@ -121,11 +73,9 @@ const Cart = (function () {
             `;
             document.body.appendChild(toastContainer);
         }
-
         const allProducts = (typeof products !== 'undefined') ? products : [];
         const product = allProducts.find(p => p.id === productId);
         const name = product ? product.name : 'Sản phẩm';
-
         const toast = document.createElement('div');
         toast.style.cssText = `
             background: #111; color: #fff; padding: 12px 20px;
@@ -134,7 +84,6 @@ const Cart = (function () {
             animation: slideInRight 0.3s ease;
             min-width: 260px; max-width: 320px;
         `;
-
         toast.innerHTML = `
             <div style="width:34px;height:34px;border-radius:50%;background:rgba(197,160,89,0.2);
                         border:1.5px solid #c5a059;display:flex;align-items:center;
@@ -149,20 +98,14 @@ const Cart = (function () {
                 Xem giỏ →
             </a>
         `;
-
         toastContainer.appendChild(toast);
-
-        // Auto remove
         setTimeout(() => {
             toast.style.opacity = '0';
             toast.style.transition = 'opacity 0.3s';
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }
-
-    /* ---------- INIT: auto update badge on load & on cart:updated ---------- */
     function init() {
-        // Thêm CSS animation cho toast
         if (!document.getElementById('cart-toast-style')) {
             const style = document.createElement('style');
             style.id = 'cart-toast-style';
@@ -174,19 +117,12 @@ const Cart = (function () {
             `;
             document.head.appendChild(style);
         }
-
         updateBadge();
         window.addEventListener('cart:updated', updateBadge);
     }
-
     document.addEventListener('DOMContentLoaded', init);
-
     return { add, remove, updateQty, getItems, getCount, getSubtotal, clear };
 })();
-
-/* ============================================================
-   LEGACY COMPAT: hàm addToCart() toàn cục (dùng trong products.js)
-   ============================================================ */
 function addToCart(productId, qty = 1) {
     Cart.add(productId, qty);
 }

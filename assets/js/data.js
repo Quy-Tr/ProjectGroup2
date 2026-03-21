@@ -1,5 +1,4 @@
-const PRELOADED_PRODUCTS = [
-    // 1. Armaf Club De Nuit Precieux
+﻿const PRELOADED_PRODUCTS = [
     {
         id: 1,
         sku: "AR-CDN-PRE-55",
@@ -21,7 +20,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Rất lâu - Trên 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 2. Armaf Odyssey Limoni Fresh Edition EDP
     {
         id: 2,
         sku: "AR-ODY-LIM-100",
@@ -43,7 +41,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Tạm ổn - Từ 6 đến 8 giờ",
         sillage: "Gần - Toả hương trong vòng 1 cánh tay"
     },
-    // 3. Armaf Odyssey Homme EDP
     {
         id: 3,
         sku: "AR-ODY-HOM-100",
@@ -65,7 +62,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 4. Dior Homme Parfum
     {
         id: 4,
         sku: "DIOR-HOM-PAR-100",
@@ -87,7 +83,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Rất lâu - Trên 12 giờ",
         sillage: "Rất xa - Toả hương hơn 2m"
     },
-    // 5. Christian Dior Sauvage Elixir
     {
         id: 5,
         sku: "DIOR-SAU-ELI-60",
@@ -109,7 +104,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Rất lâu - Trên 12 giờ",
         sillage: "Rất xa - Toả hương hơn 2m"
     },
-    // 6. Chanel Allure Homme Sport Superleggera EDP
     {
         id: 6,
         sku: "CHA-AHS-SUP-100",
@@ -131,7 +125,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Tạm ổn - Từ 6 đến 8 giờ",
         sillage: "Gần - Toả hương trong vòng 1 cánh tay"
     },
-    // 7. Chanel Bleu de Chanel EDT
     {
         id: 7,
         sku: "CHA-BLEU-EDT-100",
@@ -153,7 +146,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Tạm ổn - Từ 4 đến 6 giờ",
         sillage: "Gần - Toả hương trong vòng 1 cánh tay"
     },
-    // 8. Yves Saint Laurent MYSLF Le Parfum
     {
         id: 8,
         sku: "YSL-MYSLF-PAR-100",
@@ -175,7 +167,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 9. YSL La Nuit de L'Homme Bleu Electrique EDT Intense
     {
         id: 9,
         sku: "YSL-LANUIT-BLEU-100",
@@ -197,7 +188,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 10. Yves Saint Laurent YSL Black Opium EDP
     {
         id: 10,
         sku: "YSL-BLK-OPI-90",
@@ -219,7 +209,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 11. Yves Saint Laurent YSL Libre EDP
     {
         id: 11,
         sku: "YSL-LIBRE-EDP-90",
@@ -241,7 +230,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 12. Yves Saint Laurent Libre Vanille Couture
     {
         id: 12,
         sku: "YSL-LIBRE-VAN-90",
@@ -263,7 +251,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 13. Dior Miss Dior Essence
     {
         id: 13,
         sku: "DIOR-MISS-ESS-80",
@@ -285,7 +272,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Rất lâu - Trên 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 14. Versace Crystal Noir Parfum
     {
         id: 14,
         sku: "VER-CRY-NOIR-90",
@@ -307,7 +293,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 15. Tom Ford Black Orchid EDT
     {
         id: 15,
         sku: "TF-BLK-ORCH-100",
@@ -329,7 +314,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Tạm ổn - Từ 4 đến 6 giờ",
         sillage: "Gần - Toả hương trong vòng 1 cánh tay"
     },
-    // 16. Armaf Le Parfait Opus Pour Femme EDP
     {
         id: 16,
         sku: "AR-LE-PAR-100",
@@ -351,7 +335,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Tạm ổn - Từ 6 đến 8 giờ",
         sillage: "Gần - Toả hương trong vòng 1 cánh tay"
     },
-    // 17. Unisex Yves Saint Laurent Muse
     {
         id: 17,
         sku: "YSL-MUSE-125",
@@ -373,7 +356,6 @@ const PRELOADED_PRODUCTS = [
         longevity: "Lâu - Từ 7 đến 12 giờ",
         sillage: "Xa - Toả hương trong vòng 2m"
     },
-    // 18. Unisex Yves Saint Laurent 6 place Saint Sulpice
     {
         id: 18,
         sku: "YSL-6PSS-125",
@@ -396,23 +378,16 @@ const PRELOADED_PRODUCTS = [
         sillage: "Xa - Toả hương trong vòng 2m"
     }
 ];
-
-// Đọc dữ liệu từ Admin hoặc dùng danh sách mặc định
 let products = [];
 (function () {
     try {
         const stored = localStorage.getItem('scent_aura_products');
         if (stored) {
             const parsed = JSON.parse(stored);
-
             if (Array.isArray(parsed) && parsed.length > 0) {
-                // Kiểm tra xem có sản phẩm mặc định nào bị mất không
-                // (có thể do vô tình xóa khi test admin)
                 const storedIds = new Set(parsed.map(p => p.id));
                 const missingPreloaded = PRELOADED_PRODUCTS.filter(p => !storedIds.has(p.id));
-
                 if (missingPreloaded.length > 0) {
-                    // Ghép sản phẩm còn thiếu vào — đặt trước để giữ thứ tự
                     products = [...missingPreloaded, ...parsed];
                     try {
                         localStorage.setItem('scent_aura_products', JSON.stringify(products));
@@ -423,14 +398,12 @@ let products = [];
                     products = parsed;
                 }
             } else {
-                // Mảng rỗng hoặc không hợp lệ — khôi phục mặc định
                 products = [...PRELOADED_PRODUCTS];
                 try {
                     localStorage.setItem('scent_aura_products', JSON.stringify(products));
-                } catch (e) { /* ignore */ }
+                } catch (e) {  }
             }
         } else {
-            // Chưa có data — khởi tạo từ danh sách mặc định
             products = [...PRELOADED_PRODUCTS];
             try {
                 localStorage.setItem('scent_aura_products', JSON.stringify(products));
@@ -439,9 +412,7 @@ let products = [];
             }
         }
     } catch (e) {
-        // Lỗi parse JSON — dùng danh sách mặc định
         products = [...PRELOADED_PRODUCTS];
         console.warn('Failed to parse scent_aura_products from localStorage:', e);
     }
 })();
-

@@ -1,6 +1,4 @@
-/* STANDARD ADMIN LAYOUT */
-
-:root {
+﻿:root {
     --primary-color: #111;
     --sidebar-bg: #1e1e2d;
     --sidebar-text: #a2a3b7;
@@ -18,12 +16,11 @@
 body {
     background-color: var(--bg-color);
     font-family: 'Josefin Sans', sans-serif;
-    /* Consistent with main site */
+    
     margin: 0;
     overflow-x: hidden;
 }
 
-/* --- SIDEBAR --- */
 .sidebar {
     position: fixed;
     top: 0;
@@ -103,7 +100,6 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* --- MAIN CONTENT --- */
 .main-content {
     margin-left: var(--sidebar-width);
     padding: 30px;
@@ -111,7 +107,6 @@ body {
     transition: all 0.3s ease;
 }
 
-/* --- HEADER --- */
 header {
     display: flex;
     justify-content: space-between;
@@ -148,7 +143,6 @@ header {
     font-weight: bold;
 }
 
-/* --- CARDS & STATS --- */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -206,7 +200,6 @@ header {
     color: #2ecc71;
 }
 
-/* --- TABLES --- */
 .admin-card {
     background: var(--white);
     padding: 30px;
@@ -250,7 +243,6 @@ header {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* --- BADGES --- */
 .badge {
     padding: 6px 10px;
     border-radius: 6px;
@@ -278,7 +270,6 @@ header {
     color: #f64e60;
 }
 
-/* --- MODALS --- */
 .modal {
     display: none;
     position: fixed;
@@ -316,7 +307,6 @@ header {
     color: var(--text-color);
 }
 
-/* --- BUTTONS --- */
 .btn-primary {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
@@ -362,7 +352,6 @@ header {
     color: #fff;
 }
 
-/* Responsive */
 @media (max-width: 992px) {
     .sidebar {
         transform: translateX(-100%);

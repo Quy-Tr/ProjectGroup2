@@ -1,48 +1,39 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 
 <head>
-  <!-- ================= META ================= -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Giỏ hàng | SCENT AURA</title>
 
-  <!-- ================= CSS LIBRARIES ================ -->
   <link href="thu_vien/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="thu_vien/css/all.min.css" />
   <link rel="stylesheet" href="thu_vien/css/swiper-bundle.min.css" />
 
-  <!-- ================= JS LIBRARIES ================= -->
   <script src="thu_vien/js/swiper-bundle.min.js"></script>
 
-  <!-- ================= CSS CUSTOM ================= -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <link href="assets/images/favicon-32x32.png" rel="icon" />
 </head>
 
 <body>
-  <!-- ======================= NAVBAR ====================== -->
+  <header>
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
 
-      <!-- Logo -->
       <a class="navbar-brand" href="trangchu.html">SCENT AURA</a>
 
-      <!-- Button thu gọn mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Nội dung menu -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
 
-          <!-- Trang chủ -->
           <li class="nav-item">
             <a class="nav-link" href="trangchu.html">Trang chủ</a>
           </li>
 
-          <!-- Dropdown sản phẩm -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -62,7 +53,6 @@
             </ul>
           </li>
 
-          <!-- Các trang khác -->
           <li class="nav-item">
             <a class="nav-link" href="about.html">Về SCENT AURA</a>
           </li>
@@ -77,26 +67,21 @@
 
         </ul>
 
-        <!-- Khu vực bên phải navbar -->
         <div class="d-flex align-items-center">
 
-          <!-- Thanh tìm kiếm -->
           <div class="search-wrapper d-none d-lg-block me-3">
             <input type="text" class="search-input" placeholder="Tìm mùi hương..." />
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
           </div>
 
-          <!-- Icon tài khoản -->
           <a href="user/profile.html" class="text-dark me-3">
             <i class="fa-regular fa-user"></i>
           </a>
 
-          <!-- Đăng nhập -->
           <a href="login.html" class="text-dark me-3" style="font-size: 0.8rem; font-weight: 600">
             ĐĂNG NHẬP
           </a>
 
-          <!-- Icon giỏ hàng -->
           <a href="cart.html" class="text-dark position-relative">
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="badge bg-dark rounded-pill position-absolute top-0 start-100 translate-middle"
@@ -108,12 +93,10 @@
     </div>
   </nav>
 
-  <!-- ==================== PAGE HEADER ==================== -->
   <div class="page-header">
     <div class="container">
       <h1>Giỏ hàng của bạn</h1>
 
-      <!-- Breadcrumb -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -126,25 +109,24 @@
       </nav>
     </div>
   </div>
+  </header>
 
-
-  <!-- ==================== CART SECTION =================== -->
+  <main>
   <section class="cart-section section-padding">
     <div class="container">
       <div class="row" id="cart-content">
 
-        <!-- Nội dung giỏ hàng sẽ được render bởi cart-page.js -->
       </div>
     </div>
   </section>
 
-  <!-- ======================== FOOTER ===================== -->
+  </main>
+
   <footer class="pb-4">
     <div class="container">
 
       <div class="row g-5">
 
-        <!-- Cột giới thiệu -->
         <div class="col-lg-4">
           <h5 class="brand-font mb-4">SCENT AURA</h5>
           <p class="small text-muted">
@@ -153,7 +135,6 @@
           </p>
         </div>
 
-        <!-- Cột mua sắm -->
         <div class="col-6 col-md-3 col-lg-2">
           <h6>MUA SẮM</h6>
           <ul class="list-unstyled">
@@ -163,7 +144,6 @@
           </ul>
         </div>
 
-        <!-- Cột tài khoản -->
         <div class="col-6 col-md-3 col-lg-2">
           <h6>TÀI KHOẢN</h6>
           <ul class="list-unstyled">
@@ -173,7 +153,6 @@
           </ul>
         </div>
 
-        <!-- Cột liên hệ -->
         <div class="col-md-6 col-lg-4">
           <h6>LIÊN HỆ</h6>
           <p class="small text-muted">
@@ -208,7 +187,6 @@
   </footer>
 
 
-  <!-- ======================= SCRIPTS ===================== -->
   <script src="thu_vien/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/data.js"></script>
   <script src="assets/js/cart.js"></script>

@@ -1,20 +1,12 @@
-/* assets/js/admin.js — Admin Panel Full Interactive */
-
-// --- 1. KEYS ---
-const PRODUCT_KEY = 'scent_aura_products';
+﻿const PRODUCT_KEY = 'scent_aura_products';
 const ORDER_KEY = 'userOrders';
 const USER_KEY = 'scent_aura_users';
-
-// --- 2. AUTH GUARD ---
-// Kiểm tra quyền admin trước khi làm bất cứ điều gì
 (function checkAdminAuth() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     if (!user || user.role !== 'admin') {
         window.location.href = '../login.html';
     }
 })();
-
-// --- 3. HELPERS ---
 function getData(key, fallback = []) {
     try {
         const raw = localStorage.getItem(key);
@@ -23,7 +15,6 @@ function getData(key, fallback = []) {
         return fallback;
     }
 }
-
 function saveData(key, data) {
     try {
         localStorage.setItem(key, JSON.stringify(data));
@@ -35,39 +26,27 @@ function saveData(key, data) {
         }
     }
 }
-
 const fmt = (n) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(n);
-
 function getAdminUser() {
     return JSON.parse(localStorage.getItem('currentUser')) || { name: 'Admin', email: '' };
 }
-
-// Hiển thị tên admin ở header
 function renderAdminHeader() {
     const admin = getAdminUser();
     document.querySelectorAll('.admin-name-display').forEach(el => el.textContent = admin.name || 'Admin');
     const initials = (admin.name || 'AD').split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
     document.querySelectorAll('.admin-avatar-initials').forEach(el => el.textContent = initials);
 }
-
-// --- 4. DASHBOARD ---
 function renderDashboard() {
     const revenueEl = document.getElementById('total-revenue');
     const ordersEl = document.getElementById('total-orders');
     const productsSoldEl = document.getElementById('total-products-sold');
     const totalUsersEl = document.getElementById('total-users');
     const recentOrdersBody = document.getElementById('recent-orders-body');
-
-    if (!revenueEl) return; // Không phải trang Dashboard
-
+    if (!revenueEl) return;
     const orders = getData(ORDER_KEY, []);
     const users = getData(USER_KEY, []);
-
-    // Chỉ tính doanh thu từ đơn hàng đã giao (completed)
-    // Dùng hàm parseMoney để xử lý cả số lẫn string dạng "2.000.000 ₫"
     const parseMoney = (val) => {
         if (typeof val === 'number') return val;
-        // Xóa tất cả ký tự không phải số → VND không có phần thập phân
         const digits = String(val).replace(/\D/g, '');
         return parseInt(digits, 10) || 0;
     };
@@ -75,7 +54,6 @@ function renderDashboard() {
         return o.status === 'completed' ? sum + parseMoney(o.total) : sum;
     }, 0);
     const totalOrders = orders.length;
-
     let totalSold = 0;
     orders.forEach(o => {
         if (o.status !== 'cancelled') {
@@ -87,12 +65,10 @@ function renderDashboard() {
             }
         }
     });
-
     revenueEl.textContent = fmt(totalRevenue);
     ordersEl.textContent = totalOrders;
     productsSoldEl.textContent = totalSold;
     if (totalUsersEl) totalUsersEl.textContent = users.filter(u => u.role !== 'admin').length;
-
     if (recentOrdersBody) {
         const recent = [...orders].reverse().slice(0, 5);
         recentOrdersBody.innerHTML = recent.length === 0
@@ -111,7 +87,6 @@ function renderDashboard() {
             }).join('');
     }
 }
-
 function statusInfo(status) {
     const map = {
         pending: { cls: 'badge-pending', label: 'Đang xử lý' },
@@ -121,21 +96,15 @@ function statusInfo(status) {
     };
     return map[status] || { cls: '', label: status };
 }
-
-// --- 5. PRODUCTS ---
 function renderProductTable() {
     const tbody = document.getElementById('product-table-body');
     if (!tbody) return;
-
     const products = getData(PRODUCT_KEY, []);
-
     if (products.length === 0) {
         tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-4">Chưa có sản phẩm nào.</td></tr>`;
         return;
     }
-
     const genderLabel = { nam: 'Nam', nu: 'Nữ', unisex: 'Unisex' };
-
     tbody.innerHTML = products.map(p => `
         <tr>
             <td><span class="text-muted small">#${p.id}</span></td>
@@ -157,19 +126,14 @@ function renderProductTable() {
         </tr>
     `).join('');
 }
-
-// --- 6. ORDERS ---
 function renderOrderTable() {
     const tbody = document.getElementById('order-table-body');
     if (!tbody) return;
-
     const orders = getData(ORDER_KEY, []);
-
     if (orders.length === 0) {
         tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-4">Chưa có đơn hàng nào.</td></tr>`;
         return;
     }
-
     tbody.innerHTML = orders.map(o => {
         const { cls, label } = statusInfo(o.status);
         const customer = o.customer || o.name || 'Khách';
@@ -188,41 +152,31 @@ function renderOrderTable() {
         </tr>`;
     }).join('');
 }
-
-// --- 7. USERS ---
 function renderUserTable() {
     const tbody = document.getElementById('user-table-body');
     if (!tbody) return;
-
     const users = getData(USER_KEY, []);
     const admin = getAdminUser();
-
     if (users.length === 0) {
         tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-4">Chưa có người dùng.</td></tr>`;
         return;
     }
-
     tbody.innerHTML = users.map(u => {
         const isSelf = u.email === admin.email;
         const roleBadge = u.role === 'admin'
             ? `<span class="badge-role role-admin">Quản trị viên</span>`
             : `<span class="badge-role role-user">Khách hàng</span>`;
-
         const statusBadge = u.status === 'locked'
             ? `<span class="text-danger"><i class="fas fa-lock"></i> Đã khóa</span>`
             : `<span class="text-success"><i class="fas fa-check-circle"></i> Hoạt động</span>`;
-
-        // Nút khóa / mở khóa
         const lockBtn = u.role !== 'admin'
             ? (u.status === 'locked'
                 ? `<button class="action-btn edit-btn" onclick="toggleLockUser(${u.id})" title="Mở khóa"><i class="fas fa-unlock"></i></button>`
                 : `<button class="action-btn" style="background:#fff4de;color:#ffa800;" onclick="toggleLockUser(${u.id})" title="Khóa tài khoản"><i class="fas fa-lock"></i></button>`)
             : '';
-
         const deleteBtn = !isSelf && u.role !== 'admin'
             ? `<button class="action-btn delete-btn" onclick="deleteUser(${u.id})" title="Xóa"><i class="fas fa-trash"></i></button>`
             : '';
-
         return `<tr>
             <td>#${u.id}</td>
             <td><strong>${u.name}</strong>${isSelf ? ' <span class="text-muted small">(bạn)</span>' : ''}</td>
@@ -234,16 +188,12 @@ function renderUserTable() {
         </tr>`;
     }).join('');
 }
-
-// --- 8. KHỞI CHẠY KHI LOAD TRANG ---
 document.addEventListener('DOMContentLoaded', function () {
     renderAdminHeader();
     renderDashboard();
     renderProductTable();
     renderOrderTable();
     renderUserTable();
-
-    // A. PRODUCT FORM - SUBMIT
     const productForm = document.getElementById('productForm');
     if (productForm) {
         productForm.addEventListener('submit', function (e) {
@@ -258,16 +208,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const desc = document.getElementById('pDesc').value.trim();
             const img = document.getElementById('pImage').value;
             const img2 = document.getElementById('pImage2') ? document.getElementById('pImage2').value : '';
-
             if (!name || !brand || !price) {
                 alert('Vui lòng điền ít nhất Tên, Thương hiệu và Giá!');
                 return;
             }
-
             let products = getData(PRODUCT_KEY, []);
-
             if (id) {
-                // Sửa — giữ nguyên các trường không có trong form
                 const idx = products.findIndex(p => p.id == id);
                 if (idx !== -1) {
                     products[idx] = {
@@ -278,7 +224,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     };
                 }
             } else {
-                // Thêm mới
                 const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
                 products.push({
                     id: newId,
@@ -292,15 +237,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     sillage: ''
                 });
             }
-
             saveData(PRODUCT_KEY, products);
             renderProductTable();
             closeProductModal();
             alert(id ? 'Cập nhật sản phẩm thành công!' : 'Thêm sản phẩm thành công!');
         });
     }
-
-    // B. UPLOAD ẢNH CHÍNH (img)
     const imageInput = document.getElementById('imageInput');
     if (imageInput) {
         imageInput.addEventListener('change', function (e) {
@@ -315,8 +257,6 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.readAsDataURL(file);
         });
     }
-
-    // C. UPLOAD ẢNH PHỤ (img2)
     const imageInput2 = document.getElementById('imageInput2');
     if (imageInput2) {
         imageInput2.addEventListener('change', function (e) {
@@ -332,12 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
-// --- 9. GLOBAL FUNCTIONS ---
-
-// -- Product Modal --
 const _getProductModal = () => document.getElementById('productModal');
-
 window.openModal = function () {
     const modal = _getProductModal();
     if (!modal) return;
@@ -350,19 +285,16 @@ window.openModal = function () {
     document.getElementById('modalTitle').textContent = 'Thêm Sản Phẩm Mới';
     modal.style.display = 'block';
 };
-
 window.closeProductModal =
     window.closeModal = function () {
         const modal = _getProductModal();
         if (modal) modal.style.display = 'none';
     };
-
 window.editProduct = function (id) {
     const products = getData(PRODUCT_KEY, []);
     const p = products.find(x => x.id == id);
     const modal = _getProductModal();
     if (!p || !modal) return;
-
     document.getElementById('pId').value = p.id;
     document.getElementById('pName').value = p.name || '';
     document.getElementById('pBrand').value = p.brand || '';
@@ -373,7 +305,6 @@ window.editProduct = function (id) {
     document.getElementById('pDesc').value = p.desc || '';
     document.getElementById('pImage').value = p.img || '';
     if (document.getElementById('pImage2')) document.getElementById('pImage2').value = p.img2 || '';
-
     const preview = document.getElementById('imagePreview');
     if (p.img) {
         preview.src = p.img.startsWith('data:') || p.img.startsWith('http') ? p.img : '../' + p.img;
@@ -381,7 +312,6 @@ window.editProduct = function (id) {
     } else {
         preview.style.display = 'none';
     }
-
     const preview2 = document.getElementById('imagePreview2');
     if (preview2) {
         if (p.img2) {
@@ -391,11 +321,9 @@ window.editProduct = function (id) {
             preview2.style.display = 'none';
         }
     }
-
     document.getElementById('modalTitle').textContent = 'Chỉnh Sửa Sản Phẩm';
     modal.style.display = 'block';
 };
-
 window.deleteProduct = function (id) {
     if (!confirm('Bạn chắc chắn muốn xóa sản phẩm này?\nHành động này không thể hoàn tác!')) return;
     let products = getData(PRODUCT_KEY, []);
@@ -403,17 +331,13 @@ window.deleteProduct = function (id) {
     saveData(PRODUCT_KEY, products);
     renderProductTable();
 };
-
-// -- Order Modal --
 const _getOrderModal = () => document.getElementById('orderModal');
 let _currentOrderId = null;
-
 window.openOrderModal = function (id) {
     const orders = getData(ORDER_KEY, []);
     const order = orders.find(o => o.id === id);
     const modal = _getOrderModal();
     if (!order || !modal) return;
-
     _currentOrderId = id;
     document.getElementById('modalOrderId').textContent = '#' + order.id;
     document.getElementById('modalCustomer').textContent = order.customer || order.name || 'Khách';
@@ -425,7 +349,6 @@ window.openOrderModal = function (id) {
     document.getElementById('modalStatus').value = order.status || 'pending';
     modal.style.display = 'block';
 };
-
 window.saveOrderStatus = function () {
     const newStatus = document.getElementById('modalStatus').value;
     let orders = getData(ORDER_KEY, []);
@@ -438,29 +361,22 @@ window.saveOrderStatus = function () {
         alert('Cập nhật trạng thái đơn hàng thành công!');
     }
 };
-
 window.closeOrderModal = function () {
     const modal = _getOrderModal();
     if (modal) modal.style.display = 'none';
 };
-
-// -- User Actions --
 window.toggleLockUser = function (id) {
     let users = getData(USER_KEY, []);
     const idx = users.findIndex(u => u.id === id);
     if (idx === -1) return;
-
     const user = users[idx];
     const newStatus = user.status === 'locked' ? 'active' : 'locked';
     const action = newStatus === 'locked' ? 'khóa' : 'mở khóa';
-
     if (!confirm(`Bạn có chắc muốn ${action} tài khoản "${user.name}" không?`)) return;
-
     users[idx].status = newStatus;
     saveData(USER_KEY, users);
     renderUserTable();
 };
-
 window.deleteUser = function (id) {
     const admin = getAdminUser();
     let users = getData(USER_KEY, []);
@@ -469,45 +385,34 @@ window.deleteUser = function (id) {
     if (user.email === admin.email) { alert('Không thể xóa tài khoản Admin đang đăng nhập!'); return; }
     if (user.role === 'admin') { alert('Không thể xóa tài khoản Quản trị viên!'); return; }
     if (!confirm(`Xóa tài khoản của "${user.name}"? Hành động này không thể hoàn tác!`)) return;
-
     users = users.filter(u => u.id !== id);
     saveData(USER_KEY, users);
     renderUserTable();
 };
-
-// -- Khôi phục sản phẩm mặc định --
 window.resetToDefaultProducts = function () {
     if (!confirm('Khôi phục tất cả 18 sản phẩm mặc định?\n\nCác sản phẩm bạn đã thêm sẽ KHÔNG bị xóa — chỉ bổ sung các sản phẩm mặc định bị thiếu.')) return;
-
     if (typeof PRELOADED_PRODUCTS === 'undefined') {
         alert('Không tìm thấy danh sách sản phẩm mặc định. Vui lòng tải lại trang.');
         return;
     }
-
     let current = getData(PRODUCT_KEY, []);
     const currentIds = new Set(current.map(p => p.id));
     const toAdd = PRELOADED_PRODUCTS.filter(p => !currentIds.has(p.id));
-
     if (toAdd.length === 0) {
         alert('Tất cả sản phẩm mặc định đã tồn tại, không cần khôi phục!');
         return;
     }
-
     const merged = [...toAdd, ...current];
     saveData(PRODUCT_KEY, merged);
     renderProductTable();
     alert(`✅ Đã khôi phục ${toAdd.length} sản phẩm mặc định bị thiếu!`);
 };
-
-// -- Đăng xuất --
 window.adminLogout = function () {
     if (!confirm('Bạn có chắc muốn đăng xuất không?')) return;
     localStorage.removeItem('currentUser');
     localStorage.removeItem('isLoggedIn');
     window.location.href = '../login.html';
 };
-
-// -- Đóng modal khi click ngoài --
 window.addEventListener('click', function (e) {
     const pm = _getProductModal();
     const om = _getOrderModal();
